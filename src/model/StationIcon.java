@@ -18,6 +18,8 @@ public class StationIcon implements HasNode{
     public StationIcon(Color color) {
         this.color = color;
         icon = new Circle(this.radius);
+        icon.setStroke(GeneralSettings.getICON_STROKE_COLOR());
+        icon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
         icon.setFill(color);
     }
 

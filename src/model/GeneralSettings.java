@@ -1,5 +1,8 @@
 package model;
 
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+
 /**
  * Created by Vilkazzz on 20/03/2016.
  */
@@ -8,6 +11,8 @@ public class GeneralSettings {
     final static int LINES_STARTING_NUMBER = 0;
 
     final static double ICON_RADIUS = 10;
+    final static double ICON_STROKE_WIDTH = 3;
+    final static Color ICON_STROKE_COLOR = Color.BLACK;
 
     final static double CONNECTOR_WIDTH = 5;
 
@@ -39,6 +44,14 @@ public class GeneralSettings {
 
     public static double getCONNECTOR_WIDTH() {
         return CONNECTOR_WIDTH;
+    }
+
+    public static double getICON_STROKE_WIDTH() {
+        return ICON_STROKE_WIDTH;
+    }
+
+    public static Paint getICON_STROKE_COLOR() {
+        return ICON_STROKE_COLOR;
     }
 
 
