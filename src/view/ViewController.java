@@ -10,15 +10,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import model.GeneralSettings;
+import model.LineConnector;
 import model.TrainPlan;
 import model.TrainStation;
 
 public class ViewController {
-
-    String haha;
 
 
     @FXML
@@ -29,6 +26,7 @@ public class ViewController {
 
     @FXML
     VBox leftMenu;
+
     @FXML
     private static VBox mainVBox, leftSide;
 
@@ -75,24 +73,30 @@ public class ViewController {
             public void handle(MouseEvent event) {
                 leftMenu.getChildren().remove(trainlineCreator);
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
-                getXYCoordinatesforStation();
+                getXYCoordinatesforStation(null);
             }
         });
         ((Pane) trainlineCreator).getChildren().add(button);
     }
 
 
-    private void getXYCoordinatesforStation() {
+    private void getXYCoordinatesforStation(LineConnector connector) {
         centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                disableCenterPaneMouseClickListener();
+                disableCenterPaneMouseMoveListener();
                 createStationOnMouseclick(event);
             }
         });
     }
 
-    private void disableCenterPaneListener(){
+    private void disableCenterPaneMouseClickListener(){
         centerPane.setOnMouseClicked(null);
+    }
+
+    private void disableCenterPaneMouseMoveListener(){
+        centerPane.setOnMouseMoved(null);
     }
 
 
@@ -112,9 +116,8 @@ public class ViewController {
         ContentController.addStationToActualTrainLine(station);
         leftMenu.getChildren().remove(stationCreator);
         renderTrainPlan();
-        disableCenterPaneListener();
+        disableCenterPaneMouseClickListener();
         nextStationOrEndLine();
-//        drawConnector(station);
     }
 
 
@@ -125,15 +128,12 @@ public class ViewController {
         centerPane.getChildren().add(request);
         request.setLayoutX(x);
         request.setLayoutY(y);
-
-
-
     }
 
     private Pane getNextStationRequest(){
         Text question = new Text("weitere Station oder Linienende?");
         Pane pane = new Pane();
-        Button nextStation = getNExtSTationButton(pane);
+        Button nextStation = getNextSTationButton(pane);
         Button endLine = getEndLineButton(pane);
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
@@ -143,15 +143,14 @@ public class ViewController {
         return pane;
     }
 
-    private Button getNExtSTationButton(Pane pane){
+    private Button getNextSTationButton(Pane pane){
         Button button = new Button("weitere Station hinzufügen");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                disableCenterPaneMouseClickListener();
                 removeNextStationRequest(pane);
                 drawConnector(ContentController.getLastAdedStation());
-                getXYCoordinatesforStation();
-
             }
         });
         return button;
@@ -172,12 +171,9 @@ public class ViewController {
     }
 
     public void drawConnector(TrainStation station){
-        Line connector = new Line();
-        connector.setFill(station.getColor());
-        connector.setStrokeWidth(GeneralSettings.getCONNECTOR_WIDTH());
-        connector.setStartX(station.getNode().getLayoutX());
-        connector.setStartY(station.getNode().getLayoutY());
-        centerPane.getChildren().add(connector);
+        LineConnector connector = new LineConnector(station);
+        ContentController.addConnectorToActiveLine(connector);
+        centerPane.getChildren().add(connector.getNode());
         centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -185,6 +181,7 @@ public class ViewController {
                 connector.setEndY(event.getY());
             }
         });
+        getXYCoordinatesforStation(connector);
 
     }
 
