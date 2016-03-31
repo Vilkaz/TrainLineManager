@@ -1,8 +1,10 @@
 package model;
 
+import controller.ContentController;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -22,35 +24,51 @@ public class StationIcon implements HasNode {
     private int lineNr;
     private Node endstationIcon;
     private boolean endstation;
+    private int stationId;
 
 
     public StationIcon(TrainStation station) {
         this.color = station.getColor();
         this.lineNr = station.getLineNr();
         this.endstation = station.isEndStation();
-        this.endstationIcon =  getEndstationIcon();
+        this.stationId = station.getId();
+        this.endstationIcon = getEndstationIcon();
+        this.regularIcon = getRegularIcon(station);
+    }
+
+    private Circle getRegularIcon(TrainStation station) {
         regularIcon = new Circle(this.radius);
         regularIcon.setStroke(GeneralSettings.getICON_STROKE_COLOR());
         regularIcon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
         regularIcon.setFill(color);
         regularIcon.getStyleClass().add("stationIcon");
 
-        regularIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        regularIcon.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Geklickt");
-                regularIcon.setLayoutX(event.getX());
-                regularIcon.setLayoutY(event.getY());
+                station.getCenterPane().setOnMouseMoved(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
+                        regularIcon.setLayoutX(event.getX()-pane.getLayoutX());
+                        regularIcon.setLayoutY(event.getY()-pane.getLayoutY());
+                    }
+                });
+
             }
         });
-        regularIcon.setOnDragDetected(new EventHandler<MouseEvent>() {
+
+
+        regularIcon.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("DRAG DETECTED");
-                regularIcon.setLayoutX(event.getX() - GeneralSettings.getIconRadius() / 2);
-                regularIcon.setLayoutY(event.getY() - GeneralSettings.getIconRadius() / 2);
+                System.out.println("maus released");
+//                station.getCenterPane().setOnMouseMoved(null);
             }
         });
+        return regularIcon;
+
+
     }
 
     public StationIcon(double x, double y, Color color) {
@@ -67,10 +85,10 @@ public class StationIcon implements HasNode {
     }
 
 
-    public Pane getEndstationIcon() {
-        Text text = new Text("" + this.lineNr);
-        Pane pane = new Pane(text);
-        pane.getStyleClass().add("endstationIcon");
-        return pane;
+    public Node getEndstationIcon() {
+        Text text = new Text("ABC" + this.lineNr);
+        HBox box = new HBox(text);
+        box.getStyleClass().add("endStationIcon");
+        return box;
     }
 }
