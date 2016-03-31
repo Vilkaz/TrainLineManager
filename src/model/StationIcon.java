@@ -7,7 +7,7 @@ import javafx.scene.shape.Circle;
 /**
  * Created by Vilkazzz on 27/03/2016.
  */
-public class StationIcon implements HasNode {
+public class StationIcon implements HasNode{
     private double x;
     private double y;
     private double radius = GeneralSettings.getIconRadius();

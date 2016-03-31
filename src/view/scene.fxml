@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<VBox id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="1009.0" styleClass="mainContainer" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
+<VBox id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainContainer" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
    <children>
       <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1009.0" styleClass="menu">
          <menus>
@@ -36,19 +36,22 @@
             </Menu>
          </menus>
       </MenuBar>
-      <BorderPane id="mainBorderPane" prefHeight="682.0" prefWidth="1009.0">
+      <BorderPane id="mainBorderPane" styleClass="mainBorderPane">
          <left>
-            <VBox fx:id="leftMenu" prefHeight="459.0" prefWidth="180.0" styleClass="leftMenu" BorderPane.alignment="CENTER">
+            <VBox fx:id="leftMenu" styleClass="leftMenu" BorderPane.alignment="CENTER">
                <children>
                   <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="30.0" prefWidth="180.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
                </children></VBox>
          </left>
          <center>
-            <Pane fx:id="centerPane" prefHeight="481.0" prefWidth="902.0" styleClass="centerPane" BorderPane.alignment="CENTER" />
+            <Pane fx:id="centerPane" styleClass="centerPane" BorderPane.alignment="CENTER" />
          </center>
          <right>
             <Pane id="rightBorder" styleClass="rightBorder" BorderPane.alignment="CENTER" />
          </right>
+         <bottom>
+            <Pane prefHeight="0.0" prefWidth="1009.0" styleClass="borderBottom" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </VBox>

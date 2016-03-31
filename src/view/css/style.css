@@ -1,53 +1,70 @@
-/* line 8, style.scss */
+/* line 9, style.scss */
 .myBtn {
   -fx-font-size: 14px;
-  -fx-background-color: beige;
+  -fx-background-color: rgba(54, 61, 66, 0.38);
 }
 
-/* line 13, style.scss */
+/* line 14, style.scss */
 .myBtn:hover {
-  -fx-background-color: bisque;
+  -fx-background-color: rgba(160, 170, 178, 0.52);
 }
 
-/* line 17, style.scss */
+/* line 18, style.scss */
 .myBtn:pressed {
-  -fx-background-color: aquamarine;
+  -fx-background-color: orange;
 }
 
-/* line 21, style.scss */
+/* line 22, style.scss */
 .centerPane {
   -fx-background-color: rgba(54, 61, 66, 0.38);
   -fx-min-width: 60%;
-  -fx-min-height: 80%;
+  -fx-min-height: 100%;
   -fx-pref-height: 100%;
 }
 
-/* line 28, style.scss */
+/* line 29, style.scss */
 .nextStationRequest {
-  -fx-background-color: coral;
+  -fx-background-color: orange;
+  -fx-pref-width: 400px;
+  -fx-border-color: grey;
 }
 
-/* line 32, style.scss */
+/* line 35, style.scss */
 .mainContainer {
   -fx-background-color: rgba(160, 170, 178, 0.52);
 }
 
-/* line 41, style.scss */
+/* line 43, style.scss */
 .leftMenu {
   -fx-background-color: rgba(46, 53, 50, 0.59);
-  -fx-min-height: 100px;
+  -fx-min-height: 100%;
   -fx-min-width: 50%;
+  -fx-border-color: orange;
 }
 
-/* line 47, style.scss */
+/* line 50, style.scss */
 .menu {
-  -fx-background-color: grey;
+  -fx-background-color: orange;
 }
 
-/* line 51, style.scss */
+/* line 54, style.scss */
 .lineCreator {
   -fx-border-radius: 10;
   -fx-background-radius: 10;
-  -fx-background-color: #A0AAB2;
+  -fx-background-color: orange;
   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+/* line 61, style.scss */
+.borderBottom {
+  -fx-background-color: orange;
+  -fx-min-height: 10px;
+}
+
+/* line 66, style.scss */
+.mainBorderPane {
+  -fx-min-width: 1000px;
+  -fx-min-height: 1000px;
+  -fx-pref-height: 100%;
+  -fx-pref-width: 100%;
 }

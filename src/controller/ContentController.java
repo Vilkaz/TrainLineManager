@@ -1,7 +1,10 @@
 package controller;
 
 import javafx.scene.paint.Color;
-import model.*;
+import model.Neighbor;
+import model.TrainLine;
+import model.TrainPlan;
+import model.TrainStation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +74,6 @@ public class ContentController {
 
     public static TrainStation getLastAdedStation() {
         return activeTrainline.getLastStation();
-    }
-
-    public static void addConnectorToActiveLine(LineConnector connector) {
-        ContentController.activeTrainline.addConnector(connector);
     }
 
     //endregion getter and setter

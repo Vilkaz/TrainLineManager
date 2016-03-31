@@ -27,7 +27,6 @@ public class TrainStation implements HasNode {
         this.name = name;
         this.zone = zone;
         this.endzone = endzone;
-        this.color = color;
         this.icon = new StationIcon(color);
         this.node = new Pane(new Text(this.name), icon.getNode());
         node.setLayoutX(event.getX());

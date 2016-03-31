@@ -4,34 +4,36 @@ $customerColor1: #C7CEDB;
 $customerColor2: #A0AAB2;
 $adminColor1: #2E3532;
 $adminColor2: #7E9181;
+$orangeColor: #FFA500;
 
 .myBtn {
     -fx-font-size: 14px;
-    -fx-background-color: beige;
+    -fx-background-color: $centerBackgroundColor;
 }
 
 .myBtn:hover {
-    -fx-background-color:bisque ;
+    -fx-background-color: $backgroundColor;
 }
 
 .myBtn:pressed {
-    -fx-background-color: aquamarine;
+    -fx-background-color: $orangeColor;
 }
 
 .centerPane{
     -fx-background-color: $centerBackgroundColor;
     -fx-min-width: 60%;
-    -fx-min-height: 80%;
+    -fx-min-height: 100%;
     -fx-pref-height: 100%;
 }
 
 .nextStationRequest{
-    -fx-background-color: coral;
+    -fx-background-color: $orangeColor;
+    -fx-pref-width: 400px;
+    -fx-border-color: grey;
 }
 
 .mainContainer{
     -fx-background-color: $backgroundColor;
-
 }
 
 .rightBorder{
@@ -40,17 +42,31 @@ $adminColor2: #7E9181;
 
 .leftMenu{
     -fx-background-color: rgba(46, 53, 50, 0.59);
-    -fx-min-height: 100px;
+    -fx-min-height: 100%;
     -fx-min-width: 50%;
+    -fx-border-color: $orangeColor;
 }
 
 .menu{
-    -fx-background-color: grey;
+    -fx-background-color: $orangeColor;
 }
 
 .lineCreator{
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #A0AAB2;
+    -fx-background-color: $orangeColor;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.borderBottom{
+    -fx-background-color: $orangeColor;
+    -fx-min-height: 10px;
+}
+
+.mainBorderPane{
+    -fx-min-width: 1000px;
+    -fx-min-height: 1000px;
+    -fx-pref-height: 100%;
+    -fx-pref-width: 100%;
+
 }
