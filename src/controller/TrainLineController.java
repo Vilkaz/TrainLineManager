@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.HBox;
@@ -30,7 +31,7 @@ public class TrainLineController {
         HBox lineNumberPicker = new HBox(lineNumberPickerDescription, choiceBox);
         VBox lineCreator = new VBox(lineNumberPicker, color);
         lineCreator.setPadding(new Insets(10,10,10,10));
-        lineCreator.getStyleClass().add("line-creator");
+        lineCreator.getStyleClass().add("lineCreator");
         return  lineCreator;
     }
 
@@ -41,7 +42,6 @@ public class TrainLineController {
         choiceBox.setValue(choiceBox.getItems().get(0));
         return choiceBox;
     }
-
 
 
     public static TrainLine getTrainlineByTrainlineCreator(Pane trainlineCreator) {

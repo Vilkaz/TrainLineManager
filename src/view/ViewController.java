@@ -13,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import model.GeneralSettings;
-import model.LineConnector;
 import model.TrainPlan;
 import model.TrainStation;
 
@@ -28,7 +27,6 @@ public class ViewController {
 
     @FXML
     VBox leftMenu;
-
     @FXML
     private static VBox mainVBox, leftSide;
 
@@ -75,18 +73,17 @@ public class ViewController {
             public void handle(MouseEvent event) {
                 leftMenu.getChildren().remove(trainlineCreator);
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
-                getXYCoordinatesforStation(null);
+                getXYCoordinatesforStation();
             }
         });
         ((Pane) trainlineCreator).getChildren().add(button);
     }
 
 
-    private void getXYCoordinatesforStation(LineConnector connector) {
+    private void getXYCoordinatesforStation() {
         centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                disableCenterPaneListener();
                 createStationOnMouseclick(event);
             }
         });
@@ -115,6 +112,7 @@ public class ViewController {
         renderTrainPlan();
         disableCenterPaneListener();
         nextStationOrEndLine();
+//        drawConnector(station);
     }
 
 
@@ -125,12 +123,15 @@ public class ViewController {
         centerPane.getChildren().add(request);
         request.setLayoutX(x);
         request.setLayoutY(y);
+
+
+
     }
 
     private Pane getNextStationRequest(){
         Text question = new Text("weitere Station oder Linienende?");
         Pane pane = new Pane();
-        Button nextStation = getNextSTationButton(pane);
+        Button nextStation = getNExtSTationButton(pane);
         Button endLine = getEndLineButton(pane);
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
@@ -140,14 +141,15 @@ public class ViewController {
         return pane;
     }
 
-    private Button getNextSTationButton(Pane pane){
+    private Button getNExtSTationButton(Pane pane){
         Button button = new Button("weitere Station hinzufügen");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                disableCenterPaneListener();
                 removeNextStationRequest(pane);
                 drawConnector(ContentController.getLastAdedStation());
+                getXYCoordinatesforStation();
+
             }
         });
         return button;
@@ -169,7 +171,6 @@ public class ViewController {
 
     public void drawConnector(TrainStation station){
         Line connector = new Line();
-
         connector.setFill(station.getColor());
         connector.setStrokeWidth(GeneralSettings.getCONNECTOR_WIDTH());
         connector.setStartX(station.getNode().getLayoutX());
@@ -182,7 +183,6 @@ public class ViewController {
                 connector.setEndY(event.getY());
             }
         });
-        getXYCoordinatesforStation(null);
 
     }
 

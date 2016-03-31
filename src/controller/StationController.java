@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -10,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.GeneralSettings;
+import model.StationIcon;
+import model.StationNode;
 import model.TrainStation;
 
 /**

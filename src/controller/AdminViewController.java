@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 
 /**
  * Created by Vilkazzz on 19/03/2016.
