@@ -21,6 +21,7 @@ public class StationIcon implements HasNode{
         icon.setStroke(GeneralSettings.getICON_STROKE_COLOR());
         icon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
         icon.setFill(color);
+        icon.getStyleClass().add("stationIcon");
     }
 
     public StationIcon(double x, double y, Color color) {
