@@ -1,6 +1,8 @@
 package model;
 
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -22,6 +24,14 @@ public class StationIcon implements HasNode{
         icon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
         icon.setFill(color);
         icon.getStyleClass().add("stationIcon");
+        icon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("DRAG DETECTED");
+                icon.setLayoutX(event.getX());
+                icon.setLayoutY(event.getY());
+            }
+        });
     }
 
     public StationIcon(double x, double y, Color color) {
