@@ -18,17 +18,19 @@ public class TrainStation implements HasNode {
     private StationIcon icon;
     private String name;
     private int zone;
-    private boolean endzone;
+    private boolean endStation;
+    private int lineNr;
     private List neighbors = new ArrayList<Neighbor>();
     private Pane node;
 
-    public TrainStation(int id, String name, int zone, boolean endzone, Color color,MouseEvent event) {
+    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event) {
         this.id = id;
         this.name = name;
         this.zone = zone;
-        this.endzone = endzone;
+        this.endStation = endStation;
         this.color = color;
-        this.icon = new StationIcon(color);
+        this.lineNr = lineNr;
+        this.icon = new StationIcon(this);
         this.node = new Pane(new Text(this.name), icon.getNode());
         node.setLayoutX(event.getX());
         node.setLayoutY(event.getY());
@@ -46,6 +48,9 @@ public class TrainStation implements HasNode {
     //region getter and setter
 
 
+    public int getLineNr() {
+        return lineNr;
+    }
 
     public void setNode(Pane node) {
         this.node = node;
@@ -71,8 +76,8 @@ public class TrainStation implements HasNode {
         return zone;
     }
 
-    public boolean isEndzone() {
-        return endzone;
+    public boolean isEndStation() {
+        return endStation;
     }
 
 

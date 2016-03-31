@@ -19,6 +19,8 @@ public class LineConnector implements HasNode{
         double y1 = station1.getNode().getLayoutY();
         double x1 = station1.getNode().getLayoutX();
         line = new Line(x1,y1,x1,y1);
+        line.startXProperty().bind(station1.getNode().layoutXProperty());
+        line.startYProperty().bind(station1.getNode().layoutYProperty());
         setGeneralValuesIntoLine();
     }
 
