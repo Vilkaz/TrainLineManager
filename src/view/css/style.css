@@ -68,3 +68,19 @@
   -fx-pref-height: 100%;
   -fx-pref-width: 100%;
 }
+
+/* line 73, style.scss */
+.borderBottomPane {
+  -fx-min-height: 1000px;
+}
+
+/* line 77, style.scss */
+.stationIcon {
+  -fx-stroke: black;
+  -fx-stroke-width: 1px;
+}
+
+/* line 82, style.scss */
+.stationIcon:hover {
+  -fx-stroke: white;
+}
