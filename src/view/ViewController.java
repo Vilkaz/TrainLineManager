@@ -18,6 +18,8 @@ import model.TrainStation;
 
 public class ViewController {
 
+    String haha;
+
 
     @FXML
     Button addNewLineBtn;
