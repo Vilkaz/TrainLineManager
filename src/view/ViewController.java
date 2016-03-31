@@ -112,7 +112,7 @@ public class ViewController {
     }
 
     private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent) {
-        TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent);
+        TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent, centerPane);
         ContentController.addStationToActualTrainLine(station);
         leftMenu.getChildren().remove(stationCreator);
         renderTrainPlan();
@@ -157,6 +157,7 @@ public class ViewController {
             public void handle(MouseEvent event) {
                 ContentController.markEndstation();
                 removeNextStationRequest(pane);
+                renderTrainPlan();
             }
         });
         return button;

@@ -80,7 +80,7 @@ public class StationController {
         return zoneChoser;
     }
 
-    public static TrainStation getStationByClick(Pane stationCreator, MouseEvent event) {
+    public static TrainStation getStationByClick(Pane stationCreator, MouseEvent event, Pane centerPane) {
         TextField nameField = (TextField) stationCreator.getChildren().get(0);
         String name = nameField.getText();
         HBox zoneHBox = (HBox) stationCreator.getChildren().get(1);
@@ -90,7 +90,7 @@ public class StationController {
         int id = ContentController.getIdForNextStation();
         Color color = ContentController.getActiveColor();
 
-        TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, ContentController.getActualLineNr(), event);
+        TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, ContentController.getActualLineNr(), event, centerPane);
             /**
             * node creation
             */

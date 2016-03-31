@@ -22,14 +22,19 @@ public class TrainStation implements HasNode {
     private int lineNr;
     private List neighbors = new ArrayList<Neighbor>();
     private Pane node;
+    private Pane centerPane;
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event) {
+    public TrainStation() {
+    }
+
+    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
         this.id = id;
         this.name = name;
         this.zone = zone;
         this.endStation = endStation;
         this.color = color;
         this.lineNr = lineNr;
+        this.centerPane = centerPane;
         this.icon = new StationIcon(this);
         this.node = new Pane(new Text(this.name), icon.getNode());
         node.setLayoutX(event.getX());
@@ -37,16 +42,20 @@ public class TrainStation implements HasNode {
     }
 
 
-    public void addNeighbor(Neighbor neighbor){
+    public void addNeighbor(Neighbor neighbor) {
         this.neighbors.add(neighbor);
     }
 
-    public Node getNode(){
+    public Node getNode() {
         return node;
     }
 
     //region getter and setter
 
+
+    public Pane getCenterPane() {
+        return centerPane;
+    }
 
     public void setEndStation(boolean endStation) {
         this.endStation = endStation;
