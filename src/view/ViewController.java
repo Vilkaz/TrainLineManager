@@ -71,7 +71,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                leftMenu.getStyleClass().add("disable");
+                trainlineCreator.getStyleClass().add("disable");
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
                 getXYCoordinatesforStation(null);
             }
@@ -155,6 +155,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                ContentController.markEndstation();
                 removeNextStationRequest(pane);
             }
         });

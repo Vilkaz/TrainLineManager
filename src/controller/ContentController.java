@@ -80,4 +80,7 @@ public class ContentController {
         return activeTrainline.getLastStation();
     }
 
+    public static void markEndstation() {
+        activeTrainline.getLastStation().setEndStation(true);
+    }
 }

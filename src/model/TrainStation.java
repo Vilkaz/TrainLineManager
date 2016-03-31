@@ -48,6 +48,10 @@ public class TrainStation implements HasNode {
     //region getter and setter
 
 
+    public void setEndStation(boolean endStation) {
+        this.endStation = endStation;
+    }
+
     public int getLineNr() {
         return lineNr;
     }

@@ -3,6 +3,7 @@ package model;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,7 +20,7 @@ public class StationIcon implements HasNode {
     private Color color;
     private Circle regularIcon;
     private int lineNr;
-    private Node endstationIcon = getEndstationIcon();
+    private Node endstationIcon;
     private boolean endstation;
 
 
@@ -27,6 +28,7 @@ public class StationIcon implements HasNode {
         this.color = station.getColor();
         this.lineNr = station.getLineNr();
         this.endstation = station.isEndStation();
+        this.endstationIcon =  getEndstationIcon();
         regularIcon = new Circle(this.radius);
         regularIcon.setStroke(GeneralSettings.getICON_STROKE_COLOR());
         regularIcon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
@@ -65,9 +67,10 @@ public class StationIcon implements HasNode {
     }
 
 
-    public Text getEndstationIcon() {
+    public Pane getEndstationIcon() {
         Text text = new Text("" + this.lineNr);
-        text.getStyleClass().add("endstationIcon");
-        return text;
+        Pane pane = new Pane(text);
+        pane.getStyleClass().add("endstationIcon");
+        return pane;
     }
 }
