@@ -22,7 +22,10 @@ public class ContentController {
 
 
 
-//region getter and setter
+    public static int getActualLineNr(){
+        return activeTrainline.getNumber();
+    }
+
 
     public static Color getActiveColor(){
         return activeTrainline.getColor();
@@ -77,5 +80,4 @@ public class ContentController {
         return activeTrainline.getLastStation();
     }
 
-    //endregion getter and setter
 }

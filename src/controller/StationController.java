@@ -90,8 +90,7 @@ public class StationController {
         int id = ContentController.getIdForNextStation();
         Color color = ContentController.getActiveColor();
 
-
-        TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, event);
+        TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, ContentController.getActualLineNr(), event);
             /**
             * node creation
             */

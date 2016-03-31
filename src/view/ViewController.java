@@ -71,7 +71,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                leftMenu.getChildren().remove(trainlineCreator);
+                leftMenu.getStyleClass().add("disable");
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
                 getXYCoordinatesforStation(null);
             }
@@ -123,11 +123,7 @@ public class ViewController {
 
     private void nextStationOrEndLine(){
         Pane  request =   getNextStationRequest();
-        double x = (centerPane.getWidth()/2) - request.getWidth() ;
-        double y = (centerPane.getHeight()/2) - request.getHeight() ;
         centerPane.getChildren().add(request);
-        request.setLayoutX(x);
-        request.setLayoutY(y);
     }
 
     private Pane getNextStationRequest(){
@@ -138,7 +134,6 @@ public class ViewController {
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
         pane.getChildren().add(stationRequest);
-        pane.setPadding(new Insets(10));
         pane.getStyleClass().add("nextStationRequest");
         return pane;
     }
