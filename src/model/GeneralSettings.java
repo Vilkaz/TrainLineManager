@@ -7,6 +7,10 @@ import javafx.scene.paint.Paint;
  * Created by Vilkazzz on 20/03/2016.
  */
 public class GeneralSettings {
+
+    final static double START_WINDOW_HEIGHT = 800;
+    final static double START_WINDOW_WIDTH = 1000;
+
     final static int MAX_NUMBER_OF_LINES = 20;
     final static int LINES_STARTING_NUMBER = 0;
 
@@ -52,6 +56,14 @@ public class GeneralSettings {
 
     public static Paint getICON_STROKE_COLOR() {
         return ICON_STROKE_COLOR;
+    }
+
+    public static double getSTART_WINDOW_HEIGHT() {
+        return START_WINDOW_HEIGHT;
+    }
+
+    public static double getSTART_WINDOW_WIDTH() {
+        return START_WINDOW_WIDTH;
     }
 
 
