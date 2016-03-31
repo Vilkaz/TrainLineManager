@@ -67,7 +67,7 @@ public class StationIcon implements HasNode {
 
     public Text getEndstationIcon() {
         Text text = new Text("" + this.lineNr);
-        text.getStyleClass().add("endstationIcon");
+        text.getStyleClass().add("endStationIcon");
         return text;
     }
 }
