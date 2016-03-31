@@ -76,14 +76,13 @@ $orangeColor: #FFA500;
 }
 
 .stationIcon{
-    -fx-border-radius: 40px;
-    -fx-min-width: 40px;
-    -fx-stroke: black;
+    -fx-stroke: white;
     -fx-stroke-width: 1px;
 }
 
 .stationIcon:hover{
-    -fx-stroke: white;
+    -fx-stroke: $orangeColor;
+    -fx-stroke-width: 1px;
 }
 
 .stationCreator{
@@ -108,4 +107,11 @@ $orangeColor: #FFA500;
 
 .stationCreatorName{
 
+}
+
+.endStationIcon{
+    background: #FFF;
+    border: 10px solid #037CA9;
+    height: 120px;
+    width: 120px;
 }

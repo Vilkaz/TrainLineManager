@@ -11,14 +11,14 @@ public class GeneralSettings {
     final static double START_WINDOW_HEIGHT = 800;
     final static double START_WINDOW_WIDTH = 1000;
 
-    final static int MAX_NUMBER_OF_LINES = 20;
+    final static int MAX_NUMBER_OF_LINES = 10;
     final static int LINES_STARTING_NUMBER = 0;
 
     final static double ICON_RADIUS = 10;
     final static double ICON_STROKE_WIDTH = 3;
     final static Color ICON_STROKE_COLOR = Color.BLACK;
 
-    final static double CONNECTOR_WIDTH = 5;
+    final static double CONNECTOR_WIDTH = 3;
 
     final private static int MIN_ZONE = 1;
     final private static int MAX_ZONE = 2;
