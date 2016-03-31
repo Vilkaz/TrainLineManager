@@ -27,12 +27,21 @@ public class StationController {
     public static Pane getStationCreator() {
         TextField name = new TextField();
         name.setPromptText("Stationname");
+        name.getStyleClass().add("stationCreatorName");
+
         Text zoneDescription = new Text("Zone");
-        ChoiceBox zoneChoser = getZoneChoser();
-        HBox zoneChoseHBox = new HBox(zoneDescription, zoneChoser);
+        zoneDescription.getStyleClass().add("stationCreatorZoneLabel");
+
+        ChoiceBox zoneChooser = getZoneChoser();
+        zoneChooser.getStyleClass().add("stationCreatorZoneChooser");
+
+        HBox zoneChoseHBox = new HBox(zoneDescription, zoneChooser);
+        zoneChoseHBox.getStyleClass().add("stationCreatorZoneChoseHBox");
         VBox stationCreator = new VBox(name, zoneChoseHBox);
+        stationCreator.getStyleClass().add("stationCreatorVBox");
+
         stationCreator.paddingProperty().setValue(new Insets(10, 10, 10, 10));
-        stationCreator.getStyleClass().add("station-creator");
+        stationCreator.getStyleClass().add("stationCreator");
         return stationCreator;
     }
 
