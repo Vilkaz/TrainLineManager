@@ -1,0 +1,56 @@
+$backgroundColor: rgba(160, 170, 178, 0.52);
+$centerBackgroundColor: rgba(54, 61, 66, 0.38);
+$customerColor1: #C7CEDB;
+$customerColor2: #A0AAB2;
+$adminColor1: #2E3532;
+$adminColor2: #7E9181;
+
+.myBtn {
+    -fx-font-size: 14px;
+    -fx-background-color: beige;
+}
+
+.myBtn:hover {
+    -fx-background-color:bisque ;
+}
+
+.myBtn:pressed {
+    -fx-background-color: aquamarine;
+}
+
+.centerPane{
+    -fx-background-color: $centerBackgroundColor;
+    -fx-min-width: 60%;
+    -fx-min-height: 80%;
+    -fx-pref-height: 100%;
+}
+
+.nextStationRequest{
+    -fx-background-color: coral;
+}
+
+.mainContainer{
+    -fx-background-color: $backgroundColor;
+
+}
+
+.rightBorder{
+
+}
+
+.leftMenu{
+    -fx-background-color: rgba(46, 53, 50, 0.59);
+    -fx-min-height: 100px;
+    -fx-min-width: 50%;
+}
+
+.menu{
+    -fx-background-color: grey;
+}
+
+.lineCreator{
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #A0AAB2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}

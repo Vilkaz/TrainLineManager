@@ -1,0 +1,53 @@
+/* line 8, style.scss */
+.myBtn {
+  -fx-font-size: 14px;
+  -fx-background-color: beige;
+}
+
+/* line 13, style.scss */
+.myBtn:hover {
+  -fx-background-color: bisque;
+}
+
+/* line 17, style.scss */
+.myBtn:pressed {
+  -fx-background-color: aquamarine;
+}
+
+/* line 21, style.scss */
+.centerPane {
+  -fx-background-color: rgba(54, 61, 66, 0.38);
+  -fx-min-width: 60%;
+  -fx-min-height: 80%;
+  -fx-pref-height: 100%;
+}
+
+/* line 28, style.scss */
+.nextStationRequest {
+  -fx-background-color: coral;
+}
+
+/* line 32, style.scss */
+.mainContainer {
+  -fx-background-color: rgba(160, 170, 178, 0.52);
+}
+
+/* line 41, style.scss */
+.leftMenu {
+  -fx-background-color: rgba(46, 53, 50, 0.59);
+  -fx-min-height: 100px;
+  -fx-min-width: 50%;
+}
+
+/* line 47, style.scss */
+.menu {
+  -fx-background-color: grey;
+}
+
+/* line 51, style.scss */
+.lineCreator {
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
+  -fx-background-color: #A0AAB2;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
