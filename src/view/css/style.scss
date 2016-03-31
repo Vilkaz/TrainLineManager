@@ -30,6 +30,7 @@ $orangeColor: #FFA500;
     -fx-background-color: $orangeColor;
     -fx-pref-width: 400px;
     -fx-border-color: grey;
+    -fx-text-alignment: right;
 }
 
 .mainContainer{
@@ -75,10 +76,36 @@ $orangeColor: #FFA500;
 }
 
 .stationIcon{
+    -fx-border-radius: 40px;
+    -fx-min-width: 40px;
     -fx-stroke: black;
     -fx-stroke-width: 1px;
 }
 
 .stationIcon:hover{
     -fx-stroke: white;
+}
+
+.stationCreator{
+    -fx-background-color: $orangeColor;
+}
+
+.stationCreatorVBox{
+
+}
+
+.stationCreatorZoneChoseHBox{
+
+}
+
+.stationCreatorZoneChooser{
+
+}
+
+.stationCreatorZoneLabel{
+
+}
+
+.stationCreatorName{
+
 }
