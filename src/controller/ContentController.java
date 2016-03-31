@@ -1,10 +1,7 @@
 package controller;
 
 import javafx.scene.paint.Color;
-import model.Neighbor;
-import model.TrainLine;
-import model.TrainPlan;
-import model.TrainStation;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +62,10 @@ public class ContentController {
         Neighbor neighborForThisStation = new Neighbor(lastStation.getId());
         lastStation.addNeighbor(neighborForLastStation);
         trainStation.addNeighbor(neighborForThisStation);
+    }
+
+    public static void addConnectorToActiveLine(LineConnector connector) {
+        ContentController.activeTrainline.addConnector(connector);
     }
 
 
