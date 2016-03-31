@@ -25,24 +25,50 @@ public class StationController {
     private static int maxZone = GeneralSettings.getMaxZone();
 
     public static Pane getStationCreator() {
-        TextField name = new TextField();
-        name.setPromptText("Stationname");
-        name.getStyleClass().add("stationCreatorName");
+        TextField name = getTextField();
+        Text zoneDescription = getText();
+        ChoiceBox zoneChooser = getChoiceBox();
+        VBox stationCreator = getvBox(name, zoneDescription, zoneChooser);
+        return stationCreator;
+    }
 
-        Text zoneDescription = new Text("Zone");
-        zoneDescription.getStyleClass().add("stationCreatorZoneLabel");
-
-        ChoiceBox zoneChooser = getZoneChoser();
-        zoneChooser.getStyleClass().add("stationCreatorZoneChooser");
-
-        HBox zoneChoseHBox = new HBox(zoneDescription, zoneChooser);
-        zoneChoseHBox.getStyleClass().add("stationCreatorZoneChoseHBox");
-        VBox stationCreator = new VBox(name, zoneChoseHBox);
-        stationCreator.getStyleClass().add("stationCreatorVBox");
-
+    private static VBox getvBox(TextField name, Text zoneDescription, ChoiceBox zoneChooser) {
+        HBox zoneChoseHBox = gethBox(zoneDescription, zoneChooser);
+        VBox stationCreator = getvBox(name, zoneChoseHBox);
         stationCreator.paddingProperty().setValue(new Insets(10, 10, 10, 10));
         stationCreator.getStyleClass().add("stationCreator");
         return stationCreator;
+    }
+
+    private static VBox getvBox(TextField name, HBox zoneChoseHBox) {
+        VBox stationCreator = new VBox(name, zoneChoseHBox);
+        stationCreator.getStyleClass().add("stationCreatorVBox");
+        return stationCreator;
+    }
+
+    private static HBox gethBox(Text zoneDescription, ChoiceBox zoneChooser) {
+        HBox zoneChoseHBox = new HBox(zoneDescription, zoneChooser);
+        zoneChoseHBox.getStyleClass().add("stationCreatorZoneChoseHBox");
+        return zoneChoseHBox;
+    }
+
+    private static ChoiceBox getChoiceBox() {
+        ChoiceBox zoneChooser = getZoneChoser();
+        zoneChooser.getStyleClass().add("stationCreatorZoneChooser");
+        return zoneChooser;
+    }
+
+    private static Text getText() {
+        Text zoneDescription = new Text("Zone");
+        zoneDescription.getStyleClass().add("stationCreatorZoneLabel");
+        return zoneDescription;
+    }
+
+    private static TextField getTextField() {
+        TextField name = new TextField();
+        name.setPromptText("Stationname");
+        name.getStyleClass().add("stationCreatorName");
+        return name;
     }
 
     private static ChoiceBox getZoneChoser() {
