@@ -77,18 +77,25 @@
 
 /* line 78, style.scss */
 .stationIcon {
-  -fx-border-radius: 40px;
-  -fx-min-width: 40px;
-  -fx-stroke: black;
+  -fx-stroke: white;
   -fx-stroke-width: 1px;
 }
 
-/* line 85, style.scss */
+/* line 83, style.scss */
 .stationIcon:hover {
-  -fx-stroke: white;
+  -fx-stroke: orange;
+  -fx-stroke-width: 1px;
 }
 
-/* line 89, style.scss */
+/* line 88, style.scss */
 .stationCreator {
   -fx-background-color: orange;
+}
+
+/* line 112, style.scss */
+.endStationIcon {
+  background: #FFF;
+  border: 10px solid #037CA9;
+  height: 120px;
+  width: 120px;
 }
