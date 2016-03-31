@@ -94,7 +94,8 @@
 
 /* line 112, style.scss */
 .endStationIcon {
-  -fx-font-size: 20px;
-  -fx-border-radius: blue;
-  -fx-background-color: #2E3532;
+  -fx-min-height: 10px;
+  -fx-min-width: 10px;
+  -fx-background-color: red;
+  -fx-border-color: orange;
 }

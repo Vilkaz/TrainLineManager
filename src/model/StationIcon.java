@@ -70,7 +70,7 @@ public class StationIcon implements HasNode {
     public Pane getEndstationIcon() {
         Text text = new Text("" + this.lineNr);
         Pane pane = new Pane(text);
-        pane.getStyleClass().add("endstationIcon");
+        pane.getStyleClass().add("endStationIcon");
         return pane;
     }
 }
