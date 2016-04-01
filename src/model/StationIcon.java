@@ -4,6 +4,7 @@ import controller.ContentController;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -86,9 +87,11 @@ public class StationIcon implements HasNode {
 
 
     public Node getEndstationIcon() {
-        Text text = new Text("ABC" + this.lineNr);
+        Text text = new Text(Integer.toString(this.lineNr));
         HBox box = new HBox(text);
         box.getStyleClass().add("endStationIcon");
+        String borderColor = this.color.toString();
+        box.setStyle("-fx-border-color:#"+borderColor);
         return box;
     }
 }
