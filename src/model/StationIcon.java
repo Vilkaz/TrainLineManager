@@ -1,18 +1,20 @@
 package model;
 
+import controller.ColorController;
 import controller.ContentController;
+import controller.JsonController;
+import controller.Reflections;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
+import java.beans.IntrospectionException;
 
 /**
  * Created by Vilkazzz on 27/03/2016.
@@ -27,24 +29,22 @@ public class StationIcon implements HasNode {
     private Node endstationIcon;
     private boolean endstation;
     private int stationId;
+    private final String COMMA =",";
 
 
+    private String toJson() {
+        String json = "";
+        try {
+            json += JsonController.getJson("x", this)+COMMA;
+            json += JsonController.getJson("y",this)+COMMA;
+            json += JsonController.getJson("radius",this)+COMMA;
+            json += JsonController.getJson("color", ColorController.getColorHex(color))+COMMA;
 
-    public String toJson(){
-        String json = "{";
-        json+="\"x\":"+this.x+",";
-        json+="\"y\":"+this.y+"";
-        json+="\"radius\":"+this.radius+"";
-        json+="\"color\":"+this.radius+"}";
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
+        System.out.println(json);
         return json;
-
-    }
-
-
-    private String getColorHex(){
-        Color color = this.color;
-        String hex = String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
-        return hex;
     }
 
     public StationIcon(TrainStation station) {
@@ -54,6 +54,7 @@ public class StationIcon implements HasNode {
         this.stationId = station.getId();
         this.endstationIcon = getEndstationIcon();
         this.regularIcon = getRegularIcon(station);
+        toJson();
     }
 
     private Circle getRegularIcon(TrainStation station) {
@@ -80,8 +81,8 @@ public class StationIcon implements HasNode {
                     @Override
                     public void handle(MouseEvent event) {
                         Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
-                        regularIcon.setLayoutX(event.getX()-pane.getLayoutX());
-                        regularIcon.setLayoutY(event.getY()-pane.getLayoutY());
+                        regularIcon.setLayoutX(event.getX() - pane.getLayoutX());
+                        regularIcon.setLayoutY(event.getY() - pane.getLayoutY());
                     }
                 });
 
@@ -120,7 +121,80 @@ public class StationIcon implements HasNode {
         HBox box = new HBox(text);
         box.getStyleClass().add("endStationIcon");
         String borderColor = this.color.toString();
-        box.setStyle("-fx-border-color:#"+borderColor);
+        box.setStyle("-fx-border-color:#" + borderColor);
         return box;
     }
+
+    //region geter and setter
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Circle getRegularIcon() {
+        return regularIcon;
+    }
+
+    public void setRegularIcon(Circle regularIcon) {
+        this.regularIcon = regularIcon;
+    }
+
+    public int getLineNr() {
+        return lineNr;
+    }
+
+    public void setLineNr(int lineNr) {
+        this.lineNr = lineNr;
+    }
+
+    public void setEndstationIcon(Node endstationIcon) {
+        this.endstationIcon = endstationIcon;
+    }
+
+    public boolean isEndstation() {
+        return endstation;
+    }
+
+    public void setEndstation(boolean endstation) {
+        this.endstation = endstation;
+    }
+
+    public int getStationId() {
+        return stationId;
+    }
+
+    public void setStationId(int stationId) {
+        this.stationId = stationId;
+    }
+
+
+    //endregion
 }
