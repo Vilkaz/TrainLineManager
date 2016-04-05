@@ -3,7 +3,6 @@ package view;
 import controller.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.input.MouseEvent;
@@ -11,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.LineConnector;
+import model.StationConnector;
 import model.TrainPlan;
 import model.TrainStation;
 
@@ -58,9 +57,9 @@ public class ViewController {
     }
 
 
-    private void createStationOnMouseclick(MouseEvent event) {
+    private void createStationOnMouseclick(MouseEvent event, StationConnector connector) {
         Pane stationCreator = StationController.getStationCreator();
-        Button okButton = getOKButtonForStation(stationCreator, event);
+        Button okButton = getOKButtonForStation(stationCreator, event, connector);
         stationCreator.getChildren().add(okButton);
         leftMenu.getChildren().add(stationCreator);
     }
@@ -80,40 +79,43 @@ public class ViewController {
     }
 
 
-    private void getXYCoordinatesforStation(LineConnector connector) {
+    private void getXYCoordinatesforStation(StationConnector connector) {
         centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 disableCenterPaneMouseClickListener();
                 disableCenterPaneMouseMoveListener();
-                createStationOnMouseclick(event);
+                createStationOnMouseclick(event, connector);
             }
         });
     }
 
-    private void disableCenterPaneMouseClickListener(){
+    private void disableCenterPaneMouseClickListener() {
         centerPane.setOnMouseClicked(null);
     }
 
-    private void disableCenterPaneMouseMoveListener(){
+    private void disableCenterPaneMouseMoveListener() {
         centerPane.setOnMouseMoved(null);
     }
 
 
-    private Button getOKButtonForStation(Pane stationCreator, MouseEvent coordinatesEvent) {
+    private Button getOKButtonForStation(Pane stationCreator, MouseEvent coordinatesEvent, StationConnector connector) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                afterStationCreation(stationCreator, coordinatesEvent);
+                afterStationCreation(stationCreator, coordinatesEvent, connector);
             }
         });
         return button;
     }
 
-    private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent) {
+    private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent, StationConnector connector) {
         TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent, centerPane);
         ContentController.addStationToActualTrainLine(station);
+        connector = mergeStationToConnector(connector, station);
+        station.addConnector(connector);
+        ContentController.setActiveConnector(connector);
         leftMenu.getChildren().remove(stationCreator);
         renderTrainPlan();
         disableCenterPaneMouseClickListener();
@@ -121,15 +123,30 @@ public class ViewController {
     }
 
 
-    private void nextStationOrEndLine(){
-        Pane  request =   getNextStationRequest();
+    /**
+     * i can't move this function into "StationConnector" because it can be also null at this place, by very first run.
+     * @param connector
+     * @param station
+     */
+    private StationConnector mergeStationToConnector(StationConnector connector, TrainStation station) {
+        if (connector == null) {
+            connector = new StationConnector(station);
+        } else {
+            connector.addNextStation(station);
+        }
+        return connector;
+    }
+
+
+    private void nextStationOrEndLine() {
+        Pane request = getNextStationRequest();
         centerPane.getChildren().add(request);
     }
 
-    private Pane getNextStationRequest(){
+    private Pane getNextStationRequest() {
         Text question = new Text("weitere Station oder Linienende?");
         Pane pane = new Pane();
-        Button nextStation = getNextSTationButton(pane);
+        Button nextStation = getNextStationButton(pane);
         Button endLine = getEndLineButton(pane);
         HBox hBox = new HBox(nextStation, endLine);
         VBox stationRequest = new VBox(question, hBox);
@@ -138,7 +155,7 @@ public class ViewController {
         return pane;
     }
 
-    private Button getNextSTationButton(Pane pane){
+    private Button getNextStationButton(Pane pane) {
         Button button = new Button("weitere Station hinzufügen");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
@@ -150,25 +167,28 @@ public class ViewController {
         });
         return button;
     }
-    private Button getEndLineButton(Pane pane){
+
+    private Button getEndLineButton(Pane pane) {
         Button button = new Button("Linie beenden");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ContentController.markEndstation();
+                ContentController.setActualStationAsEndstationInLine();
                 removeNextStationRequest(pane);
                 renderTrainPlan();
+                ContentController.getActiveConnector();
             }
         });
         return button;
     }
 
-    private void removeNextStationRequest(Pane pane){
+    private void removeNextStationRequest(Pane pane) {
         centerPane.getChildren().remove(pane);
     }
 
-    public void drawConnector(TrainStation station){
-        LineConnector connector = new LineConnector(station);
+    public void drawConnector(TrainStation station) {
+        StationConnector connector = new StationConnector(station);
+        station.addConnector(connector);
         ContentController.addConnectorToActiveLine(connector);
         centerPane.getChildren().add(connector.getNode());
         centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -182,12 +202,10 @@ public class ViewController {
 
     }
 
-    public void renderTrainPlan(){
+    public void renderTrainPlan() {
         centerPane.getChildren().clear();
         centerPane.getChildren().addAll(ContentController.getTrainPlan().getNodes());
-        System.out.println("");
     }
-
 
 
     //region getter and setter

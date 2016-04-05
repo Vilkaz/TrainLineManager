@@ -21,6 +21,7 @@ public class TrainStation implements HasNode {
     private boolean endStation;
     private int lineNr;
     private List neighbors = new ArrayList<Neighbor>();
+    private ArrayList<StationConnector> connectors = new ArrayList<StationConnector>();
     private Pane node;
     private Pane centerPane;
 
@@ -43,6 +44,10 @@ public class TrainStation implements HasNode {
     }
 
 
+    public void addConnector(StationConnector connector){
+        this.getConnectors().add(connector);
+    }
+
     public void addNeighbor(Neighbor neighbor) {
         this.neighbors.add(neighbor);
     }
@@ -53,6 +58,14 @@ public class TrainStation implements HasNode {
 
     //region getter and setter
 
+
+    public List getNeighbors() {
+        return neighbors;
+    }
+
+    public List getConnectors() {
+        return connectors;
+    }
 
     public Pane getCenterPane() {
         return centerPane;

@@ -29,16 +29,16 @@ public class StationIcon implements HasNode {
     private Node endstationIcon;
     private boolean endstation;
     private int stationId;
-    private final String COMMA =",";
+    private final String COMMA = ",";
 
 
     private String toJson() {
         String json = "";
         try {
-            json += JsonController.getJson("x", this)+COMMA;
-            json += JsonController.getJson("y",this)+COMMA;
-            json += JsonController.getJson("radius",this)+COMMA;
-            json += JsonController.getJson("color", ColorController.getColorHex(color))+COMMA;
+            json += JsonController.getJson("x", this) + COMMA;
+            json += JsonController.getJson("y", this) + COMMA;
+            json += JsonController.getJson("radius", this) + COMMA;
+            json += JsonController.getJson("color", ColorController.getColorHex(color)) + COMMA;
 
         } catch (IntrospectionException e) {
             e.printStackTrace();
@@ -68,24 +68,19 @@ public class StationIcon implements HasNode {
             @Override
             public void handle(ContextMenuEvent event) {
                 Pane pane = (Pane) station.getNode();
-                pane.getChildren().add(new Text("Has Rechte Maustaste Geklickt ! "));
+                pane.getChildren().add(new Text("Has Rechte Maustaste Geklickt ! das geht jetzt nimmer weg ! "));
             }
         });
 
 
-        regularIcon.setOnMousePressed(new EventHandler<MouseEvent>() {
+        regularIcon.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println(toJson());
-                station.getCenterPane().setOnMouseMoved(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
-                        regularIcon.setLayoutX(event.getX() - pane.getLayoutX());
-                        regularIcon.setLayoutY(event.getY() - pane.getLayoutY());
-                    }
-                });
-
+                regularIcon.layoutXProperty().setValue(event.getX());
+                regularIcon.layoutYProperty().setValue(event.getY());
+//                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
+//                regularIcon.setLayoutX(event.getX() - pane.getLayoutX());
+//                regularIcon.setLayoutY(event.getY() - pane.getLayoutY());
             }
         });
 
@@ -94,7 +89,6 @@ public class StationIcon implements HasNode {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("maus released");
-//                station.getCenterPane().setOnMouseMoved(null);
             }
         });
         return regularIcon;

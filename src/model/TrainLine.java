@@ -14,7 +14,7 @@ public class TrainLine {
     private int number;
     private String name;
     private List<TrainStation> stations = new ArrayList<TrainStation>();
-    private List<LineConnector> connectors = new ArrayList<LineConnector>();
+    private List<StationConnector> connectors = new ArrayList<StationConnector>();
     private Color color;
 
     public TrainLine(int number,Color color) {
@@ -35,7 +35,7 @@ public class TrainLine {
         return stations.size()!=0;
     }
 
-    public void addConnector(LineConnector connector){
+    public void addConnector(StationConnector connector){
         connectors.add(connector);
     }
 
@@ -48,7 +48,7 @@ public class TrainLine {
         for (TrainStation trainStation:stations){
             nodes.add(trainStation.getNode());
         }
-        for (LineConnector connector : connectors){
+        for (StationConnector connector : connectors){
             nodes.add(connector.getNode());
         }
         return nodes ;
@@ -74,7 +74,7 @@ public class TrainLine {
         return stations;
     }
 
-    public List<LineConnector> getConnectors() {
+    public List<StationConnector> getConnectors() {
         return connectors;
     }
 
