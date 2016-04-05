@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,6 +26,8 @@ public class TrainStation implements HasNode {
     private ArrayList<StationConnector> connectors = new ArrayList<StationConnector>();
     private Pane node;
     private Pane centerPane;
+    private DoubleProperty x = new SimpleDoubleProperty();
+    private DoubleProperty y = new SimpleDoubleProperty();
 
     public TrainStation() {
     }
@@ -41,6 +45,10 @@ public class TrainStation implements HasNode {
         this.node.getChildren().addAll(new Text(this.name), icon.getNode());
         node.setLayoutX(event.getX());
         node.setLayoutY(event.getY());
+//        x.bind(icon.getNode().layoutXProperty());
+//        y.bind(icon.getNode().layoutYProperty());
+        y.setValue(node.layoutYProperty().getValue()+icon.getNode().layoutYProperty().getValue());
+        x.setValue(node.layoutXProperty().getValue()+icon.getNode().layoutXProperty().getValue());
     }
 
 
@@ -52,7 +60,7 @@ public class TrainStation implements HasNode {
         this.neighbors.add(neighbor);
     }
 
-    public Node getNode() {
+    public Pane getNode() {
         return node;
     }
 
@@ -63,7 +71,7 @@ public class TrainStation implements HasNode {
         return neighbors;
     }
 
-    public List getConnectors() {
+    public ArrayList<StationConnector> getConnectors() {
         return connectors;
     }
 
@@ -107,8 +115,30 @@ public class TrainStation implements HasNode {
         return endStation;
     }
 
+    public double getX() {
+        return x.get();
+    }
 
-    //endregion getter and setter
+    public DoubleProperty xProperty() {
+        return x;
+    }
+
+    public double getY() {
+        return y.get();
+    }
+
+    public DoubleProperty yProperty() {
+        return y;
+    }
+
+    public void setX(double x) {
+        this.x.set(x);
+    }
+
+    public void setY(double y) {
+        this.y.set(y);
+    }
+//endregion getter and setter
 
 
 }

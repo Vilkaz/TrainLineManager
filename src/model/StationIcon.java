@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 
 /**
  * Created by Vilkazzz on 27/03/2016.
@@ -54,7 +55,6 @@ public class StationIcon implements HasNode {
         this.stationId = station.getId();
         this.endstationIcon = getEndstationIcon();
         this.regularIcon = getRegularIcon(station);
-        toJson();
     }
 
     private Circle getRegularIcon(TrainStation station) {
@@ -63,7 +63,6 @@ public class StationIcon implements HasNode {
         regularIcon.setStrokeWidth(GeneralSettings.getICON_STROKE_WIDTH());
         regularIcon.setFill(color);
         regularIcon.getStyleClass().add("stationIcon");
-
         regularIcon.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
             public void handle(ContextMenuEvent event) {
@@ -76,11 +75,23 @@ public class StationIcon implements HasNode {
         regularIcon.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                regularIcon.layoutXProperty().setValue(event.getX());
-                regularIcon.layoutYProperty().setValue(event.getY());
-//                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
-//                regularIcon.setLayoutX(event.getX() - pane.getLayoutX());
-//                regularIcon.setLayoutY(event.getY() - pane.getLayoutY());
+                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
+
+                double nodeWidth = station.getNode().getWidth();
+                double nodeHeigth = station.getNode().getHeight();
+
+                regularIcon.setLayoutX(event.getX());
+                regularIcon.setLayoutY(event.getY());
+                System.out.println("1:node X:"+station.getNode().getLayoutX()+" event x:"+event.getX()+" icon x:"+regularIcon.getLayoutX());
+                double checkX= regularIcon.getLayoutX();
+
+                System.out.println("node width"+station.getNode().getWidth());
+                System.out.println("node heigth"+station.getNode().getHeight());
+
+                double xNow = event.getX()+station.getNode().getLayoutX();
+                double yNow = event.getY()+station.getNode().getLayoutY();
+//                station.xProperty().setValue(xNow);
+//                station.yProperty().setValue(yNow);
             }
         });
 
