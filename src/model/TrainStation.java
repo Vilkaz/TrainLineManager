@@ -4,6 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -43,27 +44,34 @@ public class TrainStation implements HasNode {
         this.centerPane = centerPane;
         this.node = new Pane();
         this.icon = new StationIcon(this);
-        this.node.getChildren().addAll(new Text(this.name), icon.getNode());
+        this.node.getChildren().addAll(getText(this.name), icon.getNode());
         node.setLayoutX(event.getX());
         node.setLayoutY(event.getY());
-        y.setValue(node.layoutYProperty().getValue()+icon.getNode().layoutYProperty().getValue());
-        x.setValue(node.layoutXProperty().getValue()+icon.getNode().layoutXProperty().getValue());
+        y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
+        x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
-    private Text getText(String stationName){
+    private Pane getText(String stationName) {
         Text text = new Text(stationName);
-
-        text.setOnMouseClicked(getTextOnMouseClickedEventHandler());
-
-        return text;
+        Pane textPane = new Pane(text);
+        text.setOnMouseClicked(getTextOnMouseClickedEventHandler(textPane, text));
+        return textPane;
     }
 
-    public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler() {
-        return null;
+    public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler(Pane textPane,  Text text) {
+        EventHandler<MouseEvent> event = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Slider slider = new Slider(-180, 180,0);
+                slider.valueProperty().bindBidirectional(text.rotateProperty());
+                textPane.getChildren().add(slider);
+            }
+        };
+        return event;
     }
 
 
-    public void addConnector(StationConnector connector){
+    public void addConnector(StationConnector connector) {
         this.getConnectors().add(connector);
     }
 
