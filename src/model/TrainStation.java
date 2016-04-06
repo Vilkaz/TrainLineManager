@@ -5,12 +5,15 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -64,7 +67,32 @@ public class TrainStation implements HasNode {
             public void handle(MouseEvent event) {
                 Slider slider = new Slider(-180, 180,0);
                 slider.valueProperty().bindBidirectional(text.rotateProperty());
+                ImageView image = new ImageView("img/move.png");
+                image.setFitWidth(GeneralSettings.getMOVE_ICON_WIDTH());
+                image.setFitHeight(GeneralSettings.getMOVE_ICON_HEIGTH());
+                Pane centerPane = (Pane)node.getParent();
+                image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("icon clicked");
+                        centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                textPane.setLayoutX(event.getX()-node.getLayoutX());
+                                textPane.setLayoutY(event.getY()-node.getLayoutY());
+                            }
+                        });
+                        centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                centerPane.setOnMouseMoved(null);
+                                textPane.getChildren().removeAll(slider, image);
+                            }
+                        });
+                    }
+                });
                 textPane.getChildren().add(slider);
+                textPane.getChildren().add(image);
             }
         };
         return event;
