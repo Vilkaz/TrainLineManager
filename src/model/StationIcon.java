@@ -53,7 +53,7 @@ public class StationIcon implements HasNode {
         this.lineNr = station.getLineNr();
         this.endstation = station.isEndStation();
         this.stationId = station.getId();
-        this.endstationIcon = getEndstationIcon();
+        this.endstationIcon = getEndstationIcon(station);
         this.regularIcon = getRegularIcon(station);
     }
 
@@ -72,23 +72,20 @@ public class StationIcon implements HasNode {
         });
 
 
-        regularIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        regularIcon.setOnMouseClicked(getStationIconMouseClickEvent(station));
+        return regularIcon;
+    }
+
+
+    private EventHandler<MouseEvent> getStationIconMouseClickEvent(TrainStation station) {
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode().getParent().getParent();
                 pane.setOnMouseMoved(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        double xFactor = station.getNode().getParent().getLayoutX() + station.getNode().getLayoutX();
-                        double yFactor = station.getNode().getParent().getLayoutY() + station.getNode().getLayoutY();
-
-                        double xNow = event.getX()-station.getNode().getParent().getLayoutX();
-                        double yNow = event.getY();
-                        regularIcon.setLayoutX(event.getX() - xFactor);
-                        regularIcon.setLayoutY(event.getY() - yFactor);
-
-                        station.xProperty().setValue(xNow);
-                        station.yProperty().setValue(yNow);
+                        getStationIconMouseMoveEvent(event, station);
                     }
                 });
 
@@ -99,18 +96,25 @@ public class StationIcon implements HasNode {
                     }
                 });
             }
-        });
+        };
+        return eventHandler;
+    }
 
-
-        regularIcon.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("maus released");
-            }
-        });
-        return regularIcon;
-
-
+    private void getStationIconMouseMoveEvent(MouseEvent event, TrainStation station) {
+        double nodeAndNodesParentX = station.getNode().getParent().getLayoutX() + station.getNode().getLayoutX();
+        double nodeAndNodeParentsY = station.getNode().getParent().getLayoutY() + station.getNode().getLayoutY();
+        regularIcon.setLayoutX(event.getX() - nodeAndNodesParentX);
+        regularIcon.setLayoutY(event.getY() - nodeAndNodeParentsY);
+        /**
+         * code duplication, schlechte lösung, beide icons sollten sich die selben koordinaten teilen !
+         * Soll iwelcher Azubi lösen :D
+         */
+        endstationIcon.setLayoutX(event.getX() - nodeAndNodesParentX);
+        endstationIcon.setLayoutY(event.getY() - nodeAndNodeParentsY);
+        double nodeParentsX = station.getNode().getParent().getLayoutX();
+        double nodeParentsY = station.getNode().getParent().getLayoutY();
+        station.xProperty().setValue(event.getX() - nodeParentsX);
+        station.yProperty().setValue(event.getY() - nodeParentsY);
     }
 
     public StationIcon(double x, double y, Color color) {
@@ -127,12 +131,13 @@ public class StationIcon implements HasNode {
     }
 
 
-    public Node getEndstationIcon() {
+    public Node getEndstationIcon(TrainStation station) {
         Text text = new Text(Integer.toString(this.lineNr));
         HBox box = new HBox(text);
         box.getStyleClass().add("endStationIcon");
         String borderColor = this.color.toString();
         box.setStyle("-fx-border-color:#" + borderColor);
+        box.setOnMouseClicked(getStationIconMouseClickEvent(station));
         return box;
     }
 
