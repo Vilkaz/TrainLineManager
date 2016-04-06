@@ -70,8 +70,6 @@ public class StationIcon implements HasNode {
                 pane.getChildren().add(new Text("Has Rechte Maustaste Geklickt ! das geht jetzt nimmer weg ! "));
             }
         });
-
-
         regularIcon.setOnMouseClicked(getStationIconMouseClickEvent(station));
         return regularIcon;
     }
@@ -81,7 +79,7 @@ public class StationIcon implements HasNode {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode().getParent().getParent();
+                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode().getParent();
                 pane.setOnMouseMoved(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -101,20 +99,18 @@ public class StationIcon implements HasNode {
     }
 
     private void getStationIconMouseMoveEvent(MouseEvent event, TrainStation station) {
-        double nodeAndNodesParentX = station.getNode().getParent().getLayoutX() + station.getNode().getLayoutX();
-        double nodeAndNodeParentsY = station.getNode().getParent().getLayoutY() + station.getNode().getLayoutY();
-        regularIcon.setLayoutX(event.getX() - nodeAndNodesParentX);
-        regularIcon.setLayoutY(event.getY() - nodeAndNodeParentsY);
+        double parentsX = station.getNode().getLayoutX();
+        double parentsY = station.getNode().getLayoutY();
+        regularIcon.setLayoutX(event.getX() - parentsX);
+        regularIcon.setLayoutY(event.getY() - parentsY);
         /**
          * code duplication, schlechte lösung, beide icons sollten sich die selben koordinaten teilen !
          * Soll iwelcher Azubi lösen :D
          */
-        endstationIcon.setLayoutX(event.getX() - nodeAndNodesParentX);
-        endstationIcon.setLayoutY(event.getY() - nodeAndNodeParentsY);
-        double nodeParentsX = station.getNode().getParent().getLayoutX();
-        double nodeParentsY = station.getNode().getParent().getLayoutY();
-        station.xProperty().setValue(event.getX() - nodeParentsX);
-        station.yProperty().setValue(event.getY() - nodeParentsY);
+        endstationIcon.setLayoutX(event.getX() - parentsX);
+        endstationIcon.setLayoutY(event.getY() - parentsY);
+        station.xProperty().setValue(event.getX());
+        station.yProperty().setValue(event.getY());
     }
 
     public StationIcon(double x, double y, Color color) {

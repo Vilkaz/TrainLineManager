@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -47,6 +48,18 @@ public class TrainStation implements HasNode {
         node.setLayoutY(event.getY());
         y.setValue(node.layoutYProperty().getValue()+icon.getNode().layoutYProperty().getValue());
         x.setValue(node.layoutXProperty().getValue()+icon.getNode().layoutXProperty().getValue());
+    }
+
+    private Text getText(String stationName){
+        Text text = new Text(stationName);
+
+        text.setOnMouseClicked(getTextOnMouseClickedEventHandler());
+
+        return text;
+    }
+
+    public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler() {
+        return null;
     }
 
 
@@ -136,6 +149,8 @@ public class TrainStation implements HasNode {
     public void setY(double y) {
         this.y.set(y);
     }
+
+
 //endregion getter and setter
 
 
