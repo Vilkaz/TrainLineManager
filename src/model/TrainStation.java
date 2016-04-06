@@ -45,8 +45,6 @@ public class TrainStation implements HasNode {
         this.node.getChildren().addAll(new Text(this.name), icon.getNode());
         node.setLayoutX(event.getX());
         node.setLayoutY(event.getY());
-//        x.bind(icon.getNode().layoutXProperty());
-//        y.bind(icon.getNode().layoutYProperty());
         y.setValue(node.layoutYProperty().getValue()+icon.getNode().layoutYProperty().getValue());
         x.setValue(node.layoutXProperty().getValue()+icon.getNode().layoutXProperty().getValue());
     }

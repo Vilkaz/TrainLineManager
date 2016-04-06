@@ -72,26 +72,32 @@ public class StationIcon implements HasNode {
         });
 
 
-        regularIcon.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        regularIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode();
+                Pane pane = (Pane) ContentController.getTrainStationById(stationId).getNode().getParent().getParent();
+                pane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        double xFactor = station.getNode().getParent().getLayoutX() + station.getNode().getLayoutX();
+                        double yFactor = station.getNode().getParent().getLayoutY() + station.getNode().getLayoutY();
 
-                double nodeWidth = station.getNode().getWidth();
-                double nodeHeigth = station.getNode().getHeight();
+                        double xNow = event.getX()-station.getNode().getParent().getLayoutX();
+                        double yNow = event.getY();
+                        regularIcon.setLayoutX(event.getX() - xFactor);
+                        regularIcon.setLayoutY(event.getY() - yFactor);
 
-                regularIcon.setLayoutX(event.getX());
-                regularIcon.setLayoutY(event.getY());
-                System.out.println("1:node X:"+station.getNode().getLayoutX()+" event x:"+event.getX()+" icon x:"+regularIcon.getLayoutX());
-                double checkX= regularIcon.getLayoutX();
+                        station.xProperty().setValue(xNow);
+                        station.yProperty().setValue(yNow);
+                    }
+                });
 
-                System.out.println("node width"+station.getNode().getWidth());
-                System.out.println("node heigth"+station.getNode().getHeight());
-
-                double xNow = event.getX()+station.getNode().getLayoutX();
-                double yNow = event.getY()+station.getNode().getLayoutY();
-//                station.xProperty().setValue(xNow);
-//                station.yProperty().setValue(yNow);
+                pane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        pane.setOnMouseMoved(null);
+                    }
+                });
             }
         });
 
