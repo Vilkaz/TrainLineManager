@@ -8,7 +8,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -54,45 +56,47 @@ public class TrainStation implements HasNode {
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
-    private Pane getText(String stationName) {
+    private VBox getText(String stationName) {
         Text text = new Text(stationName);
-        Pane textPane = new Pane(text);
-        text.setOnMouseClicked(getTextOnMouseClickedEventHandler(textPane, text));
-        return textPane;
+        VBox textContainer = new VBox(text);
+        text.setOnMouseClicked(getTextOnMouseClickedEventHandler(text));
+        return textContainer;
     }
 
-    public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler(Pane textPane,  Text text) {
+    public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler(Text text) {
+        VBox textContainer = (VBox) text.getParent();
+        text.setOnMouseClicked(null);
         EventHandler<MouseEvent> event = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Slider slider = new Slider(-180, 180,0);
+                Slider slider = new Slider(-180, 180, 0);
                 slider.valueProperty().bindBidirectional(text.rotateProperty());
                 ImageView image = new ImageView("img/move.png");
                 image.setFitWidth(GeneralSettings.getMOVE_ICON_WIDTH());
                 image.setFitHeight(GeneralSettings.getMOVE_ICON_HEIGTH());
-                Pane centerPane = (Pane)node.getParent();
+                centerPane = (Pane) node.getParent();
                 image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        System.out.println("icon clicked");
                         centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
-                                textPane.setLayoutX(event.getX()-node.getLayoutX());
-                                textPane.setLayoutY(event.getY()-node.getLayoutY());
+                                System.out.println("container moved");
+                                textContainer.setLayoutX(event.getX() - node.getLayoutX());
+                                textContainer.setLayoutY(event.getY() - node.getLayoutY());
                             }
                         });
                         centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
+                                System.out.println("release the maus!");
                                 centerPane.setOnMouseMoved(null);
-                                textPane.getChildren().removeAll(slider, image);
+                                textContainer.getChildren().removeAll(slider, image);
                             }
                         });
                     }
                 });
-                textPane.getChildren().add(slider);
-                textPane.getChildren().add(image);
+                textContainer.getChildren().addAll(slider, image);
             }
         };
         return event;
