@@ -81,7 +81,6 @@ public class TrainStation implements HasNode {
                         centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
-                                System.out.println("container moved");
                                 textContainer.setLayoutX(event.getX() - node.getLayoutX());
                                 textContainer.setLayoutY(event.getY() - node.getLayoutY());
                             }
@@ -89,7 +88,6 @@ public class TrainStation implements HasNode {
                         centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
-                                System.out.println("release the maus!");
                                 centerPane.setOnMouseMoved(null);
                                 textContainer.getChildren().removeAll(slider, image);
                             }

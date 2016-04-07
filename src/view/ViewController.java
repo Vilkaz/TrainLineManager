@@ -83,11 +83,18 @@ public class ViewController {
         centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                disableCenterPaneMouseClickListener();
-                disableCenterPaneMouseMoveListener();
-                createStationOnMouseclick(event, connector);
+                addAnotherStationToTheLine(event, connector);
             }
         });
+
+
+
+    }
+
+    private void addAnotherStationToTheLine(MouseEvent event, StationConnector connector) {
+        disableCenterPaneMouseClickListener();
+        disableCenterPaneMouseMoveListener();
+        createStationOnMouseclick(event, connector);
     }
 
     private void disableCenterPaneMouseClickListener() {
