@@ -11,8 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.StationConnector;
+import model.StationIcon;
 import model.TrainPlan;
 import model.TrainStation;
+
+import java.util.ArrayList;
 
 public class ViewController {
 
@@ -87,7 +90,7 @@ public class ViewController {
             }
         });
 
-
+        ArrayList<TrainStation> stations = ContentController.getAllStations();
 
     }
 

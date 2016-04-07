@@ -5,6 +5,7 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Vilkazzz on 19/03/2016.
@@ -39,6 +40,7 @@ public class ContentController {
     public static void addTrainLine(TrainLine trainLine) {
         trainPlan.addTrainLine(trainLine);
         ContentController.activeTrainline = trainLine;
+        trainPlan.addTrainLine(trainLine);
     }
 
 
@@ -106,5 +108,13 @@ public class ContentController {
 
     public static void setActiveConnector(StationConnector activeConnector) {
         ContentController.activeConnector = activeConnector;
+    }
+
+    public static ArrayList<TrainStation> getAllStations() {
+        ArrayList<TrainStation> stations = new ArrayList<>();
+        for (TrainLine line:trainPlan.getTrainLines()){
+            stations.addAll(line.getStations().stream().collect(Collectors.toList()));
+        }
+        return stations;
     }
 }
