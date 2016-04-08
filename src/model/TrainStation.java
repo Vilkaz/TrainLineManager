@@ -56,6 +56,8 @@ public class TrainStation implements HasNode {
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
+
+
     private VBox getText(String stationName) {
         Text text = new Text(stationName);
         VBox textContainer = new VBox(text);

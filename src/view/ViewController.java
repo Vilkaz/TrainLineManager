@@ -83,15 +83,32 @@ public class ViewController {
 
 
     private void getXYCoordinatesforStation(StationConnector connector) {
+        activateCentralPaneClickListener(connector);
+        ArrayList<TrainStation> stations = ContentController.getAllStations();
+        activateStationIconClickListener(stations);
+
+
+    }
+
+    private void activateStationIconClickListener(ArrayList<TrainStation> stations) {
+        for (TrainStation station:stations){
+            station.getNode().toFront();
+            station.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    centerPane.getChildren().add(TrainStationController.getAddExsistingTrainStaion(station));
+                }
+            });
+        }
+    }
+
+    private void activateCentralPaneClickListener(final StationConnector connector) {
         centerPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 addAnotherStationToTheLine(event, connector);
             }
         });
-
-        ArrayList<TrainStation> stations = ContentController.getAllStations();
-
     }
 
     private void addAnotherStationToTheLine(MouseEvent event, StationConnector connector) {

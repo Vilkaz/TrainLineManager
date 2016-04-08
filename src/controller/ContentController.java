@@ -40,7 +40,6 @@ public class ContentController {
     public static void addTrainLine(TrainLine trainLine) {
         trainPlan.addTrainLine(trainLine);
         ContentController.activeTrainline = trainLine;
-        trainPlan.addTrainLine(trainLine);
     }
 
 
