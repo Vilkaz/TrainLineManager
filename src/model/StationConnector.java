@@ -1,5 +1,6 @@
 package model;
 
+import controller.ContentController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -24,7 +25,7 @@ public class StationConnector implements HasNode {
 
     public StationConnector(TrainStation station1) {
         this.station1 = station1;
-        color = station1.getColor();
+        color = ContentController.getActiveColor();
         line = new Line();
         line.startXProperty().bind(station1.xProperty());
         line.startYProperty().bind(station1.yProperty());

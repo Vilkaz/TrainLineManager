@@ -105,6 +105,10 @@ public class ContentController {
     }
 
 
+    public static Color getActiveLineColor(){
+        return activeTrainline.getColor();
+    }
+
     public static void setActiveConnector(StationConnector activeConnector) {
         ContentController.activeConnector = activeConnector;
     }

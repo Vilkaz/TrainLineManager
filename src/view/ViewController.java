@@ -1,7 +1,6 @@
 package view;
 
 import controller.*;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -92,7 +91,7 @@ public class ViewController {
     }
 
     private void activateStationIconClickListener(ArrayList<TrainStation> stations, StationConnector connector) {
-        for (TrainStation station:stations){
+        for (TrainStation station : stations) {
             station.getNode().toFront();
             station.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -104,32 +103,45 @@ public class ViewController {
     }
 
 
-    private Node getAddExistingTrainStaionAsNeighborRequest(TrainStation station, StationConnector connector){
+    private Node getAddExistingTrainStaionAsNeighborRequest(TrainStation station, StationConnector connector) {
         VBox mainBox = TrainStationController.getAddExsistingTrainStaion(station);
-        Button okBtn = getAddExistingTrainStationOKButton(station);
+        mainBox.getChildren().add(getExsistinStatoinRequestButtons(mainBox, station, connector));
+        return mainBox;
+    }
+
+    private HBox getExsistinStatoinRequestButtons(VBox mainBox, TrainStation station, StationConnector connector) {
+        Button okBtn = getAddExistingTrainStationOKButton(station, connector);
         Button noBtn = getAddExistingTrainStationNOButton(mainBox, connector);
-        mainBox.getChildren().addAll(okBtn, noBtn);
-        return  mainBox;
+        return new HBox(okBtn, noBtn);
     }
 
-    private Button getAddExistingTrainStationOKButton(TrainStation station) {
+    private Button getAddExistingTrainStationOKButton(TrainStation station, StationConnector connector) {
         Button button = new Button("Ja");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                TrainStationController.disableAllStationClickListeners();
+                finishAddStationToLineProcess(station, connector);
+            }
+        });
         return button;
 
     }
 
-    private Button getAddExistingTrainStationNOButton(Node mainBox,  StationConnector connector) {
-            Button button = new Button("Nein");
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    removeNodeFromCenterPane(connector.getNode());
-                    ContentController.removeActiveConnector();
-                    nextStationOrEndLine();
-                }
-            });
+    private Button getAddExistingTrainStationNOButton(Node mainBox, StationConnector connector) {
+        Button button = new Button("Nein");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                removeNodeFromCenterPane(connector.getNode());
+                removeNodeFromCenterPane(mainBox);
+                ContentController.removeActiveConnector();
+                TrainStationController.disableAllStationClickListeners();
+                nextStationOrEndLine();
+            }
+        });
         return button;
-        }
+    }
 
     private void removeNodeFromCenterPane(Node node) {
         centerPane.getChildren().remove(node);
@@ -164,19 +176,19 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                afterStationCreation(stationCreator, coordinatesEvent, connector);
+                TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent, centerPane);
+                leftMenu.getChildren().remove(stationCreator);
+                finishAddStationToLineProcess(station, connector);
             }
         });
         return button;
     }
 
-    private void afterStationCreation(Pane stationCreator, MouseEvent coordinatesEvent, StationConnector connector) {
-        TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent, centerPane);
+    private void finishAddStationToLineProcess(TrainStation station, StationConnector connector) {
         ContentController.addStationToActualTrainLine(station);
         connector = mergeStationToConnector(connector, station);
         station.addConnector(connector);
         ContentController.setActiveConnector(connector);
-        leftMenu.getChildren().remove(stationCreator);
         renderTrainPlan();
         disableCenterPaneMouseClickListener();
         nextStationOrEndLine();
@@ -185,6 +197,7 @@ public class ViewController {
 
     /**
      * i can't move this function into "StationConnector" because it can be also null at this place, by very first run.
+     *
      * @param connector
      * @param station
      */
@@ -264,7 +277,16 @@ public class ViewController {
 
     public void renderTrainPlan() {
         centerPane.getChildren().clear();
-        centerPane.getChildren().addAll(ContentController.getTrainPlan().getNodes());
+        ArrayList<Node> nodes = ContentController.getTrainPlan().getNodes();
+/**
+ * falls die selbe station in mehreren linien vorhanden ist, wird versucht eine node doppelt
+ * einzufügen was zu einer exception führt. diese Methode filters es vorher aus
+ */
+        for (Node node : nodes) {
+            if (!centerPane.getChildren().contains(node)) {
+                centerPane.getChildren().add(node);
+            }
+        }
     }
 
 
