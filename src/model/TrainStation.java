@@ -1,21 +1,18 @@
 package model;
 
+import controller.ContentController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,7 +54,6 @@ public class TrainStation implements HasNode {
     }
 
 
-
     private VBox getText(String stationName) {
         Text text = new Text(stationName);
         VBox textContainer = new VBox(text);
@@ -67,39 +63,50 @@ public class TrainStation implements HasNode {
 
     public EventHandler<? super MouseEvent> getTextOnMouseClickedEventHandler(Text text) {
         VBox textContainer = (VBox) text.getParent();
-        text.setOnMouseClicked(null);
         EventHandler<MouseEvent> event = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Slider slider = new Slider(-180, 180, 0);
-                slider.valueProperty().bindBidirectional(text.rotateProperty());
-                ImageView image = new ImageView("img/move.png");
-                image.setFitWidth(GeneralSettings.getMOVE_ICON_WIDTH());
-                image.setFitHeight(GeneralSettings.getMOVE_ICON_HEIGTH());
-                centerPane = (Pane) node.getParent();
-                image.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                textContainer.setLayoutX(event.getX() - node.getLayoutX());
-                                textContainer.setLayoutY(event.getY() - node.getLayoutY());
-                            }
-                        });
-                        centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                centerPane.setOnMouseMoved(null);
-                                textContainer.getChildren().removeAll(slider, image);
-                            }
-                        });
-                    }
-                });
-                textContainer.getChildren().addAll(slider, image);
+                /**
+                 * quite dirty but working method to prevent more then one text Drag options to be
+                 * active at same time
+                 */
+                if (!ContentController.isActiveTextDrag()){
+                    ContentController.setActiveTextDrag(true);
+                    activateTextDragEvent(text, textContainer);
+                }
             }
         };
         return event;
+    }
+
+    private void activateTextDragEvent(Text text, final VBox textContainer) {
+        Slider slider = new Slider(-180, 180, 0);
+        slider.valueProperty().bindBidirectional(text.rotateProperty());
+        ImageView image = new ImageView("img/move.png");
+        image.setFitWidth(GeneralSettings.getMOVE_ICON_WIDTH());
+        image.setFitHeight(GeneralSettings.getMOVE_ICON_HEIGTH());
+        centerPane = (Pane) node.getParent();
+        image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                    centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            textContainer.setLayoutX(event.getX() - node.getLayoutX());
+                            textContainer.setLayoutY(event.getY() - node.getLayoutY());
+                        }
+                    });
+                    centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            ContentController.setActiveTextDrag(false);
+                            centerPane.setOnMouseMoved(null);
+                            textContainer.getChildren().removeAll(slider, image);
+                        }
+                    });
+                }
+        });
+        textContainer.getChildren().addAll(slider, image);
     }
 
     public void addConnector(StationConnector connector) {

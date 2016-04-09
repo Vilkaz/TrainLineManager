@@ -17,6 +17,8 @@ public class ContentController {
     private static TrainStation lastAdedStation;
     private static StationConnector activeConnector;
 
+    private static boolean activeTextDrag = false;
+
     public static ArrayList<Integer> getFreeTrainLineNumbers() {
         return ContentController.trainPlan.getFreeTrainLineNumbers();
     }
@@ -123,5 +125,15 @@ public class ContentController {
 
     public static void removeActiveConnector() {
         activeTrainline.getConnectors().remove(activeTrainline.getConnectors().size()-1);
+    }
+
+    public static void setActiveTextDrag(boolean activeTextDrag) {
+        ContentController.activeTextDrag = activeTextDrag;
+    }
+
+
+
+    public static boolean isActiveTextDrag() {
+        return activeTextDrag;
     }
 }
