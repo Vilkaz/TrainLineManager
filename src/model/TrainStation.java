@@ -102,7 +102,6 @@ public class TrainStation implements HasNode {
         return event;
     }
 
-
     public void addConnector(StationConnector connector) {
         this.getConnectors().add(connector);
     }

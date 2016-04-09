@@ -1,8 +1,10 @@
 package view;
 
 import controller.*;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.input.MouseEvent;
@@ -11,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.StationConnector;
-import model.StationIcon;
 import model.TrainPlan;
 import model.TrainStation;
 
@@ -85,21 +86,53 @@ public class ViewController {
     private void getXYCoordinatesforStation(StationConnector connector) {
         activateCentralPaneClickListener(connector);
         ArrayList<TrainStation> stations = ContentController.getAllStations();
-        activateStationIconClickListener(stations);
+        activateStationIconClickListener(stations, connector);
 
 
     }
 
-    private void activateStationIconClickListener(ArrayList<TrainStation> stations) {
+    private void activateStationIconClickListener(ArrayList<TrainStation> stations, StationConnector connector) {
         for (TrainStation station:stations){
             station.getNode().toFront();
             station.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    centerPane.getChildren().add(TrainStationController.getAddExsistingTrainStaion(station));
+                    centerPane.getChildren().add(getAddExistingTrainStaionAsNeighborRequest(station, connector));
                 }
             });
         }
+    }
+
+
+    private Node getAddExistingTrainStaionAsNeighborRequest(TrainStation station, StationConnector connector){
+        VBox mainBox = TrainStationController.getAddExsistingTrainStaion(station);
+        Button okBtn = getAddExistingTrainStationOKButton(station);
+        Button noBtn = getAddExistingTrainStationNOButton(mainBox, connector);
+        mainBox.getChildren().addAll(okBtn, noBtn);
+        return  mainBox;
+    }
+
+    private Button getAddExistingTrainStationOKButton(TrainStation station) {
+        Button button = new Button("Ja");
+        return button;
+
+    }
+
+    private Button getAddExistingTrainStationNOButton(Node mainBox,  StationConnector connector) {
+            Button button = new Button("Nein");
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    removeNodeFromCenterPane(connector.getNode());
+                    ContentController.removeActiveConnector();
+                    nextStationOrEndLine();
+                }
+            });
+        return button;
+        }
+
+    private void removeNodeFromCenterPane(Node node) {
+        centerPane.getChildren().remove(node);
     }
 
     private void activateCentralPaneClickListener(final StationConnector connector) {

@@ -116,4 +116,8 @@ public class ContentController {
         }
         return stations;
     }
+
+    public static void removeActiveConnector() {
+        activeTrainline.getConnectors().remove(activeTrainline.getConnectors().size()-1);
+    }
 }
