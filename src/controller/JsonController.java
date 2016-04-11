@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 public class JsonController {
 
     public static String getJson(String name, String value) throws IntrospectionException {
-        return putJsonQuotes(name)+value;
+        return putJsonQuotes(name) + value;
     }
 
     /**
@@ -27,11 +27,14 @@ public class JsonController {
      * @throws IntrospectionException
      */
     public static String getJson(String propertyName, Object dto) throws IntrospectionException {
-        PropertyDescriptor xProp = new PropertyDescriptor(propertyName, dto.getClass());
-        return getJsonFromPropertyDescriptor(xProp, dto);
+        return getJson(propertyName, dto, true);
     }
 
-
+    public static String getJson(String propertyName, Object dto, boolean comma) throws IntrospectionException {
+        PropertyDescriptor xProp = new PropertyDescriptor(propertyName, dto.getClass());
+        String json = getJsonFromPropertyDescriptor(xProp, dto);
+        return (comma) ? json += "," : json;
+    }
 
 
     public static String getJsonFromPropertyDescriptor(PropertyDescriptor propertyDescriptor, Object dto) {
@@ -50,7 +53,6 @@ public class JsonController {
     private static String putJsonQuotes(String name) {
         return "\"" + name + "\":";
     }
-
 
 
 }

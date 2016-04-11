@@ -59,12 +59,21 @@ public class ViewController {
         addOKButtonToTrainlineCreator(trainlineCreator);
     }
 
+    @FXML
+    private void saveTrainPlan(){
+        ContentController.saveTrainPlan();
+    }
+
+    private boolean addStationCreator=true;
+
 
     private void createStationOnMouseclick(MouseEvent event, StationConnector connector) {
         Pane stationCreator = StationController.getStationCreator();
         Button okButton = getOKButtonForStation(stationCreator, event, connector);
         stationCreator.getChildren().add(okButton);
-        leftMenu.getChildren().add(stationCreator);
+        if (addStationCreator){
+            leftMenu.getChildren().add(stationCreator);
+        }
     }
 
 
@@ -73,6 +82,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                leftMenu.getChildren().remove(trainlineCreator);
                 trainlineCreator.getStyleClass().add("disable");
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
                 getXYCoordinatesforStation(null);
@@ -97,6 +107,12 @@ public class ViewController {
                 @Override
                 public void handle(MouseEvent event) {
                     centerPane.getChildren().add(getAddExistingTrainStaionAsNeighborRequest(station, connector));
+                    /**
+                     * die click Funktion von dem centerpane sollte eigentlich von den StationIcon nodes
+                     * überdeckt werden, da sie "toFront" hatten.
+                     * das ist schmutziger "deadline kommt näher" zwischenhack ...
+                     */
+                    addStationCreator=false;
                 }
             });
         }
@@ -120,6 +136,7 @@ public class ViewController {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                addStationCreator=true;
                 TrainStationController.disableAllStationClickListeners();
                 finishAddStationToLineProcess(station, connector);
             }
@@ -128,11 +145,16 @@ public class ViewController {
 
     }
 
+    private void removeStationCreator(){
+        leftMenu.getChildren().remove(1);
+    }
+
     private Button getAddExistingTrainStationNOButton(Node mainBox, StationConnector connector) {
         Button button = new Button("Nein");
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                addStationCreator=true;
                 removeNodeFromCenterPane(connector.getNode());
                 removeNodeFromCenterPane(mainBox);
                 ContentController.removeActiveConnector();
@@ -176,6 +198,7 @@ public class ViewController {
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                centerPane.toBack();
                 TrainStation station = StationController.getStationByClick(stationCreator, coordinatesEvent, centerPane);
                 leftMenu.getChildren().remove(stationCreator);
                 finishAddStationToLineProcess(station, connector);

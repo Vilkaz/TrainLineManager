@@ -40,13 +40,17 @@ public class ContentController {
     }
 
     public static void addTrainLine(TrainLine trainLine) {
-        trainPlan.addTrainLine(trainLine);
+        ContentController.trainPlan.addTrainLine(trainLine);
         ContentController.activeTrainline = trainLine;
     }
 
 
     public static TrainPlan getTrainPlan() {
         return trainPlan;
+    }
+
+    public static void setTrainPlan(TrainPlan trainPlan) {
+        ContentController.trainPlan = trainPlan;
     }
 
     public static void addStationToActualTrainLine(TrainStation station) {
@@ -135,5 +139,10 @@ public class ContentController {
 
     public static boolean isActiveTextDrag() {
         return activeTextDrag;
+    }
+
+    public static void saveTrainPlan() {
+        String trainPlanJson = trainPlan.toJson();
+        System.out.println(trainPlanJson);
     }
 }

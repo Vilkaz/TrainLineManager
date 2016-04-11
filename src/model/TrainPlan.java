@@ -1,8 +1,10 @@
 package model;
 
+import controller.JsonController;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 
+import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +26,11 @@ public class TrainPlan {
         return usedNumbers;
     }
 
-    public static ArrayList<Integer> getFreeTrainLineNumbers(){
+    public static ArrayList<Integer> getFreeTrainLineNumbers() {
         ArrayList<Integer> usedNumbers = getUsedTrainLineNumbers();
         ArrayList<Integer> listOfFreeNumbers = new ArrayList<>();
-        for (int i = linesStartingNumber; i<= maxNumberOfLines; i++){
-            if(!usedNumbers.contains(i)){
+        for (int i = linesStartingNumber; i <= maxNumberOfLines; i++) {
+            if (!usedNumbers.contains(i)) {
                 listOfFreeNumbers.add(i);
             }
         }
@@ -37,6 +39,7 @@ public class TrainPlan {
 
     public void addTrainLine(TrainLine trainLine) {
         trainLines.add(trainLine);
+        System.out.println("");
     }
 
     public ChoiceBox getChoiceBox() {
@@ -77,12 +80,28 @@ public class TrainPlan {
 
     public ArrayList<Node> getNodes() {
         ArrayList<Node> nodes = new ArrayList<>();
-        for (TrainLine trainLine : trainLines){
-            for (Node node: trainLine.getNodes()){
+        for (TrainLine trainLine : trainLines) {
+            for (Node node : trainLine.getNodes()) {
                 nodes.add(node);
             }
         }
         return nodes;
+    }
+
+    public String toJson() {
+        String json = "{";
+        try {
+            json+= JsonController.getJson("id", this);
+            json+= JsonController.getJson("name", this);
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
+        json+="[";
+        for (TrainLine line : trainLines) {
+            json += line.toJson();
+        }
+        json += "]}";
+        return json;
     }
 
 

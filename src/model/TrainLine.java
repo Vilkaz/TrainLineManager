@@ -1,8 +1,11 @@
 package model;
 
+import controller.ColorController;
+import controller.JsonController;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
+import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,31 @@ public class TrainLine {
 
     public void addConnector(StationConnector connector){
         connectors.add(connector);
+    }
+
+    public String toJson() {
+        String json = "{";
+        try {
+            json += JsonController.getJson("id", this) ;
+            json += JsonController.getJson("number", this) ;
+            json += JsonController.getJson("name", this) ;
+            json += JsonController.getJson("color", ColorController.getColorHex(color));
+
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
+
+        json+= addConnectorToJson();
+
+        return json+"}";
+    }
+
+    private String addConnectorToJson() {
+        String json="{";
+        for (StationConnector connector : connectors){
+            json+=connector.toJson();
+        }
+        return json+"}";
     }
 
 

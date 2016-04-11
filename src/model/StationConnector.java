@@ -63,4 +63,8 @@ public class StationConnector implements HasNode {
             }
         }
     }
+
+    public String toJson() {
+        return "";
+    }
 }
