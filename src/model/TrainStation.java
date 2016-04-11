@@ -1,6 +1,8 @@
 package model;
 
+import controller.ColorController;
 import controller.ContentController;
+import controller.JsonController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
@@ -52,6 +54,8 @@ public class TrainStation implements HasNode {
         y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
+
+
 
 
     private VBox getText(String stationName) {
@@ -108,6 +112,21 @@ public class TrainStation implements HasNode {
         });
         textContainer.getChildren().addAll(slider, image);
     }
+
+    public String toJson() {
+        String json ="{";
+        json += JsonController.getJson("id",this);
+        json += JsonController.getJson("color", ColorController.getColorHex(color));
+        json += JsonController.getJson("name", this);
+        json += JsonController.getJson("zone", this);
+        json += JsonController.getJson("endStation", this);
+        json += JsonController.getJson("lineNr", this);
+        json += JsonController.getJson("x", this);
+        json += JsonController.getJson("y", this,false);
+        json+="}";
+        return  json;
+    }
+
 
     public void addConnector(StationConnector connector) {
         this.getConnectors().add(connector);
@@ -194,6 +213,50 @@ public class TrainStation implements HasNode {
 
     public void setY(double y) {
         this.y.set(y);
+    }
+
+
+
+//    private StationIcon icon;
+//    private List neighbors = new ArrayList<Neighbor>();
+//    private ArrayList<StationConnector> connectors = new ArrayList<StationConnector>();
+//    private Pane node;
+//    private Pane centerPane;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setIcon(StationIcon icon) {
+        this.icon = icon;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setZone(int zone) {
+        this.zone = zone;
+    }
+
+    public void setLineNr(int lineNr) {
+        this.lineNr = lineNr;
+    }
+
+    public void setNeighbors(List neighbors) {
+        this.neighbors = neighbors;
+    }
+
+    public void setConnectors(ArrayList<StationConnector> connectors) {
+        this.connectors = connectors;
+    }
+
+    public void setCenterPane(Pane centerPane) {
+        this.centerPane = centerPane;
     }
 
 

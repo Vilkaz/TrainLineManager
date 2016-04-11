@@ -135,8 +135,6 @@ public class ContentController {
         ContentController.activeTextDrag = activeTextDrag;
     }
 
-
-
     public static boolean isActiveTextDrag() {
         return activeTextDrag;
     }

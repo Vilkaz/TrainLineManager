@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.scene.paint.Color;
+//import com.sun.org.apache.xpath.internal.operations.String;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -12,8 +12,12 @@ import java.lang.reflect.Method;
  */
 public class JsonController {
 
-    public static String getJson(String name, String value) throws IntrospectionException {
-        return putJsonQuotes(name) + value;
+    public static String getJson(String name, String value)  {
+            return getJson(name, value, true);
+    }
+
+    public static String getJson(String name, String value, boolean comma)  {
+        return putJsonQuotes(name) + putQuotesOn(value) + ((comma) ? "," : "");
     }
 
     /**
@@ -26,12 +30,17 @@ public class JsonController {
      * @return
      * @throws IntrospectionException
      */
-    public static String getJson(String propertyName, Object dto) throws IntrospectionException {
+    public static String getJson(String propertyName, Object dto) {
         return getJson(propertyName, dto, true);
     }
 
-    public static String getJson(String propertyName, Object dto, boolean comma) throws IntrospectionException {
-        PropertyDescriptor xProp = new PropertyDescriptor(propertyName, dto.getClass());
+    public static String getJson(String propertyName, Object dto, boolean comma) {
+        PropertyDescriptor xProp = null;
+        try {
+            xProp = new PropertyDescriptor(propertyName, dto.getClass());
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
         String json = getJsonFromPropertyDescriptor(xProp, dto);
         return (comma) ? json += "," : json;
     }
@@ -41,17 +50,26 @@ public class JsonController {
         String result = putJsonQuotes(propertyDescriptor.getName());
         Method method = propertyDescriptor.getReadMethod();
         try {
-            result += method.invoke(dto, new Object[]{}).toString();
+            String value = method.invoke(dto, new Object[]{}).toString();
+            /**
+             * ein Versuch alles was String ist, in klammer zu setzen, alle "numbers" sollten somit ohne klammer auskommen
+             */
+            result += (method.getReturnType().equals(String.class)) ? putQuotesOn(value) : value;
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
-    private static String putJsonQuotes(String name) {
+    public static String putJsonQuotes(String name) {
         return "\"" + name + "\":";
+    }
+
+    public static String putQuotesOn(String name) {
+        return "\"" + name + "\"";
     }
 
 

@@ -35,15 +35,10 @@ public class StationIcon implements HasNode {
 
     private String toJson() {
         String json = "";
-        try {
             json += JsonController.getJson("x", this) ;
             json += JsonController.getJson("y", this) ;
             json += JsonController.getJson("radius", this) ;
             json += JsonController.getJson("color", ColorController.getColorHex(color));
-
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        }
         System.out.println(json);
         return json;
     }
