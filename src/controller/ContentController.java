@@ -2,6 +2,7 @@ package controller;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import model.*;
 
 import javax.swing.*;
@@ -148,12 +149,11 @@ public class ContentController {
         String json = trainPlan.toJson();
         System.out.println(json);
         final File saveDirFile = new File(GeneralSettings.getSAVEDIR());
-        final JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(saveDirFile);
-        fileChooser.showSaveDialog(null);
-        File inputVerzFile = fileChooser.getSelectedFile();
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(saveDirFile);
+        File saveFile = fileChooser.showSaveDialog(null);
         try {
-            PrintWriter writer = new PrintWriter(inputVerzFile+".json");
+            PrintWriter writer = new PrintWriter(saveFile+".json");
             writer.println(json);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -161,6 +161,7 @@ public class ContentController {
         }
 
     }
+
 
 
     /**
@@ -177,5 +178,9 @@ public class ContentController {
      */
     public static int getIdForNextStationConnector() {
         return activeTrainline.getConnectors().size();
+    }
+
+    public static void loadTrainPlan() {
+
     }
 }

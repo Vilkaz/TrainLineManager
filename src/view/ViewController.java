@@ -64,6 +64,12 @@ public class ViewController {
         ContentController.saveTrainPlan();
     }
 
+    @FXML
+    private void loadTrainPlan(){
+        ContentController.loadTrainPlan();
+        renderTrainPlan();
+    }
+
     private boolean addStationCreator=true;
 
 
