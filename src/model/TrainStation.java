@@ -28,7 +28,7 @@ public class TrainStation implements HasNode {
     private int zone;
     private boolean endStation;
     private int lineNr;
-    private List neighbors = new ArrayList<Neighbor>();
+    private ArrayList<Neighbor> neighbors = new ArrayList<Neighbor>();
     private ArrayList<StationConnector> connectors = new ArrayList<StationConnector>();
     private Pane node;
     private Pane centerPane;
@@ -56,8 +56,6 @@ public class TrainStation implements HasNode {
     }
 
 
-
-
     private VBox getText(String stationName) {
         Text text = new Text(stationName);
         VBox textContainer = new VBox(text);
@@ -74,7 +72,7 @@ public class TrainStation implements HasNode {
                  * quite dirty but working method to prevent more then one text Drag options to be
                  * active at same time
                  */
-                if (!ContentController.isActiveTextDrag()){
+                if (!ContentController.isActiveTextDrag()) {
                     ContentController.setActiveTextDrag(true);
                     activateTextDragEvent(text, textContainer);
                 }
@@ -93,38 +91,59 @@ public class TrainStation implements HasNode {
         image.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                    centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            textContainer.setLayoutX(event.getX() - node.getLayoutX());
-                            textContainer.setLayoutY(event.getY() - node.getLayoutY());
-                        }
-                    });
-                    centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            ContentController.setActiveTextDrag(false);
-                            centerPane.setOnMouseMoved(null);
-                            textContainer.getChildren().removeAll(slider, image);
-                        }
-                    });
-                }
+                centerPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        textContainer.setLayoutX(event.getX() - node.getLayoutX());
+                        textContainer.setLayoutY(event.getY() - node.getLayoutY());
+                    }
+                });
+                centerPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        ContentController.setActiveTextDrag(false);
+                        centerPane.setOnMouseMoved(null);
+                        textContainer.getChildren().removeAll(slider, image);
+                    }
+                });
+            }
         });
         textContainer.getChildren().addAll(slider, image);
     }
 
     public String toJson() {
-        String json ="{";
-        json += JsonController.getJson("id",this);
+        String json = "{";
+        json += JsonController.getJson("id", this);
         json += JsonController.getJson("color", ColorController.getColorHex(color));
         json += JsonController.getJson("name", this);
         json += JsonController.getJson("zone", this);
         json += JsonController.getJson("endStation", this);
         json += JsonController.getJson("lineNr", this);
         json += JsonController.getJson("x", this);
-        json += JsonController.getJson("y", this,false);
-        json+="}";
-        return  json;
+        json += JsonController.getJson("y", this);
+        json += getNeighborJsons() + ",";
+        json += getConnectorSaveJsons();
+        json += "}";
+        return json;
+    }
+
+    private String getConnectorSaveJsons() {
+        String json = JsonController.putJsonQuotes("connectors") + "[";
+        for (int i = 0; i <= connectors.size() - 1; i++) {
+            json += connectors.get(i).toSaveJson();
+            json += (i == connectors.size() - 1) ? "" : ",";
+        }
+        return json+"]";
+    }
+
+    private String getNeighborJsons() {
+        String json = JsonController.putJsonQuotes("neighbors") + "[";
+        for (int i = 0; i <= neighbors.size() - 1; i++) {
+            json += neighbors.get(i).toJson();
+            json += (i == neighbors.size() - 1) ? "" : ",";
+        }
+        return json + "]";
+
     }
 
 
@@ -215,14 +234,6 @@ public class TrainStation implements HasNode {
         this.y.set(y);
     }
 
-
-
-//    private StationIcon icon;
-//    private List neighbors = new ArrayList<Neighbor>();
-//    private ArrayList<StationConnector> connectors = new ArrayList<StationConnector>();
-//    private Pane node;
-//    private Pane centerPane;
-
     public void setId(int id) {
         this.id = id;
     }
@@ -247,7 +258,7 @@ public class TrainStation implements HasNode {
         this.lineNr = lineNr;
     }
 
-    public void setNeighbors(List neighbors) {
+    public void setNeighbors(ArrayList<Neighbor> neighbors) {
         this.neighbors = neighbors;
     }
 

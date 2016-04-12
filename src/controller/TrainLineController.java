@@ -48,7 +48,9 @@ public class TrainLineController {
         HBox hBox = (HBox) trainlineCreator.getChildren().get(0);
         ChoiceBox choiceBox = (ChoiceBox) hBox.getChildren().get(1);
         ColorPicker colorPicker = (ColorPicker) trainlineCreator.getChildren().get(1);
-        TrainLine trainLine = new TrainLine((int)choiceBox.getValue(), colorPicker.getValue());
+        TrainLine trainLine = new TrainLine( ContentController.getIdForNextTrainLine(),
+                                            (int)choiceBox.getValue(),
+                                            colorPicker.getValue());
         return trainLine;
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import controller.JsonController;
+
 /**
  * Created by Vilkaz on 19.02.2016.
  */
@@ -18,6 +20,14 @@ public class Neighbor {
         this.id = id;
     }
 
+
+    public String toJson(){
+        String json ="{";
+        json += JsonController.getJson("id", this);
+        json += JsonController.getJson("distance", this,false);
+        return json+"}";
+
+    }
     //region getter and setter
 
     public int getDistance() {
@@ -28,6 +38,13 @@ public class Neighbor {
         return id;
     }
 
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 
-    //region getter
+    public void setId(int id) {
+        this.id = id;
+    }
+
+//region getter
 }

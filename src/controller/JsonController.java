@@ -20,6 +20,17 @@ public class JsonController {
         return putJsonQuotes(name) + putQuotesOn(value) + ((comma) ? "," : "");
     }
 
+
+    public static String getJson(String name, int value)  {
+            return getJson(name, value, true);
+    }
+
+    public static String getJson(String name, int value, boolean comma)  {
+        return putJsonQuotes(name) + value + ((comma) ? "," : "");
+    }
+
+
+
     /**
      * this gives an JSon String. It needs to have normal getter and setter,
      * result is like "propertyName":value

@@ -1,8 +1,13 @@
 package controller;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import model.*;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -140,7 +145,37 @@ public class ContentController {
     }
 
     public static void saveTrainPlan() {
-        String trainPlanJson = trainPlan.toJson();
-        System.out.println(trainPlanJson);
+        String json = trainPlan.toJson();
+        System.out.println(json);
+        final File saveDirFile = new File(GeneralSettings.getSAVEDIR());
+        final JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(saveDirFile);
+        fileChooser.showSaveDialog(null);
+        File inputVerzFile = fileChooser.getSelectedFile();
+        try {
+            PrintWriter writer = new PrintWriter(inputVerzFile+".json");
+            writer.println(json);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * the next Trainline simply need the actual size, as index.
+     * @return
+     */
+    public static int getIdForNextTrainLine() {
+        return trainPlan.getTrainLines().size();
+    }
+
+    /**
+     * the next StationConnector simply need the actual size, as index.
+     * @return
+     */
+    public static int getIdForNextStationConnector() {
+        return activeTrainline.getConnectors().size();
     }
 }

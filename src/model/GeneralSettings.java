@@ -25,8 +25,19 @@ public class GeneralSettings {
     final private static int MIN_ZONE = 1;
     final private static int MAX_ZONE = 2;
 
+    final private static String ROOTDIR = System.getProperty("user.dir");
+    final private static String SAVEDIR = ROOTDIR+"/save/";
+
     //region getter and setter
 
+
+    public static String getROOTDIR() {
+        return ROOTDIR;
+    }
+
+    public static String getSAVEDIR() {
+        return SAVEDIR;
+    }
 
     public static int getMinZone() {
         return MIN_ZONE;
@@ -75,6 +86,8 @@ public class GeneralSettings {
     public static double getMOVE_ICON_WIDTH() {
         return MOVE_ICON_WIDTH;
     }
+
+
 
     //endregion getter and setter
 }

@@ -71,6 +71,9 @@ public class ViewController {
         Pane stationCreator = StationController.getStationCreator();
         Button okButton = getOKButtonForStation(stationCreator, event, connector);
         stationCreator.getChildren().add(okButton);
+        /**
+         * if existing station is klicked on, then we dont want to add station creator to left side
+         */
         if (addStationCreator){
             leftMenu.getChildren().add(stationCreator);
         }
@@ -83,7 +86,6 @@ public class ViewController {
             @Override
             public void handle(MouseEvent event) {
                 leftMenu.getChildren().remove(trainlineCreator);
-                trainlineCreator.getStyleClass().add("disable");
                 ContentController.addTrainLine(TrainLineController.getTrainlineByTrainlineCreator(trainlineCreator));
                 getXYCoordinatesforStation(null);
             }
@@ -96,8 +98,6 @@ public class ViewController {
         activateCentralPaneClickListener(connector);
         ArrayList<TrainStation> stations = ContentController.getAllStations();
         activateStationIconClickListener(stations, connector);
-
-
     }
 
     private void activateStationIconClickListener(ArrayList<TrainStation> stations, StationConnector connector) {
@@ -210,11 +210,24 @@ public class ViewController {
     private void finishAddStationToLineProcess(TrainStation station, StationConnector connector) {
         ContentController.addStationToActualTrainLine(station);
         connector = mergeStationToConnector(connector, station);
-        station.addConnector(connector);
+        addConectorIfhesValide(station, connector);
         ContentController.setActiveConnector(connector);
         renderTrainPlan();
         disableCenterPaneMouseClickListener();
         nextStationOrEndLine();
+    }
+
+
+    /**
+     * the verz first station of the line will have one invalid connector.
+     * feel free to fix it !
+     * @param station
+     * @param connector
+     */
+    private void addConectorIfhesValide(TrainStation station, StationConnector connector){
+        if (connector.getStation2()!=null){
+            station.addConnector(connector);
+        }
     }
 
 
