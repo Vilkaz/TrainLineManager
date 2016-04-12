@@ -1,11 +1,9 @@
 package controller;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import model.*;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -146,12 +144,11 @@ public class ContentController {
     }
 
     public static void saveTrainPlan() {
-        String json = trainPlan.toJson();
-        System.out.println(json);
-        final File saveDirFile = new File(GeneralSettings.getSAVEDIR());
-        final FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(saveDirFile);
-        File saveFile = fileChooser.showSaveDialog(null);
+        saveJson(trainPlan.toJson());
+    }
+
+    private static void saveJson(String json) {
+        File saveFile = getFile();
         try {
             PrintWriter writer = new PrintWriter(saveFile+".json");
             writer.println(json);
@@ -159,9 +156,14 @@ public class ContentController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
+    private static File getFile() {
+        final File saveDirFile = new File(GeneralSettings.getSAVEDIR());
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(saveDirFile);
+        return fileChooser.showSaveDialog(null);
+    }
 
 
     /**
