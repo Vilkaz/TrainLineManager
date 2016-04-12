@@ -33,14 +33,12 @@ public class StationIcon implements HasNode {
     private final String COMMA = ",";
 
 
-    private String toJson() {
-        String json = "";
+    public  String toJson() {
+        String json = "{";
             json += JsonController.getJson("x", this) ;
             json += JsonController.getJson("y", this) ;
-            json += JsonController.getJson("radius", this) ;
-            json += JsonController.getJson("color", ColorController.getColorHex(color));
-        System.out.println(json);
-        return json;
+            json += JsonController.getJson("color", ColorController.getColorHex(color),false);
+        return json+"}";
     }
 
     public StationIcon(TrainStation station) {

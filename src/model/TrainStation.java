@@ -121,11 +121,36 @@ public class TrainStation implements HasNode {
         json += JsonController.getJson("lineNr", this);
         json += JsonController.getJson("x", this);
         json += JsonController.getJson("y", this);
+        json += JsonController.putJsonQuotes("icon") + icon.toJson() + ",";
+        json += JsonController.putJsonQuotes("text") + getTextJson() + ",";
         json += getNeighborJsons() + ",";
         json += getConnectorSaveJsons();
         json += "}";
         return json;
     }
+
+
+    /**
+     * ich würde es gerne mit proppertis lösen. einfach proppertys in
+     * der klasse deklarieren und sie an den Text proppertys binden.
+     * aber es ist 23:33 .... ich bin zu müde um experimente zu machen
+     * (was ist wenn text propertys von den am anfang nicht gesetzten
+     * klassen variablen beeinflusst werden ?)
+     * und mache daher was stupides.... hardcoding ist immer scheise :/
+     * gn8...
+     *
+     * @return
+     */
+    private String getTextJson() {
+        VBox textContainer = (VBox) node.getChildren().get(0);
+        Text text = (Text) textContainer.getChildren().get(0);
+        String json = "{";
+        json += JsonController.getJson("X", text.getLayoutX());
+        json += JsonController.getJson("Y", text.getLayoutY());
+        json += JsonController.getJson("rotation", text.getRotate(), false);
+        return json + "}";
+    }
+
 
     private String getConnectorSaveJsons() {
         String json = JsonController.putJsonQuotes("connectors") + "[";
@@ -133,7 +158,7 @@ public class TrainStation implements HasNode {
             json += connectors.get(i).toSaveJson();
             json += (i == connectors.size() - 1) ? "" : ",";
         }
-        return json+"]";
+        return json + "]";
     }
 
     private String getNeighborJsons() {

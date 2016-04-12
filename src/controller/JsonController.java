@@ -21,11 +21,11 @@ public class JsonController {
     }
 
 
-    public static String getJson(String name, int value)  {
+    public static String getJson(String name, Number value)  {
             return getJson(name, value, true);
     }
 
-    public static String getJson(String name, int value, boolean comma)  {
+    public static String getJson(String name, Number value, boolean comma)  {
         return putJsonQuotes(name) + value + ((comma) ? "," : "");
     }
 
