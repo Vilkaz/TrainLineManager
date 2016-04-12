@@ -5,6 +5,7 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Vilkazzz on 19/03/2016.
@@ -14,10 +15,15 @@ public class ContentController {
     private static TrainPlan trainPlan = new TrainPlan();
     private static TrainLine activeTrainline;
     private static TrainStation lastAdedStation;
+    private static StationConnector activeConnector;
+
+    private static boolean activeTextDrag = false;
 
     public static ArrayList<Integer> getFreeTrainLineNumbers() {
         return ContentController.trainPlan.getFreeTrainLineNumbers();
     }
+
+
 
 
     public static int getActualLineNr() {
@@ -34,9 +40,8 @@ public class ContentController {
     }
 
     public static void addTrainLine(TrainLine trainLine) {
-        trainPlan.addTrainLine(trainLine);
+        ContentController.trainPlan.addTrainLine(trainLine);
         ContentController.activeTrainline = trainLine;
-
     }
 
 
@@ -44,13 +49,20 @@ public class ContentController {
         return trainPlan;
     }
 
+    public static void setTrainPlan(TrainPlan trainPlan) {
+        ContentController.trainPlan = trainPlan;
+    }
+
     public static void addStationToActualTrainLine(TrainStation station) {
         if (activeTrainline.hasStations()) {
             setLastStationAndThisStationAsNeighbors(station);
         }
         activeTrainline.addStation(station);
-        System.out.println("");
 
+    }
+
+    public static boolean isActiveTrainlineEmpty(){
+        return !activeTrainline.hasStations();
     }
 
     public static int getIdForNextStation() {
@@ -65,10 +77,9 @@ public class ContentController {
         trainStation.addNeighbor(neighborForThisStation);
     }
 
-    public static void addConnectorToActiveLine(LineConnector connector) {
+    public static void addConnectorToActiveLine(StationConnector connector) {
         ContentController.activeTrainline.addConnector(connector);
     }
-
 
     public static boolean trainlineHasStations() {
         return activeTrainline.getStations().size() > 0;
@@ -78,7 +89,7 @@ public class ContentController {
         return activeTrainline.getLastStation();
     }
 
-    public static void markEndstation() {
+    public static void setActualStationAsEndstationInLine() {
         activeTrainline.getLastStation().setEndStation(true);
         System.out.println();
     }
@@ -93,5 +104,43 @@ public class ContentController {
             }
         }
         return result;
+    }
+
+    public static StationConnector getActiveConnector() {
+            return activeConnector;
+    }
+
+
+    public static Color getActiveLineColor(){
+        return activeTrainline.getColor();
+    }
+
+    public static void setActiveConnector(StationConnector activeConnector) {
+        ContentController.activeConnector = activeConnector;
+    }
+
+    public static ArrayList<TrainStation> getAllStations() {
+        ArrayList<TrainStation> stations = new ArrayList<>();
+        for (TrainLine line:trainPlan.getTrainLines()){
+            stations.addAll(line.getStations().stream().collect(Collectors.toList()));
+        }
+        return stations;
+    }
+
+    public static void removeActiveConnector() {
+        activeTrainline.getConnectors().remove(activeTrainline.getConnectors().size()-1);
+    }
+
+    public static void setActiveTextDrag(boolean activeTextDrag) {
+        ContentController.activeTextDrag = activeTextDrag;
+    }
+
+    public static boolean isActiveTextDrag() {
+        return activeTextDrag;
+    }
+
+    public static void saveTrainPlan() {
+        String trainPlanJson = trainPlan.toJson();
+        System.out.println(trainPlanJson);
     }
 }

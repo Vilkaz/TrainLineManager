@@ -17,6 +17,8 @@ public class GeneralSettings {
     final static double ICON_RADIUS = 10;
     final static double ICON_STROKE_WIDTH = 3;
     final static Color ICON_STROKE_COLOR = Color.BLACK;
+    final static  double  MOVE_ICON_HEIGTH =25;
+    final static  double  MOVE_ICON_WIDTH =25;
 
     final static double CONNECTOR_WIDTH = 3;
 
@@ -66,6 +68,13 @@ public class GeneralSettings {
         return START_WINDOW_WIDTH;
     }
 
+    public static double getMOVE_ICON_HEIGTH() {
+        return MOVE_ICON_HEIGTH;
+    }
+
+    public static double getMOVE_ICON_WIDTH() {
+        return MOVE_ICON_WIDTH;
+    }
 
     //endregion getter and setter
 }

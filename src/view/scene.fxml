@@ -15,7 +15,7 @@
             <Menu mnemonicParsing="false" text="Datei">
                <items>
                   <MenuItem mnemonicParsing="false" text="Laden" />
-                  <MenuItem mnemonicParsing="false" text="Speichern" />
+                  <MenuItem fx:id="saveTrainPlan" mnemonicParsing="false" onAction="#saveTrainPlan" text="Speichern" />
                   <MenuItem mnemonicParsing="false" text="Schliessen" />
                </items>
             </Menu>
