@@ -3,7 +3,9 @@ package model;
 import controller.ContentController;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,6 +29,24 @@ public class StationIcon implements HasNode {
     private int stationId;
 
 
+
+    public String toJson(){
+        String json = "{";
+        json+="\"x\":"+this.x+",";
+        json+="\"y\":"+this.y+"";
+        json+="\"radius\":"+this.radius+"";
+        json+="\"color\":"+this.radius+"}";
+        return json;
+
+    }
+
+
+    private String getColorHex(){
+        Color color = this.color;
+        String hex = String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+        return hex;
+    }
+
     public StationIcon(TrainStation station) {
         this.color = station.getColor();
         this.lineNr = station.getLineNr();
@@ -43,9 +63,19 @@ public class StationIcon implements HasNode {
         regularIcon.setFill(color);
         regularIcon.getStyleClass().add("stationIcon");
 
+        regularIcon.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+            @Override
+            public void handle(ContextMenuEvent event) {
+                Pane pane = (Pane) station.getNode();
+                pane.getChildren().add(new Text("Has Rechte Maustaste Geklickt ! "));
+            }
+        });
+
+
         regularIcon.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                System.out.println(toJson());
                 station.getCenterPane().setOnMouseMoved(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -86,9 +116,11 @@ public class StationIcon implements HasNode {
 
 
     public Node getEndstationIcon() {
-        Text text = new Text("" + this.lineNr);
+        Text text = new Text(Integer.toString(this.lineNr));
         HBox box = new HBox(text);
         box.getStyleClass().add("endStationIcon");
+        String borderColor = this.color.toString();
+        box.setStyle("-fx-border-color:#"+borderColor);
         return box;
     }
 }
