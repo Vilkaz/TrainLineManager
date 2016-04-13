@@ -2,10 +2,18 @@ package controller;
 
 //import com.sun.org.apache.xpath.internal.operations.String;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by vkukanauskas on 01/04/2016.
@@ -75,6 +83,9 @@ public class JsonController {
         return result;
     }
 
+
+
+
     public static String putJsonQuotes(String name) {
         return "\"" + name + "\":";
     }
@@ -83,5 +94,30 @@ public class JsonController {
         return "\"" + name + "\"";
     }
 
+    public static String getStringFromFile(String path)
+    {
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new String(encoded,StandardCharsets.UTF_8);
+    }
 
+    public static Object getJsonObject(String path) {
+        Gson gson = new Gson();
+        Object jsonObject= new Object();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            jsonObject = gson.fromJson(br, Object.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static Object getJsonObject(File file) {
+        return getJsonObject(file.getPath());
+    }
 }
