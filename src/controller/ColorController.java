@@ -15,11 +15,10 @@ public class ColorController {
     }
 
     public static Color getColorFromHex(String color) {
-        int i = Integer.valueOf( color.substring( 6, 8 ), 16);
         return new Color(
-                Integer.valueOf( color.substring( 2, 4 ), 16 ),
-                Integer.valueOf( color.substring( 4, 6 ), 16 ),
-                Integer.valueOf( color.substring( 6, 8 ), 16 ),
+                Integer.valueOf( color.substring( 1, 3 ), 16 ),
+                Integer.valueOf( color.substring( 3, 5 ), 16 ),
+                Integer.valueOf( color.substring( 5,7 ), 16 ),
                0 );
     }
 }

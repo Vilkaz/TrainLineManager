@@ -117,6 +117,7 @@ public class StationController {
             station.setLineNr(Integer.valueOf(jObj.get("lineNr").getAsString()));
             station.setX(jObj.get("x").getAsDouble());
             station.setY(jObj.get("y").getAsDouble());
+            stations.add(station);
         }
         return  stations;
     }
