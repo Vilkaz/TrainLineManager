@@ -4,7 +4,6 @@ import controller.JsonController;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 
-import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +13,13 @@ import java.util.List;
 public class TrainPlan {
     private int id;
     private String name = "default Trainplane";
-    private List<TrainLine> trainLines = new ArrayList<TrainLine>();
+    private List<TrainLine> lines = new ArrayList<TrainLine>();
     private int linesStartingNumber = GeneralSettings.getLinesStartingNumber();
     private int maxNumberOfLines = GeneralSettings.getMaxNumberOfLines();
 
     public ArrayList<Integer> getUsedTrainLineNumbers() {
         ArrayList<Integer> usedNumbers = new ArrayList<>();
-        for (TrainLine trainLine : trainLines) {
+        for (TrainLine trainLine : lines) {
             usedNumbers.add(trainLine.getNumber());
         }
         return usedNumbers;
@@ -38,7 +37,7 @@ public class TrainPlan {
     }
 
     public void addTrainLine(TrainLine trainLine) {
-        trainLines.add(trainLine);
+        lines.add(trainLine);
         System.out.println("");
     }
 
@@ -72,13 +71,13 @@ public class TrainPlan {
         return name;
     }
 
-    public List<TrainLine> getTrainLines() {
-        return trainLines;
+    public List<TrainLine> getLines() {
+        return lines;
     }
 
     public ArrayList<Node> getNodes() {
         ArrayList<Node> nodes = new ArrayList<>();
-        for (TrainLine trainLine : trainLines) {
+        for (TrainLine trainLine : lines) {
             for (Node node : trainLine.getNodes()) {
                 nodes.add(node);
             }
@@ -91,9 +90,9 @@ public class TrainPlan {
         json += JsonController.getJson("id", this);
         json += JsonController.getJson("name", this);
         json += "\"lines\":[";
-        for (TrainLine line : trainLines) {
+        for (TrainLine line : lines) {
             json += line.toJson();
-            if (line.getId()!=trainLines.size()-1){
+            if (line.getId()!= lines.size()-1){
                 json+=",";
             }
         }
@@ -109,5 +108,23 @@ public class TrainPlan {
         this.name = name;
     }
 
+    public void setLines(List<TrainLine> lines) {
+        this.lines = lines;
+    }
 
+    public int getLinesStartingNumber() {
+        return linesStartingNumber;
+    }
+
+    public void setLinesStartingNumber(int linesStartingNumber) {
+        this.linesStartingNumber = linesStartingNumber;
+    }
+
+    public int getMaxNumberOfLines() {
+        return maxNumberOfLines;
+    }
+
+    public void setMaxNumberOfLines(int maxNumberOfLines) {
+        this.maxNumberOfLines = maxNumberOfLines;
+    }
 }

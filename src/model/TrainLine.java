@@ -5,7 +5,6 @@ import controller.JsonController;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
-import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +19,11 @@ public class TrainLine {
     private List<StationConnector> connectors = new ArrayList<StationConnector>();
     private Color color;
 
-    public TrainLine(int number, Color color) {
+    public TrainLine(int id, int number, Color color) {
         this.number = number;
         this.color = color;
+        this.id =  id;
     }
-
 
     public TrainStation getLastStation() {
         return stations.get(stations.size() - 1);
@@ -48,29 +47,28 @@ public class TrainLine {
         json += JsonController.getJson("number", this);
         json += JsonController.getJson("name", this);
         json += JsonController.getJson("color", ColorController.getColorHex(color));
-        json += addStationsToJson();
-        json += addConnectorToJson();
+        json += addStationsToJson()+",";
+        json += addConnectorSaveJsons();
         return json + "}";
     }
 
     private String addStationsToJson() {
-        String json="\"stations\":[";
-        for (TrainStation station : stations){
-            json+=station.toJson();
-            if (station.getId()!=stations.size()-1){
-                json+=",";
-            }
+        String json= JsonController.putJsonQuotes("stations")+"[";
+        for (int i=0; i<=stations.size()-1;i++){
+            json+=stations.get(i).toJson();
+            json+=(i==stations.size()-1) ? "":",";
         }
         json+="]";
         return json;
     }
 
-    private String addConnectorToJson() {
-        String json = "{";
-        for (StationConnector connector : connectors) {
-            json += connector.toJson();
+    private String addConnectorSaveJsons() {
+        String json = JsonController.putJsonQuotes("connectors")+"[";
+        for (int i=0; i<= connectors.size()-1;i++) {
+            json += connectors.get(i).toSaveJson();
+            json += (i==connectors.size()-1) ? "":",";
         }
-        return "";
+        return json+"]";
     }
 
 

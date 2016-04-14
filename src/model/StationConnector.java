@@ -1,6 +1,7 @@
 package model;
 
 import controller.ContentController;
+import controller.JsonController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -11,12 +12,11 @@ import javafx.scene.shape.Line;
  * Created by Vilkazzz on 13/03/2016.
  */
 public class StationConnector implements HasNode {
+    private int id;
     private TrainStation station1 = null;
     private TrainStation station2 = null;
     private Line line;
     private Color color;
-    private DoubleProperty x = new SimpleDoubleProperty();
-    private DoubleProperty y = new SimpleDoubleProperty();
 
 
     public TrainStation getStationWithID(int id) {
@@ -24,6 +24,7 @@ public class StationConnector implements HasNode {
     }
 
     public StationConnector(TrainStation station1) {
+        this.id = ContentController.getIdForNextStationConnector();
         this.station1 = station1;
         color = ContentController.getActiveColor();
         line = new Line();
@@ -64,7 +65,33 @@ public class StationConnector implements HasNode {
         }
     }
 
-    public String toJson() {
-        return "";
+
+    public String toSaveJson() {
+        String json = "{";
+        json += JsonController.getJson("id", this);
+        json += JsonController.getJson("station1Id", station1.getId());
+        json += (station2 == null) ? -1 : JsonController.getJson("station2Id", station2.getId(), false);
+        return json+"}";
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public TrainStation getStation2() {
+        return station2;
     }
 }

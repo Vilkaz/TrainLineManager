@@ -2,10 +2,22 @@ package controller;
 
 //import com.sun.org.apache.xpath.internal.operations.String;
 
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import model.TrainPlan;
+
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by vkukanauskas on 01/04/2016.
@@ -19,6 +31,17 @@ public class JsonController {
     public static String getJson(String name, String value, boolean comma)  {
         return putJsonQuotes(name) + putQuotesOn(value) + ((comma) ? "," : "");
     }
+
+
+    public static String getJson(String name, Number value)  {
+            return getJson(name, value, true);
+    }
+
+    public static String getJson(String name, Number value, boolean comma)  {
+        return putJsonQuotes(name) + value + ((comma) ? "," : "");
+    }
+
+
 
     /**
      * this gives an JSon String. It needs to have normal getter and setter,
@@ -64,6 +87,9 @@ public class JsonController {
         return result;
     }
 
+
+
+
     public static String putJsonQuotes(String name) {
         return "\"" + name + "\":";
     }
@@ -72,5 +98,35 @@ public class JsonController {
         return "\"" + name + "\"";
     }
 
+    public static String getStringFromFile(String path)
+    {
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new String(encoded,StandardCharsets.UTF_8);
+    }
 
+    public static Object getJsonObject(String path) {
+
+        Object jsonObject= new Object();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static Object getJsonObject(File file) {
+        Gson gson = new Gson();
+        JsonParser parser = new JsonParser();
+        String string = (getStringFromFile(file.getPath()));
+        JsonElement tradeElement = parser.parse(string);
+        JsonObject data = tradeElement.getAsJsonObject();
+        System.out.println(data.get("name"));
+        return getJsonObject(file.getPath());
+    }
 }

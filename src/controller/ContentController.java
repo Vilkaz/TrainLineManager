@@ -1,8 +1,19 @@
 package controller;
 
+
+import com.google.gson.Gson;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +35,6 @@ public class ContentController {
     }
 
 
-
-
     public static int getActualLineNr() {
         return activeTrainline.getNumber();
     }
@@ -36,7 +45,7 @@ public class ContentController {
     }
 
     public static List<TrainLine> getTrainLines() {
-        return trainPlan.getTrainLines();
+        return trainPlan.getLines();
     }
 
     public static void addTrainLine(TrainLine trainLine) {
@@ -61,7 +70,7 @@ public class ContentController {
 
     }
 
-    public static boolean isActiveTrainlineEmpty(){
+    public static boolean isActiveTrainlineEmpty() {
         return !activeTrainline.hasStations();
     }
 
@@ -107,11 +116,11 @@ public class ContentController {
     }
 
     public static StationConnector getActiveConnector() {
-            return activeConnector;
+        return activeConnector;
     }
 
 
-    public static Color getActiveLineColor(){
+    public static Color getActiveLineColor() {
         return activeTrainline.getColor();
     }
 
@@ -121,14 +130,14 @@ public class ContentController {
 
     public static ArrayList<TrainStation> getAllStations() {
         ArrayList<TrainStation> stations = new ArrayList<>();
-        for (TrainLine line:trainPlan.getTrainLines()){
+        for (TrainLine line : trainPlan.getLines()) {
             stations.addAll(line.getStations().stream().collect(Collectors.toList()));
         }
         return stations;
     }
 
     public static void removeActiveConnector() {
-        activeTrainline.getConnectors().remove(activeTrainline.getConnectors().size()-1);
+        activeTrainline.getConnectors().remove(activeTrainline.getConnectors().size() - 1);
     }
 
     public static void setActiveTextDrag(boolean activeTextDrag) {
@@ -140,7 +149,60 @@ public class ContentController {
     }
 
     public static void saveTrainPlan() {
-        String trainPlanJson = trainPlan.toJson();
-        System.out.println(trainPlanJson);
+        saveJson(trainPlan.toJson());
     }
+
+    private static void saveJson(String json) {
+        File saveFile = choseSaveFile();
+        try {
+            PrintWriter writer = new PrintWriter(saveFile + ".json");
+            writer.println(json);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static File choseSaveFile() {
+        FileChooser fileChooser = getFileChooser();
+        return fileChooser.showSaveDialog(null);
+    }
+
+    private static FileChooser getFileChooser() {
+        File saveDirFile = new File(GeneralSettings.getSAVEDIR());
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(saveDirFile);
+        return fileChooser;
+    }
+
+
+    /**
+     * the next Trainline simply need the actual size, as index.
+     *
+     * @return
+     */
+    public static int getIdForNextTrainLine() {
+        return trainPlan.getLines().size();
+    }
+
+    /**
+     * the next StationConnector simply need the actual size, as index.
+     *
+     * @return
+     */
+    public static int getIdForNextStationConnector() {
+        return activeTrainline.getConnectors().size();
+    }
+
+    public static void loadTrainPlan() {
+        FileChooser fileChooser = getFileChooser();
+        fileChooser.setTitle("Lade Zugplan");
+        File loadFile = fileChooser.showOpenDialog(null);
+        Object jsonObject = JsonController.getJsonObject(loadFile);
+        System.out.println(jsonObject.toString());
+        TrainPlan trainPlan = TrainPlanController.getTrainplan(jsonObject);
+    }
+
+
+
 }
