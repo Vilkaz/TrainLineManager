@@ -19,6 +19,9 @@ public class TrainLine {
     private List<StationConnector> connectors = new ArrayList<StationConnector>();
     private Color color;
 
+    public TrainLine() {
+    }
+
     public TrainLine(int id, int number, Color color) {
         this.number = number;
         this.color = color;
@@ -125,7 +128,13 @@ public class TrainLine {
         this.color = color;
     }
 
+    public void setStations(List<TrainStation> stations) {
+        this.stations = stations;
+    }
 
+    public void setConnectors(List<StationConnector> connectors) {
+        this.connectors = connectors;
+    }
 //endregion getter and setter
 
 }

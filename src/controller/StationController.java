@@ -1,5 +1,8 @@
 package controller;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
@@ -15,6 +18,9 @@ import model.GeneralSettings;
 import model.StationIcon;
 import model.StationNode;
 import model.TrainStation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vilkazzz on 25/03/2016.
@@ -97,4 +103,21 @@ public class StationController {
         return trainStation;
     }
 
+    public static List<TrainStation> getStations(JsonObject data) {
+        JsonArray jsonStations = (JsonArray) data.get("stations");
+        ArrayList<TrainStation> stations = new ArrayList<>();
+        for (JsonElement jsonElement: jsonStations){
+            JsonObject jObj = (JsonObject) jsonElement;
+            TrainStation station = new TrainStation();
+            station.setId(jObj.get("id").getAsInt());
+            station.setColor(ColorController.getColorFromHex(jObj.get("color").getAsString()));
+            station.setName(jObj.get("name").getAsString());
+            station.setZone(Integer.valueOf(jObj.get("zone").getAsString()));
+            station.setEndStation(jObj.get("endStation").getAsBoolean());
+            station.setLineNr(Integer.valueOf(jObj.get("lineNr").getAsString()));
+            station.setX(jObj.get("x").getAsDouble());
+            station.setY(jObj.get("y").getAsDouble());
+        }
+        return  stations;
+    }
 }
