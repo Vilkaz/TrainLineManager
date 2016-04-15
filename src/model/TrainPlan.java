@@ -17,6 +17,17 @@ public class TrainPlan {
     private int linesStartingNumber = GeneralSettings.getLinesStartingNumber();
     private int maxNumberOfLines = GeneralSettings.getMaxNumberOfLines();
 
+
+    public TrainPlan(){
+
+    }
+
+    public TrainPlan(int id, String name, ArrayList<TrainLine> lines){
+        this.id=id;
+        this.name = name;
+        this.lines = lines;
+    }
+
     public ArrayList<Integer> getUsedTrainLineNumbers() {
         ArrayList<Integer> usedNumbers = new ArrayList<>();
         for (TrainLine trainLine : lines) {

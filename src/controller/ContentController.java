@@ -200,7 +200,7 @@ public class ContentController {
         File loadFile = fileChooser.showOpenDialog(null);
         Object jsonObject = JsonController.getJsonObject(loadFile);
         System.out.println(jsonObject.toString());
-        TrainPlan trainPlan = TrainPlanController.getTrainplan(jsonObject);
+        TrainPlan trainPlan = TrainPlanController.getTrainplan(loadFile);
     }
 
 
