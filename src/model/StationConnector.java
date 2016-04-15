@@ -33,6 +33,19 @@ public class StationConnector implements HasNode {
         setGeneralValuesIntoLine();
     }
 
+    public StationConnector(int id, TrainLine trainLine, TrainStation station1, TrainStation station2) {
+        this.id = id;
+        this.station1 = station1;
+        this.station2 = station1;
+        color = trainLine.getColor();
+        line = new Line();
+        line.startXProperty().bind(station1.xProperty());
+        line.startYProperty().bind(station1.yProperty());
+        line.endXProperty().bind(station2.xProperty());
+        line.endYProperty().bind(station2.yProperty());
+        setGeneralValuesIntoLine();
+    }
+
     private void setGeneralValuesIntoLine() {
         line.setFill(color);
         line.setStrokeWidth(GeneralSettings.getCONNECTOR_WIDTH());

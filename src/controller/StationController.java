@@ -14,10 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import model.GeneralSettings;
-import model.StationIcon;
-import model.StationNode;
-import model.TrainStation;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,8 +113,9 @@ public class StationController {
             int lineNr = Integer.valueOf(jObj.get("lineNr").getAsString());
             double x = jObj.get("x").getAsDouble();
             double y = jObj.get("y").getAsDouble();
+            ArrayList<Neighbor> neighbors = NeighborController.getNeighbors(jObj);
             TrainStation station = new TrainStation(
-                id,name,zone, endStation, color, lineNr, x,y
+                id,name,zone, endStation, color, lineNr, x,y, neighbors
             );
             stations.add(station);
         }

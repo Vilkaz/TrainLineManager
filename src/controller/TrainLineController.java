@@ -67,6 +67,7 @@ public class TrainLineController {
             line.setNumber(Integer.valueOf(obj.get("number").toString()));
             line.setColor(ColorController.getColorFromHex(obj.get("color").getAsString()));
             line.setStations(StationController.getStations(obj));
+            line.setConnectors(StationConnectorController.getStationConnectors(obj, line));
             trainLines.add(line);
         }
         return trainLines;

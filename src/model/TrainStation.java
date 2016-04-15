@@ -55,7 +55,7 @@ public class TrainStation implements HasNode {
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y) {
+    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y, ArrayList<Neighbor> neighbors) {
         this.id = id;
         this.name = name;
         this.zone = zone;
@@ -69,6 +69,7 @@ public class TrainStation implements HasNode {
         node.setLayoutY(y);
         this.y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         this.x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
+        this.neighbors = neighbors;
     }
 
 

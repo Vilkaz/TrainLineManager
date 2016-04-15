@@ -244,6 +244,12 @@ public class ViewController {
      * @param station
      */
     private StationConnector mergeStationToConnector(StationConnector connector, TrainStation station) {
+        /**
+         * ich glaube hier ist die stelle, die den überflüssigen connector für erste
+         * line produziert, um es abzufangen hab ich extra diese "isValide blabla"
+         * methode geschrieben. bin mir aber nicht sicher, es ist nach
+         * mitternacht ... mal wieder ...
+         */
         if (connector == null) {
             connector = new StationConnector(station);
         } else {
