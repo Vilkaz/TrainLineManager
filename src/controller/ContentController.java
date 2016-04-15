@@ -199,8 +199,7 @@ public class ContentController {
         fileChooser.setTitle("Lade Zugplan");
         File loadFile = fileChooser.showOpenDialog(null);
         Object jsonObject = JsonController.getJsonObject(loadFile);
-        System.out.println(jsonObject.toString());
-        TrainPlan trainPlan = TrainPlanController.getTrainplan(loadFile);
+        trainPlan = TrainPlanController.getTrainplan(loadFile);
     }
 
 

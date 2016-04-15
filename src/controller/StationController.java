@@ -108,15 +108,17 @@ public class StationController {
         ArrayList<TrainStation> stations = new ArrayList<>();
         for (JsonElement jsonElement: jsonStations){
             JsonObject jObj = (JsonObject) jsonElement;
-            TrainStation station = new TrainStation();
-            station.setId(jObj.get("id").getAsInt());
-            station.setColor(ColorController.getColorFromHex(jObj.get("color").getAsString()));
-            station.setName(jObj.get("name").getAsString());
-            station.setZone(Integer.valueOf(jObj.get("zone").getAsString()));
-            station.setEndStation(jObj.get("endStation").getAsBoolean());
-            station.setLineNr(Integer.valueOf(jObj.get("lineNr").getAsString()));
-            station.setX(jObj.get("x").getAsDouble());
-            station.setY(jObj.get("y").getAsDouble());
+            int id = jObj.get("id").getAsInt();
+            Color color = ColorController.getColorFromHex(jObj.get("color").getAsString());
+            String name = jObj.get("name").getAsString();
+            int zone = Integer.valueOf(jObj.get("zone").getAsString());
+            boolean endStation = jObj.get("endStation").getAsBoolean();
+            int lineNr = Integer.valueOf(jObj.get("lineNr").getAsString());
+            double x = jObj.get("x").getAsDouble();
+            double y = jObj.get("y").getAsDouble();
+            TrainStation station = new TrainStation(
+                id,name,zone, endStation, color, lineNr, x,y
+            );
             stations.add(station);
         }
         return  stations;

@@ -20,6 +20,4 @@ public class TrainPlanController {
         TrainPlan trainplan = new TrainPlan(id,name, TrainLineController.getLinesFromJsonObject(data));
         return trainplan;
     }
-
-
 }

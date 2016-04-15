@@ -55,6 +55,22 @@ public class TrainStation implements HasNode {
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
+    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y) {
+        this.id = id;
+        this.name = name;
+        this.zone = zone;
+        this.endStation = endStation;
+        this.color = color;
+        this.lineNr = lineNr;
+        this.node = new Pane();
+        this.icon = new StationIcon(this);
+        this.node.getChildren().addAll(getText(this.name), icon.getNode());
+        node.setLayoutX(x);
+        node.setLayoutY(y);
+        this.y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
+        this.x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
+    }
+
 
     private VBox getText(String stationName) {
         Text text = new Text(stationName);
