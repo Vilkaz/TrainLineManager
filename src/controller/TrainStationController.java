@@ -17,7 +17,6 @@ public class TrainStationController {
         Text line3 = new Text("als Nachbarstation hinzufügen?");
         VBox vBox = new VBox(line1, line2, line3);
         vBox.getStyleClass().add("neighborRequest");
-
         return vBox;
     }
 

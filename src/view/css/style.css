@@ -14,7 +14,7 @@
 
 /* line 24, style.scss */
 .myBtn:pressed {
-  -fx-background-color: orange;
+  -fx-background-color: #dfe2db;
 }
 
 /* line 28, style.scss */
@@ -29,16 +29,24 @@
 .nextStationRequest {
   -fx-background-color: orange;
   -fx-pref-width: 400px;
-  -fx-border-color: grey;
-  -fx-text-alignment: right;
+  -fx-padding: 2px;
+  -fx-min-height: auto;
+  -fx-border-width: 1px;
+  -fx-border-color: #191919;
+  -fx-text-alignment: center;
 }
 
-/* line 42, style.scss */
+/* line 45, style.scss */
+.nextStationRequest:hover {
+  -fx-border-width: 2px;
+}
+
+/* line 49, style.scss */
 .mainContainer {
   -fx-background-color: rgba(223, 226, 219, 0.52);
 }
 
-/* line 50, style.scss */
+/* line 57, style.scss */
 .leftMenu {
   -fx-background-color: #191919;
   -fx-min-height: 100%;
@@ -47,25 +55,30 @@
   -fx-border-color: orange;
 }
 
-/* line 58, style.scss */
+/* line 65, style.scss */
 .menu {
   -fx-background-color: orange;
 }
 
-/* line 62, style.scss */
+/* line 69, style.scss */
 .lineCreator {
-  -fx-border-radius: 10;
-  -fx-background-radius: 10;
+  -fx-border-width: 1px;
+  -fx-border-color: #191919;
   -fx-background-color: orange;
 }
 
-/* line 68, style.scss */
+/* line 75, style.scss */
+.lineCreator:hover {
+  -fx-border-width: 2px;
+}
+
+/* line 79, style.scss */
 .borderBottom {
   -fx-background-color: orange;
   -fx-min-height: 10px;
 }
 
-/* line 73, style.scss */
+/* line 84, style.scss */
 .mainBorderPane {
   -fx-min-width: 1000px;
   -fx-min-height: 1000px;
@@ -73,29 +86,36 @@
   -fx-pref-width: 100%;
 }
 
-/* line 80, style.scss */
+/* line 91, style.scss */
 .borderBottomPane {
   -fx-min-height: 1000px;
 }
 
-/* line 84, style.scss */
+/* line 95, style.scss */
 .stationIcon {
   -fx-stroke: white;
   -fx-stroke-width: 1px;
 }
 
-/* line 89, style.scss */
+/* line 100, style.scss */
 .stationIcon:hover {
   -fx-stroke: orange;
-  -fx-stroke-width: 6px;
+  -fx-stroke-width: 4px;
 }
 
-/* line 94, style.scss */
+/* line 105, style.scss */
 .stationCreator {
   -fx-background-color: orange;
+  -fx-border-width: 1px;
+  -fx-border-color: #191919;
 }
 
-/* line 118, style.scss */
+/* line 111, style.scss */
+.stationCreator:hover {
+  -fx-border-width: 2px;
+}
+
+/* line 135, style.scss */
 .endStationIcon {
   -fx-min-height: 30px;
   -fx-min-width: 30px;
@@ -105,7 +125,13 @@
   -fx-text-alignment: center;
 }
 
-/* line 127, style.scss */
+/* line 144, style.scss */
+.endStationIcon:hover {
+  -fx-border-width: 3px;
+  -fx-border-color: orange;
+}
+
+/* line 149, style.scss */
 .neighborRequest {
   -fx-background-color: orange;
   -fx-border-width: 1px;
@@ -115,13 +141,13 @@
   -fx-min-height: auto;
 }
 
-/* line 136, style.scss */
+/* line 158, style.scss */
 .neighborRequest:hover {
   -fx-border-width: 2px;
   -fx-border-color: #191919;
 }
 
-/* line 141, style.scss */
+/* line 163, style.scss */
 .connector {
   -fx-stroke-width: 1px;
 }

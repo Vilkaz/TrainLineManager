@@ -22,7 +22,7 @@ $leftMenuBackgroundColor: #191919;
 }
 
 .myBtn:pressed {
-    -fx-background-color: $orangeColor;
+    -fx-background-color: $secondary2;
 }
 
 .centerPane{
@@ -35,8 +35,15 @@ $leftMenuBackgroundColor: #191919;
 .nextStationRequest{
     -fx-background-color: $orangeColor;
     -fx-pref-width: 400px;
-    -fx-border-color: grey;
-    -fx-text-alignment: right;
+    -fx-padding: 2px;
+    -fx-min-height: auto;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary1;
+    -fx-text-alignment: center;
+}
+
+.nextStationRequest:hover {
+    -fx-border-width: 2px;
 }
 
 .mainContainer{
@@ -60,9 +67,13 @@ $leftMenuBackgroundColor: #191919;
 }
 
 .lineCreator{
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary1;
     -fx-background-color: $orangeColor;
+}
+
+.lineCreator:hover{
+    -fx-border-width: 2px;
 }
 
 .borderBottom{
@@ -88,11 +99,17 @@ $leftMenuBackgroundColor: #191919;
 
 .stationIcon:hover{
     -fx-stroke: $orangeColor;
-    -fx-stroke-width: 6px;
+    -fx-stroke-width: 4px;
 }
 
 .stationCreator{
     -fx-background-color: $orangeColor;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary1;
+}
+
+.stationCreator:hover{
+    -fx-border-width: 2px;
 }
 
 .stationCreatorVBox{
@@ -122,6 +139,11 @@ $leftMenuBackgroundColor: #191919;
     -fx-border-width: 2px;
     -fx-border-color: $orangeColor;
     -fx-text-alignment: center;
+}
+
+.endStationIcon:hover{
+    -fx-border-width: 3px;
+    -fx-border-color: $orangeColor;
 }
 
 .neighborRequest{
