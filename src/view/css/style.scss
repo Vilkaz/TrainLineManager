@@ -1,18 +1,22 @@
-$backgroundColor: rgba(160, 170, 178, 0.52);
-$centerBackgroundColor: rgba(54, 61, 66, 0.38);
+$secondary1: #191919;
+$secondary2: #DFE2DB;
+$secondary4: #FFFFFF;
+$backgroundColor: rgba(223, 226, 219, 0.52);
+$centerBackgroundColor: rgba(186, 189, 182, 1);
 $customerColor1: #C7CEDB;
 $customerColor2: #A0AAB2;
-$adminColor1: #2E3532;
-$adminColor2: #7E9181;
 $orangeColor: #FFA500;
+$leftMenuBackgroundColor: #191919;
+
 
 .myBtn {
-    -fx-font-size: 14px;
-    -fx-background-color: $centerBackgroundColor;
+    -fx-text-fill: $orangeColor;
+    -fx-background-color: $secondary1;
 }
 
 .myBtn:hover {
-    -fx-background-color: $backgroundColor;
+    -fx-background-color: $orangeColor;
+    -fx-text-fill: $secondary1;
 }
 
 .myBtn:pressed {
@@ -42,7 +46,7 @@ $orangeColor: #FFA500;
 }
 
 .leftMenu{
-    -fx-background-color: rgba(46, 53, 50, 0.59);
+    -fx-background-color: $leftMenuBackgroundColor;
     -fx-min-height: 100%;
     -fx-min-width: 50%;
     -fx-border-color: $orangeColor;
@@ -56,7 +60,6 @@ $orangeColor: #FFA500;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-background-color: $orangeColor;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .borderBottom{
@@ -117,6 +120,11 @@ $orangeColor: #FFA500;
     -fx-text-alignment: center;
 }
 
-.disable{
+.neighborRequest{
+    -fx-background-color: $orangeColor;
+    -fx-min-width: auto;
+}
 
+.connector{
+    -fx-stroke-width: 2px;
 }
