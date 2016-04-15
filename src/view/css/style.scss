@@ -17,6 +17,8 @@ $leftMenuBackgroundColor: #191919;
 .myBtn:hover {
     -fx-background-color: $orangeColor;
     -fx-text-fill: $secondary1;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary1;
 }
 
 .myBtn:pressed {
@@ -49,6 +51,7 @@ $leftMenuBackgroundColor: #191919;
     -fx-background-color: $leftMenuBackgroundColor;
     -fx-min-height: 100%;
     -fx-min-width: 50%;
+    -fx-border-width: 2px;
     -fx-border-color: $orangeColor;
 }
 
@@ -115,16 +118,26 @@ $leftMenuBackgroundColor: #191919;
 .endStationIcon{
     -fx-min-height: 30px;
     -fx-min-width: 30px;
-    -fx-background-color: transparent;
+    -fx-background-color: $secondary2;
+    -fx-border-width: 2px;
     -fx-border-color: $orangeColor;
     -fx-text-alignment: center;
 }
 
 .neighborRequest{
     -fx-background-color: $orangeColor;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary1;
+    -fx-padding: 2px;
     -fx-min-width: auto;
+    -fx-min-height: auto;
+}
+
+.neighborRequest:hover{
+    -fx-border-width: 2px;
+    -fx-border-color: $secondary1;
 }
 
 .connector{
-    -fx-stroke-width: 4px;
+    -fx-stroke-width: 1px;
 }

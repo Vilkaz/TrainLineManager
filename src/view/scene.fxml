@@ -40,7 +40,7 @@
          <left>
             <VBox fx:id="leftMenu" styleClass="leftMenu" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="30.0" prefWidth="180.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
+                  <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="56.0" prefWidth="186.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
                </children></VBox>
          </left>
          <center>
