@@ -254,6 +254,7 @@ public class ViewController {
 
 
     private void nextStationOrEndLine() {
+        TrainStationController.disableAllStationClickListeners();
         Pane request = getNextStationRequest();
         centerPane.getChildren().add(request);
     }
