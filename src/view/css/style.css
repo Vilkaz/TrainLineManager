@@ -1,28 +1,29 @@
-/* line 9, style.scss */
+/* line 12, style.scss */
 .myBtn {
-  -fx-font-size: 14px;
-  -fx-background-color: rgba(54, 61, 66, 0.38);
+  -fx-text-fill: orange;
+  -fx-background-color: #191919;
 }
 
-/* line 14, style.scss */
+/* line 17, style.scss */
 .myBtn:hover {
-  -fx-background-color: rgba(160, 170, 178, 0.52);
+  -fx-background-color: orange;
+  -fx-text-fill: #191919;
 }
 
-/* line 18, style.scss */
+/* line 22, style.scss */
 .myBtn:pressed {
   -fx-background-color: orange;
 }
 
-/* line 22, style.scss */
+/* line 26, style.scss */
 .centerPane {
-  -fx-background-color: rgba(54, 61, 66, 0.38);
+  -fx-background-color: #babdb6;
   -fx-min-width: 60%;
   -fx-min-height: 100%;
   -fx-pref-height: 100%;
 }
 
-/* line 29, style.scss */
+/* line 33, style.scss */
 .nextStationRequest {
   -fx-background-color: orange;
   -fx-pref-width: 400px;
@@ -30,39 +31,38 @@
   -fx-text-alignment: right;
 }
 
-/* line 36, style.scss */
+/* line 40, style.scss */
 .mainContainer {
-  -fx-background-color: rgba(160, 170, 178, 0.52);
+  -fx-background-color: rgba(223, 226, 219, 0.52);
 }
 
-/* line 44, style.scss */
+/* line 48, style.scss */
 .leftMenu {
-  -fx-background-color: rgba(46, 53, 50, 0.59);
+  -fx-background-color: #191919;
   -fx-min-height: 100%;
   -fx-min-width: 50%;
   -fx-border-color: orange;
 }
 
-/* line 51, style.scss */
+/* line 55, style.scss */
 .menu {
   -fx-background-color: orange;
 }
 
-/* line 55, style.scss */
+/* line 59, style.scss */
 .lineCreator {
   -fx-border-radius: 10;
   -fx-background-radius: 10;
   -fx-background-color: orange;
-  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
 
-/* line 62, style.scss */
+/* line 65, style.scss */
 .borderBottom {
   -fx-background-color: orange;
   -fx-min-height: 10px;
 }
 
-/* line 67, style.scss */
+/* line 70, style.scss */
 .mainBorderPane {
   -fx-min-width: 1000px;
   -fx-min-height: 1000px;
@@ -70,33 +70,44 @@
   -fx-pref-width: 100%;
 }
 
-/* line 74, style.scss */
+/* line 77, style.scss */
 .borderBottomPane {
   -fx-min-height: 1000px;
 }
 
-/* line 78, style.scss */
+/* line 81, style.scss */
 .stationIcon {
   -fx-stroke: white;
   -fx-stroke-width: 1px;
 }
 
-/* line 83, style.scss */
+/* line 86, style.scss */
 .stationIcon:hover {
   -fx-stroke: orange;
-  -fx-stroke-width: 1px;
+  -fx-stroke-width: 6px;
 }
 
-/* line 88, style.scss */
+/* line 91, style.scss */
 .stationCreator {
   -fx-background-color: orange;
 }
 
-/* line 112, style.scss */
+/* line 115, style.scss */
 .endStationIcon {
   -fx-min-height: 30px;
   -fx-min-width: 30px;
   -fx-background-color: transparent;
   -fx-border-color: orange;
   -fx-text-alignment: center;
+}
+
+/* line 123, style.scss */
+.neighborRequest {
+  -fx-background-color: orange;
+  -fx-min-width: auto;
+}
+
+/* line 128, style.scss */
+.connector {
+  -fx-stroke-width: 4px;
 }

@@ -14,7 +14,7 @@ public class GeneralSettings {
     final static int MAX_NUMBER_OF_LINES = 10;
     final static int LINES_STARTING_NUMBER = 0;
 
-    final static double ICON_RADIUS = 10;
+    final static double ICON_RADIUS = 7;
     final static double ICON_STROKE_WIDTH = 3;
     final static Color ICON_STROKE_COLOR = Color.BLACK;
     final static  double  MOVE_ICON_HEIGTH =25;

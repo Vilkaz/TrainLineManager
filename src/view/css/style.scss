@@ -85,7 +85,7 @@ $leftMenuBackgroundColor: #191919;
 
 .stationIcon:hover{
     -fx-stroke: $orangeColor;
-    -fx-stroke-width: 1px;
+    -fx-stroke-width: 6px;
 }
 
 .stationCreator{
@@ -126,5 +126,5 @@ $leftMenuBackgroundColor: #191919;
 }
 
 .connector{
-    -fx-stroke-width: 2px;
+    -fx-stroke-width: 4px;
 }
