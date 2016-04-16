@@ -94,31 +94,76 @@ public class StationController {
         Color color = ContentController.getActiveColor();
 
         TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, ContentController.getActualLineNr(), event, centerPane);
-            /**
-            * node creation
-            */
+        /**
+         * node creation
+         */
         return trainStation;
     }
 
     public static List<TrainStation> getStations(JsonObject data) {
         JsonArray jsonStations = (JsonArray) data.get("stations");
         ArrayList<TrainStation> stations = new ArrayList<>();
-        for (JsonElement jsonElement: jsonStations){
+        for (JsonElement jsonElement : jsonStations) {
             JsonObject jObj = (JsonObject) jsonElement;
-            int id = jObj.get("id").getAsInt();
-            Color color = ColorController.getColorFromHex(jObj.get("color").getAsString());
-            String name = jObj.get("name").getAsString();
-            int zone = Integer.valueOf(jObj.get("zone").getAsString());
-            boolean endStation = jObj.get("endStation").getAsBoolean();
-            int lineNr = Integer.valueOf(jObj.get("lineNr").getAsString());
-            double x = jObj.get("x").getAsDouble();
-            double y = jObj.get("y").getAsDouble();
-            ArrayList<Neighbor> neighbors = NeighborController.getNeighbors(jObj);
+            int id = getId(jObj);
+            Color color = getColor(jObj);
+            String name = getName(jObj);
+            int zone = getZoneFromJson(jObj);
+            boolean endStation = isEndStation(jObj);
+            int lineNr = getLineNrFromJson(jObj);
+            double x = getXFFromJson(jObj);
+            double y = getYFromJson(jObj);
+            ArrayList<Neighbor> neighbors = getNeighborsFromJson(jObj);
+
             TrainStation station = new TrainStation(
-                id,name,zone, endStation, color, lineNr, x,y, neighbors
+                    id, name, zone, endStation, color, lineNr, x, y, neighbors
             );
             stations.add(station);
         }
-        return  stations;
+        return stations;
+    }
+
+    private static ArrayList<Neighbor> getNeighborsFromJson(JsonObject jObj) {
+        return NeighborController.getNeighbors(jObj);
+    }
+
+    private static double getYFromJson(JsonObject jObj) {
+        return jObj.get("y").getAsDouble();
+    }
+
+    private static double getXFFromJson(JsonObject jObj) {
+        return jObj.get("x").getAsDouble();
+    }
+
+    private static int getLineNrFromJson(JsonObject jObj) {
+        return getLineNr(jObj.get("lineNr").getAsString());
+    }
+
+    private static int getLineNr(String lineNr) {
+        return Integer.valueOf(lineNr);
+    }
+
+    private static boolean isEndStation(JsonObject jObj) {
+        return jObj.get("endStation").getAsBoolean();
+    }
+
+    private static int getZoneFromJson(JsonObject jObj) {
+        return getZone(jObj.get("zone").getAsString());
+    }
+
+    private static int getZone(String zone) {
+        return Integer.valueOf(zone);
+    }
+
+    private static String getName(JsonObject jObj) {
+        return jObj.get("name").getAsString();
+    }
+
+    private static Color getColor(JsonObject jObj) {
+        return ColorController.getColorFromHex(jObj.get("color").getAsString());
+    }
+
+    private static int getId(JsonObject jObj) {
+        return jObj.get("id").getAsInt();
     }
 }

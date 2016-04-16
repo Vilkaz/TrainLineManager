@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.HBox;
@@ -58,18 +57,35 @@ public class TrainLineController {
     }
 
     public static ArrayList<TrainLine> getLinesFromJsonObject(JsonObject data) {
-        JsonArray lines = (JsonArray) data.get("lines");
+        JsonArray jsonLines = (JsonArray) data.get("lines");
         ArrayList<TrainLine> trainLines = new ArrayList<>();
-        for (JsonElement jsonElement : lines) {
+        for (JsonElement jsonElement : jsonLines) {
             JsonObject obj = (JsonObject) jsonElement;
             TrainLine line = new TrainLine();
             line.setId(Integer.valueOf(obj.get("id").toString()));
             line.setNumber(Integer.valueOf(obj.get("number").toString()));
             line.setColor(ColorController.getColorFromHex(obj.get("color").getAsString()));
             line.setStations(StationController.getStations(obj));
-            line.setConnectors(StationConnectorController.getStationConnectors(obj, line));
             trainLines.add(line);
         }
+
+        /**
+         * nachdem die Trainlines gesetzt sind, will ich erst die connectoren hinzufügen.
+         * Grund = ein Station kann alle mögliche Linien in sich haben, am 16.04.2016 ist
+         * es noch nicht möglich linien zu erweitern, und es würde auch in erster itteration funktionieren.
+         * wenn aber später eine linie mit id 1  auf eine station von linie 2 als nachbar hinzugefügt wird,
+         * wird es zu bugs kommen, denn die stationen der linie 1 werden ja zuerst dargestellt, und da versucht er nach
+         * man connector auf eine nicht vorhandene station zu machen = null pointer.
+         * Um es zu vermeiden baue ich schonmal  die sicherere methode. Ein zweiter durchlauf ist zwar
+         * nie optimal, jeder darf es optimieren, nur denkt an meine vorhersage hier ...
+         */
+        for (JsonElement jsonElement : jsonLines) {
+            JsonObject obj = (JsonObject) jsonElement;
+            StationConnectorController.setStationConnectors(obj, trainLines);
+        }
+
         return trainLines;
     }
+
+
 }
