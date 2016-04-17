@@ -52,6 +52,7 @@ public class ViewController {
         /**
          * man muss wieder alle Mouse Icon listener aktiwieren. an dieser stelle ist der workaround = einfach die datei neu laden.
          */
+        renderTrainPlan();
 
     }
 
