@@ -28,6 +28,16 @@ public class TrainLine {
         this.id =  id;
     }
 
+    public TrainStation getStationById(String id){
+       TrainStation searchedStation = new TrainStation();
+         for (TrainStation station : stations){
+             if (station.getId().equals(id)){
+                 searchedStation=station;
+             }
+         }
+        return searchedStation;
+    }
+
     public TrainStation getLastStation() {
         return stations.get(stations.size() - 1);
     }

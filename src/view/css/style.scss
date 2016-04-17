@@ -185,3 +185,11 @@ $leftMenuBackgroundColor: #191919;
     -fx-background-color: transparent;
     -fx-text-fill: greenyellow;
 }
+
+.selectedStationTxt{
+     -fx-fill: $orangeColor;
+ }
+
+.priceTxT{
+     -fx-fill: $orangeColor;
+ }

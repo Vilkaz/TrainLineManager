@@ -1,5 +1,7 @@
 package model;
 
+import com.google.gson.JsonObject;
+import controller.ColorController;
 import controller.ContentController;
 import controller.JsonController;
 import javafx.beans.property.DoubleProperty;
@@ -7,6 +9,8 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+
+import java.util.ArrayList;
 
 /**
  * Created by Vilkazzz on 13/03/2016.
@@ -19,8 +23,8 @@ public class StationConnector implements HasNode {
     private Color color;
 
 
-    public TrainStation getStationWithID(int id) {
-        return (station1.getId() == id) ? station1 : station2;
+    public TrainStation getStationWithID(String id) {
+        return (station1.getId().equals(id)) ? station1 : station2;
     }
 
     public StationConnector(TrainStation station1) {
@@ -31,6 +35,34 @@ public class StationConnector implements HasNode {
         line.startXProperty().bind(station1.xProperty());
         line.startYProperty().bind(station1.yProperty());
         setGeneralValuesIntoLine();
+    }
+
+    public StationConnector(int id, ArrayList<TrainLine> trainLines, String station1ID, int station1LineNr, String station2ID, int station2LineNr, JsonObject jsonObject) {
+        this.id = id;
+        this.station1 = getStation(trainLines, station1ID, station1LineNr);
+        this.station2 = getStation(trainLines, station2ID, station2LineNr);
+        color = getColor(jsonObject);
+        line = new Line();
+        line.startXProperty().bind(station1.xProperty());
+        line.startYProperty().bind(station1.yProperty());
+        line.endXProperty().bind(station2.xProperty());
+        line.endYProperty().bind(station2.yProperty());
+        setGeneralValuesIntoLine();
+    }
+
+    private TrainStation getStation(ArrayList<TrainLine> trainLines, String stationID, int stationLineNr) {
+        TrainLine line = getLine(trainLines, stationLineNr);
+        return  line.getStationById(stationID);
+    }
+
+    private TrainLine getLine(ArrayList<TrainLine> trainLines, int stationLineNr) {
+        TrainLine result = new TrainLine();
+        for (TrainLine line : trainLines) {
+            if (line.getNumber()==stationLineNr){
+                result=line;
+            }
+        }
+        return result;
     }
 
     private void setGeneralValuesIntoLine() {
@@ -70,8 +102,10 @@ public class StationConnector implements HasNode {
         String json = "{";
         json += JsonController.getJson("id", this);
         json += JsonController.getJson("station1Id", station1.getId());
-        json += (station2 == null) ? -1 : JsonController.getJson("station2Id", station2.getId(), false);
-        return json+"}";
+        json += JsonController.getJson("station1LineNr", station1.getLineNr());
+        json += JsonController.getJson("station2Id", station2.getId());
+        json += JsonController.getJson("station2LineNr", station2.getLineNr(),false);
+        return json + "}";
     }
 
 
@@ -83,8 +117,8 @@ public class StationConnector implements HasNode {
         this.id = id;
     }
 
-    public Color getColor() {
-        return color;
+    public Color getColor(JsonObject jsonObject) {
+        return ColorController.getColorFromHex(jsonObject.get("color").getAsString());
     }
 
     public void setColor(Color color) {

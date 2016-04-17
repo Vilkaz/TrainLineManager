@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class TrainPlanController {
     public static TrainPlan getTrainplan(File file) {
         JsonObject data = JsonController.getJsonObject(file);
-        int id = Integer.valueOf(data.get("id").toString());
-        String name = data.get("name").toString();
+        int id = data.get("id").getAsInt();
+        String name = data.get("name").getAsString();
         TrainPlan trainplan = new TrainPlan(id,name, TrainLineController.getLinesFromJsonObject(data));
         return trainplan;
     }

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Vilkazzz on 13/03/2016.
  */
 public class TrainStation implements HasNode {
-    private int id;
+    private String id;
     private Color color;
     private StationIcon icon;
     private String name;
@@ -34,17 +34,21 @@ public class TrainStation implements HasNode {
     private Pane centerPane;
     private DoubleProperty x = new SimpleDoubleProperty();
     private DoubleProperty y = new SimpleDoubleProperty();
+    private int distance_to_route_startpoint = 0;
+    private TrainStation vorgänger;
 
     public TrainStation() {
+        this.distance_to_route_startpoint = 0;
     }
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
+    public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
         this.id = id;
         this.name = name;
         this.zone = zone;
         this.endStation = endStation;
         this.color = color;
         this.lineNr = lineNr;
+
         this.centerPane = centerPane;
         this.node = new Pane();
         this.icon = new StationIcon(this);
@@ -53,9 +57,10 @@ public class TrainStation implements HasNode {
         node.setLayoutY(event.getY());
         y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
+        this.distance_to_route_startpoint = 0;
     }
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y) {
+    public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y, ArrayList<Neighbor> neighbors) {
         this.id = id;
         this.name = name;
         this.zone = zone;
@@ -69,6 +74,8 @@ public class TrainStation implements HasNode {
         node.setLayoutY(y);
         this.y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         this.x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
+        this.neighbors = neighbors;
+        this.distance_to_route_startpoint = 0;
     }
 
 
@@ -200,10 +207,24 @@ public class TrainStation implements HasNode {
         return node;
     }
 
+
+    public int getDistance_to_route_startpoint(){
+        return this.distance_to_route_startpoint;
+    }
+
+    public void setDistance_to_route_startpoint(int d){
+        this.distance_to_route_startpoint = d;
+    }
+
+    public TrainStation getVorgänger(){
+        return this.vorgänger;
+    }
+
+
     //region getter and setter
 
 
-    public List getNeighbors() {
+    public ArrayList<Neighbor> getNeighbors() {
         return neighbors;
     }
 
@@ -227,7 +248,7 @@ public class TrainStation implements HasNode {
         this.node = node;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -275,7 +296,7 @@ public class TrainStation implements HasNode {
         this.y.set(y);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -311,8 +332,9 @@ public class TrainStation implements HasNode {
         this.centerPane = centerPane;
     }
 
-
-
+    public void setVorgänger(TrainStation vorgänger) {
+        this.vorgänger = vorgänger;
+    }
 
 //endregion getter and setter
 

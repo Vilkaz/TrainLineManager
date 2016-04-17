@@ -1,0 +1,1986 @@
+{
+  "id": 0,
+  "name": "default Trainplane",
+  "lines": [
+    {
+      "id": 0,
+      "number": 1,
+      "name": "default TrainLine",
+      "color": "#000000",
+      "stations": [
+        {
+          "id": "1000",
+          "color": "#000000",
+          "name": "16",
+          "zone": 2,
+          "endStation": true,
+          "lineNr": 1,
+          "x": 632.0,
+          "y": 68.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1001",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "1000",
+              "station1LineNr": 1,
+              "station2Id": "1001",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1001",
+          "color": "#000000",
+          "name": "15",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 634.0,
+          "y": 141.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1000",
+              "distance": 1
+            },
+            {
+              "id": "1002",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "1000",
+              "station1LineNr": 1,
+              "station2Id": "1001",
+              "station2LineNr": 1
+            },
+            {
+              "id": 1,
+              "station1Id": "1001",
+              "station1LineNr": 1,
+              "station2Id": "1002",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1002",
+          "color": "#000000",
+          "name": "14",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 593.0,
+          "y": 185.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1001",
+              "distance": 1
+            },
+            {
+              "id": "1003",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 1,
+              "station1Id": "1001",
+              "station1LineNr": 1,
+              "station2Id": "1002",
+              "station2LineNr": 1
+            },
+            {
+              "id": 2,
+              "station1Id": "1002",
+              "station1LineNr": 1,
+              "station2Id": "1003",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1003",
+          "color": "#000000",
+          "name": "13",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 595.0,
+          "y": 274.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1002",
+              "distance": 1
+            },
+            {
+              "id": "1004",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 2,
+              "station1Id": "1002",
+              "station1LineNr": 1,
+              "station2Id": "1003",
+              "station2LineNr": 1
+            },
+            {
+              "id": 3,
+              "station1Id": "1003",
+              "station1LineNr": 1,
+              "station2Id": "1004",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1004",
+          "color": "#000000",
+          "name": "12",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 597.0,
+          "y": 323.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1003",
+              "distance": 1
+            },
+            {
+              "id": "1005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 3,
+              "station1Id": "1003",
+              "station1LineNr": 1,
+              "station2Id": "1004",
+              "station2LineNr": 1
+            },
+            {
+              "id": 4,
+              "station1Id": "1004",
+              "station1LineNr": 1,
+              "station2Id": "1005",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1005",
+          "color": "#000000",
+          "name": "11",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 528.0,
+          "y": 383.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1004",
+              "distance": 1
+            },
+            {
+              "id": "1006",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 4,
+              "station1Id": "1004",
+              "station1LineNr": 1,
+              "station2Id": "1005",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1006",
+          "color": "#000000",
+          "name": "00",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 489.0,
+          "y": 423.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1005",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": 0,
+          "station1Id": "1000",
+          "station1LineNr": 1,
+          "station2Id": "1001",
+          "station2LineNr": 1
+        },
+        {
+          "id": 1,
+          "station1Id": "1001",
+          "station1LineNr": 1,
+          "station2Id": "1002",
+          "station2LineNr": 1
+        },
+        {
+          "id": 2,
+          "station1Id": "1002",
+          "station1LineNr": 1,
+          "station2Id": "1003",
+          "station2LineNr": 1
+        },
+        {
+          "id": 3,
+          "station1Id": "1003",
+          "station1LineNr": 1,
+          "station2Id": "1004",
+          "station2LineNr": 1
+        },
+        {
+          "id": 4,
+          "station1Id": "1004",
+          "station1LineNr": 1,
+          "station2Id": "1005",
+          "station2LineNr": 1
+        },
+        {
+          "id": 5,
+          "station1Id": "1005",
+          "station1LineNr": 1,
+          "station2Id": "1006",
+          "station2LineNr": 1
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "number": 2,
+      "name": "default TrainLine",
+      "color": "#1A3399",
+      "stations": [
+        {
+          "id": "2000",
+          "color": "#1A3399",
+          "name": "26",
+          "zone": 2,
+          "endStation": true,
+          "lineNr": 2,
+          "x": 762.0,
+          "y": 208.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2001",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "2000",
+              "station1LineNr": 2,
+              "station2Id": "2001",
+              "station2LineNr": 2
+            }
+          ]
+        },
+        {
+          "id": "2001",
+          "color": "#1A3399",
+          "name": "25",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 2,
+          "x": 763.0,
+          "y": 275.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2000",
+              "distance": 1
+            },
+            {
+              "id": "2002",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "2000",
+              "station1LineNr": 2,
+              "station2Id": "2001",
+              "station2LineNr": 2
+            },
+            {
+              "id": 1,
+              "station1Id": "2001",
+              "station1LineNr": 2,
+              "station2Id": "2002",
+              "station2LineNr": 2
+            }
+          ]
+        },
+        {
+          "id": "2002",
+          "color": "#1A3399",
+          "name": "24",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 2,
+          "x": 759.0,
+          "y": 355.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2001",
+              "distance": 1
+            },
+            {
+              "id": "2003",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 1,
+              "station1Id": "2001",
+              "station1LineNr": 2,
+              "station2Id": "2002",
+              "station2LineNr": 2
+            },
+            {
+              "id": 2,
+              "station1Id": "2002",
+              "station1LineNr": 2,
+              "station2Id": "2003",
+              "station2LineNr": 2
+            }
+          ]
+        },
+        {
+          "id": "2003",
+          "color": "#1A3399",
+          "name": "23",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 2,
+          "x": 665.0,
+          "y": 375.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2002",
+              "distance": 1
+            },
+            {
+              "id": "2004",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 2,
+              "station1Id": "2002",
+              "station1LineNr": 2,
+              "station2Id": "2003",
+              "station2LineNr": 2
+            },
+            {
+              "id": 3,
+              "station1Id": "2003",
+              "station1LineNr": 2,
+              "station2Id": "2004",
+              "station2LineNr": 2
+            }
+          ]
+        },
+        {
+          "id": "2004",
+          "color": "#1A3399",
+          "name": "22",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 2,
+          "x": 634.0,
+          "y": 400.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2003",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 3,
+              "station1Id": "2003",
+              "station1LineNr": 2,
+              "station2Id": "2004",
+              "station2LineNr": 2
+            },
+            {
+              "id": 4,
+              "station1Id": "2004",
+              "station1LineNr": 2,
+              "station2Id": "2005",
+              "station2LineNr": 2
+            }
+          ]
+        },
+        {
+          "id": "2005",
+          "color": "#1A3399",
+          "name": "21",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 2,
+          "x": 584.0,
+          "y": 460.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#1A3399"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "2004",
+              "distance": 1
+            },
+            {
+              "id": "1006",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 4,
+              "station1Id": "2004",
+              "station1LineNr": 2,
+              "station2Id": "2005",
+              "station2LineNr": 2
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1006",
+          "color": "#000000",
+          "name": "00",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 489.0,
+          "y": 423.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1005",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": 0,
+          "station1Id": "2000",
+          "station1LineNr": 2,
+          "station2Id": "2001",
+          "station2LineNr": 2
+        },
+        {
+          "id": 1,
+          "station1Id": "2001",
+          "station1LineNr": 2,
+          "station2Id": "2002",
+          "station2LineNr": 2
+        },
+        {
+          "id": 2,
+          "station1Id": "2002",
+          "station1LineNr": 2,
+          "station2Id": "2003",
+          "station2LineNr": 2
+        },
+        {
+          "id": 3,
+          "station1Id": "2003",
+          "station1LineNr": 2,
+          "station2Id": "2004",
+          "station2LineNr": 2
+        },
+        {
+          "id": 4,
+          "station1Id": "2004",
+          "station1LineNr": 2,
+          "station2Id": "2005",
+          "station2LineNr": 2
+        },
+        {
+          "id": 5,
+          "station1Id": "2005",
+          "station1LineNr": 2,
+          "station2Id": "1006",
+          "station2LineNr": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": 3,
+      "name": "default TrainLine",
+      "color": "#4D001A",
+      "stations": [
+        {
+          "id": "3000",
+          "color": "#4D001A",
+          "name": "36",
+          "zone": 2,
+          "endStation": true,
+          "lineNr": 3,
+          "x": 655.0,
+          "y": 676.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3001",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "3000",
+              "station1LineNr": 3,
+              "station2Id": "3001",
+              "station2LineNr": 3
+            }
+          ]
+        },
+        {
+          "id": "3001",
+          "color": "#4D001A",
+          "name": "35",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 3,
+          "x": 651.0,
+          "y": 619.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3000",
+              "distance": 1
+            },
+            {
+              "id": "3002",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "3000",
+              "station1LineNr": 3,
+              "station2Id": "3001",
+              "station2LineNr": 3
+            },
+            {
+              "id": 1,
+              "station1Id": "3001",
+              "station1LineNr": 3,
+              "station2Id": "3002",
+              "station2LineNr": 3
+            }
+          ]
+        },
+        {
+          "id": "3002",
+          "color": "#4D001A",
+          "name": "34",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 3,
+          "x": 654.0,
+          "y": 574.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3001",
+              "distance": 1
+            },
+            {
+              "id": "3003",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 1,
+              "station1Id": "3001",
+              "station1LineNr": 3,
+              "station2Id": "3002",
+              "station2LineNr": 3
+            },
+            {
+              "id": 2,
+              "station1Id": "3002",
+              "station1LineNr": 3,
+              "station2Id": "3003",
+              "station2LineNr": 3
+            }
+          ]
+        },
+        {
+          "id": "3003",
+          "color": "#4D001A",
+          "name": "33",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 3,
+          "x": 592.0,
+          "y": 509.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3002",
+              "distance": 1
+            },
+            {
+              "id": "3004",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 2,
+              "station1Id": "3002",
+              "station1LineNr": 3,
+              "station2Id": "3003",
+              "station2LineNr": 3
+            },
+            {
+              "id": 3,
+              "station1Id": "3003",
+              "station1LineNr": 3,
+              "station2Id": "3004",
+              "station2LineNr": 3
+            }
+          ]
+        },
+        {
+          "id": "3004",
+          "color": "#4D001A",
+          "name": "32",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 3,
+          "x": 522.0,
+          "y": 506.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3003",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 3,
+              "station1Id": "3003",
+              "station1LineNr": 3,
+              "station2Id": "3004",
+              "station2LineNr": 3
+            },
+            {
+              "id": 4,
+              "station1Id": "3004",
+              "station1LineNr": 3,
+              "station2Id": "3005",
+              "station2LineNr": 3
+            }
+          ]
+        },
+        {
+          "id": "3005",
+          "color": "#4D001A",
+          "name": "31",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 3,
+          "x": 507.0,
+          "y": 474.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#4D001A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "3004",
+              "distance": 1
+            },
+            {
+              "id": "1006",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 4,
+              "station1Id": "3004",
+              "station1LineNr": 3,
+              "station2Id": "3005",
+              "station2LineNr": 3
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1006",
+          "color": "#000000",
+          "name": "00",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 489.0,
+          "y": 423.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1005",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": 0,
+          "station1Id": "3000",
+          "station1LineNr": 3,
+          "station2Id": "3001",
+          "station2LineNr": 3
+        },
+        {
+          "id": 1,
+          "station1Id": "3001",
+          "station1LineNr": 3,
+          "station2Id": "3002",
+          "station2LineNr": 3
+        },
+        {
+          "id": 2,
+          "station1Id": "3002",
+          "station1LineNr": 3,
+          "station2Id": "3003",
+          "station2LineNr": 3
+        },
+        {
+          "id": 3,
+          "station1Id": "3003",
+          "station1LineNr": 3,
+          "station2Id": "3004",
+          "station2LineNr": 3
+        },
+        {
+          "id": 4,
+          "station1Id": "3004",
+          "station1LineNr": 3,
+          "station2Id": "3005",
+          "station2LineNr": 3
+        },
+        {
+          "id": 5,
+          "station1Id": "3005",
+          "station1LineNr": 3,
+          "station2Id": "1006",
+          "station2LineNr": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "number": 4,
+      "name": "default TrainLine",
+      "color": "#B31A1A",
+      "stations": [
+        {
+          "id": "4000",
+          "color": "#B31A1A",
+          "name": "46",
+          "zone": 2,
+          "endStation": true,
+          "lineNr": 4,
+          "x": 190.0,
+          "y": 664.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4001",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "4000",
+              "station1LineNr": 4,
+              "station2Id": "4001",
+              "station2LineNr": 4
+            }
+          ]
+        },
+        {
+          "id": "4001",
+          "color": "#B31A1A",
+          "name": "45",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 4,
+          "x": 192.0,
+          "y": 609.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4000",
+              "distance": 1
+            },
+            {
+              "id": "4002",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "4000",
+              "station1LineNr": 4,
+              "station2Id": "4001",
+              "station2LineNr": 4
+            },
+            {
+              "id": 1,
+              "station1Id": "4001",
+              "station1LineNr": 4,
+              "station2Id": "4002",
+              "station2LineNr": 4
+            }
+          ]
+        },
+        {
+          "id": "4002",
+          "color": "#B31A1A",
+          "name": "44",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 4,
+          "x": 340.0,
+          "y": 612.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4001",
+              "distance": 1
+            },
+            {
+              "id": "4003",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 1,
+              "station1Id": "4001",
+              "station1LineNr": 4,
+              "station2Id": "4002",
+              "station2LineNr": 4
+            },
+            {
+              "id": 2,
+              "station1Id": "4002",
+              "station1LineNr": 4,
+              "station2Id": "4003",
+              "station2LineNr": 4
+            }
+          ]
+        },
+        {
+          "id": "4003",
+          "color": "#B31A1A",
+          "name": "43",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 4,
+          "x": 367.0,
+          "y": 530.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4002",
+              "distance": 1
+            },
+            {
+              "id": "4004",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 2,
+              "station1Id": "4002",
+              "station1LineNr": 4,
+              "station2Id": "4003",
+              "station2LineNr": 4
+            },
+            {
+              "id": 3,
+              "station1Id": "4003",
+              "station1LineNr": 4,
+              "station2Id": "4004",
+              "station2LineNr": 4
+            }
+          ]
+        },
+        {
+          "id": "4004",
+          "color": "#B31A1A",
+          "name": "42",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 4,
+          "x": 376.0,
+          "y": 495.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4003",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 3,
+              "station1Id": "4003",
+              "station1LineNr": 4,
+              "station2Id": "4004",
+              "station2LineNr": 4
+            },
+            {
+              "id": 4,
+              "station1Id": "4004",
+              "station1LineNr": 4,
+              "station2Id": "4005",
+              "station2LineNr": 4
+            }
+          ]
+        },
+        {
+          "id": "4005",
+          "color": "#B31A1A",
+          "name": "41",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 4,
+          "x": 414.0,
+          "y": 465.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#B31A1A"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "4004",
+              "distance": 1
+            },
+            {
+              "id": "1006",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 4,
+              "station1Id": "4004",
+              "station1LineNr": 4,
+              "station2Id": "4005",
+              "station2LineNr": 4
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1006",
+          "color": "#000000",
+          "name": "00",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 489.0,
+          "y": 423.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1005",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": 0,
+          "station1Id": "4000",
+          "station1LineNr": 4,
+          "station2Id": "4001",
+          "station2LineNr": 4
+        },
+        {
+          "id": 1,
+          "station1Id": "4001",
+          "station1LineNr": 4,
+          "station2Id": "4002",
+          "station2LineNr": 4
+        },
+        {
+          "id": 2,
+          "station1Id": "4002",
+          "station1LineNr": 4,
+          "station2Id": "4003",
+          "station2LineNr": 4
+        },
+        {
+          "id": 3,
+          "station1Id": "4003",
+          "station1LineNr": 4,
+          "station2Id": "4004",
+          "station2LineNr": 4
+        },
+        {
+          "id": 4,
+          "station1Id": "4004",
+          "station1LineNr": 4,
+          "station2Id": "4005",
+          "station2LineNr": 4
+        },
+        {
+          "id": 5,
+          "station1Id": "4005",
+          "station1LineNr": 4,
+          "station2Id": "1006",
+          "station2LineNr": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "number": 5,
+      "name": "default TrainLine",
+      "color": "#E6E64D",
+      "stations": [
+        {
+          "id": "5000",
+          "color": "#E6E64D",
+          "name": "56",
+          "zone": 2,
+          "endStation": true,
+          "lineNr": 5,
+          "x": 177.0,
+          "y": 57.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5001",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "5000",
+              "station1LineNr": 5,
+              "station2Id": "5001",
+              "station2LineNr": 5
+            }
+          ]
+        },
+        {
+          "id": "5001",
+          "color": "#E6E64D",
+          "name": "55",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 5,
+          "x": 78.0,
+          "y": 190.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5000",
+              "distance": 1
+            },
+            {
+              "id": "5002",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 0,
+              "station1Id": "5000",
+              "station1LineNr": 5,
+              "station2Id": "5001",
+              "station2LineNr": 5
+            },
+            {
+              "id": 1,
+              "station1Id": "5001",
+              "station1LineNr": 5,
+              "station2Id": "5002",
+              "station2LineNr": 5
+            }
+          ]
+        },
+        {
+          "id": "5002",
+          "color": "#E6E64D",
+          "name": "54",
+          "zone": 2,
+          "endStation": false,
+          "lineNr": 5,
+          "x": 84.0,
+          "y": 301.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5001",
+              "distance": 1
+            },
+            {
+              "id": "5003",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 1,
+              "station1Id": "5001",
+              "station1LineNr": 5,
+              "station2Id": "5002",
+              "station2LineNr": 5
+            },
+            {
+              "id": 2,
+              "station1Id": "5002",
+              "station1LineNr": 5,
+              "station2Id": "5003",
+              "station2LineNr": 5
+            }
+          ]
+        },
+        {
+          "id": "5003",
+          "color": "#E6E64D",
+          "name": "53",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 5,
+          "x": 190.0,
+          "y": 350.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5002",
+              "distance": 1
+            },
+            {
+              "id": "5004",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 2,
+              "station1Id": "5002",
+              "station1LineNr": 5,
+              "station2Id": "5003",
+              "station2LineNr": 5
+            },
+            {
+              "id": 3,
+              "station1Id": "5003",
+              "station1LineNr": 5,
+              "station2Id": "5004",
+              "station2LineNr": 5
+            }
+          ]
+        },
+        {
+          "id": "5004",
+          "color": "#E6E64D",
+          "name": "52",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 5,
+          "x": 255.0,
+          "y": 386.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5003",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 3,
+              "station1Id": "5003",
+              "station1LineNr": 5,
+              "station2Id": "5004",
+              "station2LineNr": 5
+            },
+            {
+              "id": 4,
+              "station1Id": "5004",
+              "station1LineNr": 5,
+              "station2Id": "5005",
+              "station2LineNr": 5
+            }
+          ]
+        },
+        {
+          "id": "5005",
+          "color": "#E6E64D",
+          "name": "51",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 5,
+          "x": 357.0,
+          "y": 409.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#E6E64D"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "5004",
+              "distance": 1
+            },
+            {
+              "id": "1006",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 4,
+              "station1Id": "5004",
+              "station1LineNr": 5,
+              "station2Id": "5005",
+              "station2LineNr": 5
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        },
+        {
+          "id": "1006",
+          "color": "#000000",
+          "name": "00",
+          "zone": 1,
+          "endStation": false,
+          "lineNr": 1,
+          "x": 489.0,
+          "y": 423.0,
+          "icon": {
+            "x": 0.0,
+            "y": 0.0,
+            "color": "#000000"
+          },
+          "text": {
+            "X": 0.0,
+            "Y": 13.0,
+            "rotation": 0.0
+          },
+          "neighbors": [
+            {
+              "id": "1005",
+              "distance": 1
+            },
+            {
+              "id": "2005",
+              "distance": 1
+            },
+            {
+              "id": "3005",
+              "distance": 1
+            },
+            {
+              "id": "4005",
+              "distance": 1
+            },
+            {
+              "id": "5005",
+              "distance": 1
+            }
+          ],
+          "connectors": [
+            {
+              "id": 5,
+              "station1Id": "1005",
+              "station1LineNr": 1,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "2005",
+              "station1LineNr": 2,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "3005",
+              "station1LineNr": 3,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "4005",
+              "station1LineNr": 4,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            },
+            {
+              "id": 5,
+              "station1Id": "5005",
+              "station1LineNr": 5,
+              "station2Id": "1006",
+              "station2LineNr": 1
+            }
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": 0,
+          "station1Id": "5000",
+          "station1LineNr": 5,
+          "station2Id": "5001",
+          "station2LineNr": 5
+        },
+        {
+          "id": 1,
+          "station1Id": "5001",
+          "station1LineNr": 5,
+          "station2Id": "5002",
+          "station2LineNr": 5
+        },
+        {
+          "id": 2,
+          "station1Id": "5002",
+          "station1LineNr": 5,
+          "station2Id": "5003",
+          "station2LineNr": 5
+        },
+        {
+          "id": 3,
+          "station1Id": "5003",
+          "station1LineNr": 5,
+          "station2Id": "5004",
+          "station2LineNr": 5
+        },
+        {
+          "id": 4,
+          "station1Id": "5004",
+          "station1LineNr": 5,
+          "station2Id": "5005",
+          "station2LineNr": 5
+        },
+        {
+          "id": 5,
+          "station1Id": "5005",
+          "station1LineNr": 5,
+          "station2Id": "1006",
+          "station2LineNr": 1
+        }
+      ]
+    }
+  ]
+}

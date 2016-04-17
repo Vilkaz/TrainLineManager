@@ -21,13 +21,13 @@ public class ViewController {
 
 
     @FXML
-    Button addNewLineBtn;
+    Button addNewLineBtn, selectStartStationBtn, selectEndStationBtn;
 
     @FXML
     RadioMenuItem clientViewRBtn, adminViewRBtn;
 
     @FXML
-    VBox leftMenu;
+    VBox leftMenu, ClientViewMainContainer, leftMenuMainContainer;
 
     @FXML
     Pane informationPane;
@@ -41,18 +41,25 @@ public class ViewController {
     @FXML
     Pane centerPane;
 
+    @FXML
+    Text ClientStartStationName,ClientEndStationName,priceTxt;
+
     private static TrainPlan trainPlan;
 
 
     @FXML
     private void activateClientView() {
-        ClientViewController.activateClientView(leftMenu);
-
+        ClientViewController.activateClientView(leftMenu, ClientViewMainContainer, leftMenuMainContainer);
     }
 
     @FXML
     private void activateAdminView() {
-        AdminViewController.loadAdminView(leftMenu);
+        AdminViewController.loadAdminView(leftMenu, ClientViewMainContainer, leftMenuMainContainer);
+        /**
+         * man muss wieder alle Mouse Icon listener aktiwieren. an dieser stelle ist der workaround = einfach die datei neu laden.
+         */
+        renderTrainPlan();
+
     }
 
     @FXML
@@ -68,17 +75,54 @@ public class ViewController {
     }
 
     @FXML
-    private void saveTrainPlan(){
+    private void saveTrainPlan() {
         ContentController.saveTrainPlan();
     }
 
     @FXML
-    private void loadTrainPlan(){
+    private void loadTrainPlan() {
         ContentController.loadTrainPlan();
         renderTrainPlan();
     }
 
-    private boolean addStationCreator=true;
+    @FXML
+    private void selectStartStation() {
+        activateStationIconClientClickListener(true);
+    }
+
+    @FXML
+    private void selectEndStation() {
+        activateStationIconClientClickListener(false);
+    }
+
+
+    @FXML
+    private void calculateRoute(){
+        TrainStation startStation = ContentController.getStartStation();
+        TrainStation endStation = ContentController.getEndStation();
+        ArrayList<TrainStation> allStations = ContentController.getAllStations();
+        System.out.println("berechne route von "+ startStation.getName() + " bis " + endStation.getName());
+        ArrayList<TrainStation> route = RouteController.getRoute(startStation, endStation, allStations);
+        for (TrainStation station:route){
+            System.out.println(station.getName());
+        }
+        double price = RouteController.calculate_price(route);
+        priceTxt.setText(String.valueOf(price));
+    }
+    private boolean addStationCreator = true;
+
+
+    private void createStationOnMouseclick(MouseEvent event, StationConnector connector) {
+        Pane stationCreator = StationController.getStationCreator();
+        Button okButton = getOKButtonForStation(stationCreator, event, connector);
+        stationCreator.getChildren().add(okButton);
+        /**
+         * if existing station is klicked on, then we dont want to add station creator to left side
+         */
+        if (addStationCreator) {
+            leftMenu.getChildren().add(stationCreator);
+        }
+    }
 
 
     private void addOKButtonToTrainlineCreator(Pane trainlineCreator) {
@@ -121,6 +165,7 @@ public class ViewController {
     private void activateStationIconClickListener(ArrayList<TrainStation> stations, StationConnector connector) {
         for (TrainStation station : stations) {
             station.getNode().toFront();
+            station.getIcon().getNode().toFront();
             station.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -129,8 +174,33 @@ public class ViewController {
                      * die click Funktion von dem centerpane sollte eigentlich von den StationIcon nodes
                      * überdeckt werden, da sie "toFront" hatten.
                      * das ist schmutziger "deadline kommt näher" zwischenhack ...
+                     *
+                     *17.04.2016
+                     * p.s. glaube habe es behoben indem ich icon-getNode to fron gemacht habe.
+                     * wer will darf es gerne testen
                      */
-                    addStationCreator=false;
+                    addStationCreator = false;
+                }
+            });
+        }
+    }
+
+    private void activateStationIconClientClickListener(boolean startStation) {
+        for (TrainStation station : ContentController.getAllStations()) {
+            station.getIcon().getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    ContentController.setSelectedStation(station);
+                    System.out.println("client view listener !");
+                    station.getIcon().getNode().setOnMouseClicked(null);
+                    if (startStation){
+                        ContentController.setStartStation(station);
+                        ClientStartStationName.setText(station.getName());
+
+                    } else {
+                        ContentController.setEndStation(station);
+                        ClientEndStationName.setText(station.getName());
+                    }
                 }
             });
         }
@@ -156,7 +226,7 @@ public class ViewController {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                addStationCreator=true;
+                addStationCreator = true;
                 TrainStationController.disableAllStationClickListeners();
                 finishAddStationToLineProcess(station, connector);
             }
@@ -165,7 +235,7 @@ public class ViewController {
 
     }
 
-    private void removeStationCreator(){
+    private void removeStationCreator() {
         leftMenu.getChildren().remove(1);
     }
 
@@ -174,7 +244,7 @@ public class ViewController {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                addStationCreator=true;
+                addStationCreator = true;
                 removeNodeFromCenterPane(connector.getNode());
                 removeNodeFromCenterPane(mainBox);
                 ContentController.removeActiveConnector();
@@ -196,6 +266,12 @@ public class ViewController {
                 addAnotherStationToTheLine(event, connector);
             }
         });
+    }
+
+    public void disableAllCenterPaneListeners() {
+        disableCenterPaneMouseClickListener();
+        disableCenterPaneMouseMoveListener();
+        TrainStationController.disableAllStationClickListeners();
     }
 
     private void addAnotherStationToTheLine(MouseEvent event, StationConnector connector) {
@@ -243,11 +319,12 @@ public class ViewController {
     /**
      * the verz first station of the line will have one invalid connector.
      * feel free to fix it !
+     *
      * @param station
      * @param connector
      */
-    private void addConectorIfhesValide(TrainStation station, StationConnector connector){
-        if (connector.getStation2()!=null){
+    private void addConectorIfhesValide(TrainStation station, StationConnector connector) {
+        if (connector.getStation2() != null) {
             station.addConnector(connector);
         }
     }
@@ -260,6 +337,12 @@ public class ViewController {
      * @param station
      */
     private StationConnector mergeStationToConnector(StationConnector connector, TrainStation station) {
+        /**
+         * ich glaube hier ist die stelle, die den überflüssigen connector für erste
+         * line produziert, um es abzufangen hab ich extra diese "isValide blabla"
+         * methode geschrieben. bin mir aber nicht sicher, es ist nach
+         * mitternacht ... mal wieder ...
+         */
         if (connector == null) {
             connector = new StationConnector(station);
         } else {

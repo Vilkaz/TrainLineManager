@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.HBox;
@@ -13,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.TrainLine;
+import model.TrainStation;
 
 import java.util.ArrayList;
 
@@ -58,17 +58,58 @@ public class TrainLineController {
     }
 
     public static ArrayList<TrainLine> getLinesFromJsonObject(JsonObject data) {
-        JsonArray lines = (JsonArray) data.get("lines");
+        JsonArray jsonLines = (JsonArray) data.get("lines");
         ArrayList<TrainLine> trainLines = new ArrayList<>();
-        for (JsonElement jsonElement : lines) {
-            JsonObject obj = (JsonObject) jsonElement;
+        for (JsonElement jsonElement : jsonLines) {
+            JsonObject jLine = (JsonObject) jsonElement;
             TrainLine line = new TrainLine();
-            line.setId(Integer.valueOf(obj.get("id").toString()));
-            line.setNumber(Integer.valueOf(obj.get("number").toString()));
-            line.setColor(ColorController.getColorFromHex(obj.get("color").getAsString()));
-            line.setStations(StationController.getStations(obj));
+            line.setId(Integer.valueOf(jLine.get("id").toString()));
+            line.setNumber(Integer.valueOf(jLine.get("number").toString()));
+            line.setColor(ColorController.getColorFromHex(jLine.get("color").getAsString()));
+            line.setStations(StationController.getNewStations(jLine));
             trainLines.add(line);
         }
+
+        /**
+         * nachdem die Trainlines gesetzt sind, will ich erst die connectoren hinzufügen.
+         * Grund = ein Station kann alle mögliche Linien in sich haben, am 16.04.2016 ist
+         * es noch nicht möglich linien zu erweitern, und es würde auch in erster itteration funktionieren.
+         * wenn aber später eine linie mit id 1  auf eine station von linie 2 als nachbar hinzugefügt wird,
+         * wird es zu bugs kommen, denn die stationen der linie 1 werden ja zuerst dargestellt, und da versucht er nach
+         * man connector auf eine nicht vorhandene station zu machen = null pointer.
+         * Um es zu vermeiden baue ich schonmal  die sicherere methode. Ein zweiter durchlauf ist zwar
+         * nie optimal, jeder darf es optimieren, nur denkt an meine vorhersage hier ...
+         */
+        for (JsonElement jsonElement : jsonLines) {
+            JsonObject jLine = (JsonObject) jsonElement;
+//            addStationsFromOtherLines(jLine, trainLines);
+            StationConnectorController.setStationConnectors(jLine, trainLines);
+        }
         return trainLines;
+    }
+
+    private static void addStationsFromOtherLines(JsonObject jLine, ArrayList<TrainLine> trainLines) {
+        JsonArray jsonStations = (JsonArray) jLine.get("stations");
+        int lineNumber = jLine.get("number").getAsInt();
+        for (JsonElement jsonElement : jsonStations){
+            JsonObject jStation = (JsonObject) jsonElement;
+            if (jStation.get("lineNr").getAsInt()!=lineNumber){
+                String stationId = jStation.get("id").getAsString();
+                TrainLine lineWithStation = TrainLineController.getLineFromArrayByNumber(trainLines, lineNumber);
+                TrainStation neededStation = lineWithStation.getStationById(stationId);
+                TrainLine lineWhoNeedsThatStation = TrainLineController.getLineFromArrayByNumber(trainLines,lineNumber );
+                lineWhoNeedsThatStation.addStation(neededStation);
+            }
+        }
+        }
+
+
+    public static TrainLine getLineFromArrayByNumber(ArrayList<TrainLine> trainLines, int number) {
+        for (TrainLine line : trainLines) {
+            if (line.getNumber()==number){
+                return  line;
+            }
+        }
+        return null;
     }
 }
