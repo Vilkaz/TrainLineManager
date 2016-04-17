@@ -23,6 +23,7 @@ public class TrainStationController {
     public static void disableAllStationClickListeners() {
         for (TrainStation station : ContentController.getAllStations()) {
             station.getNode().setOnMouseClicked(null);
+            station.getIcon().getNode().setOnMouseClicked(null);
         }
     }
 }

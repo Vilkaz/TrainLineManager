@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -9,49 +10,64 @@
 <?import javafx.scene.control.Label?>
 
 <VBox id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainContainer" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
-   <children>
-      <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1009.0" styleClass="menu">
-         <menus>
-            <Menu mnemonicParsing="false" text="Datei">
-               <items>
-                  <MenuItem fx:id="loadTrainPlan" mnemonicParsing="false" onAction="#loadTrainPlan" text="Laden" />
-                  <MenuItem fx:id="saveTrainPlan" mnemonicParsing="false" onAction="#saveTrainPlan" text="Speichern" />
-                  <MenuItem mnemonicParsing="false" text="Schliessen" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Ansicht">
-               <items>
-                  <RadioMenuItem fx:id="clientViewRBtn" mnemonicParsing="false" onAction="#activateClientView" selected="true" text="Kunde">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="adminOrClient" />
-                     </toggleGroup>
-                  </RadioMenuItem>
-                  <RadioMenuItem fx:id="adminViewRBtn" mnemonicParsing="false" onAction="#activateAdminView" text="Admin" toggleGroup="$adminOrClient" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <BorderPane id="mainBorderPane" styleClass="mainBorderPane">
-         <left>
-            <VBox fx:id="leftMenu" styleClass="leftMenu" BorderPane.alignment="CENTER">
-               <children>
-                  <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="56.0" prefWidth="186.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
-               </children></VBox>
-         </left>
-         <center>
-            <Pane fx:id="centerPane" styleClass="centerPane" BorderPane.alignment="CENTER" />
-         </center>
-         <right>
-            <Pane id="rightBorder" styleClass="rightBorder" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <Pane prefHeight="0.0" prefWidth="1009.0" styleClass="borderBottom" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
-   </children>
+    <children>
+        <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1009.0" styleClass="menu">
+            <menus>
+                <Menu mnemonicParsing="false" text="Datei">
+                    <items>
+                        <MenuItem fx:id="loadTrainPlan" mnemonicParsing="false" onAction="#loadTrainPlan" text="Laden" />
+                        <MenuItem fx:id="saveTrainPlan" mnemonicParsing="false" onAction="#saveTrainPlan" text="Speichern" />
+                        <MenuItem mnemonicParsing="false" text="Schliessen" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ansicht">
+                    <items>
+                        <RadioMenuItem fx:id="clientViewRBtn" mnemonicParsing="false" onAction="#activateClientView" text="Kunde">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="adminOrClient" />
+                            </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="adminViewRBtn" mnemonicParsing="false" onAction="#activateAdminView" selected="true" text="Admin" toggleGroup="$adminOrClient" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <BorderPane id="mainBorderPane" styleClass="mainBorderPane">
+            <left>
+                <VBox fx:id="leftMenuMainContainer" styleClass="leftMenu">
+                   <children>
+                       <VBox fx:id="leftMenu" BorderPane.alignment="CENTER">
+                           <children>
+                               <Button id="addNewLineBtn" fx:id="addNewLineBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewLine" prefHeight="56.0" prefWidth="186.0" styleClass="myBtn" stylesheets="@css/style.css" text="neue Line hinzufügen" />
+                           </children>
+                       </VBox>
+                       <VBox fx:id="ClientViewMainContainer" disable="true" prefHeight="200.0" prefWidth="100.0" styleClass="ClientViewMainContainer" visible="false">
+                           <children>
+                               <Button fx:id="selectStartStationBtn" mnemonicParsing="false" onAction="#selectStartStation" styleClass="myBtn" text="Startstation wählen" />
+                               <Text fx:id="ClientStartStationName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selectedStationTxt" text="Text" />
+                               <Button fx:id="selectEndStationBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectEndStation" styleClass="myBtn" text="Zielstation wählen" />
+                        <Text fx:id="ClientEndStationName" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selectedStationTxt" text="Text" />
+                        <Button fx:id="calculateRouteBtn" mnemonicParsing="false" onAction="#calculateRoute" styleClass="myBtn" text="Route berechnen" />
+                           </children>
+                       </VBox>
+                   </children>
+                </VBox>
+
+            </left>
+            <center>
+                <Pane fx:id="centerPane" styleClass="centerPane" BorderPane.alignment="CENTER" />
+            </center>
+            <right>
+                <Pane id="rightBorder" styleClass="rightBorder" BorderPane.alignment="CENTER" />
+            </right>
+            <bottom>
+                <Pane prefHeight="0.0" prefWidth="1009.0" styleClass="borderBottom" BorderPane.alignment="CENTER" />
+            </bottom>
+        </BorderPane>
+    </children>
 </VBox>

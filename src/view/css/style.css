@@ -151,3 +151,7 @@
 .connector {
   -fx-stroke-width: 1px;
 }
+
+.selectedStationTxt{
+  -fx-text-fill: #FFA500;
+}

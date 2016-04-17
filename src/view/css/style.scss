@@ -163,3 +163,7 @@ $leftMenuBackgroundColor: #191919;
 .connector{
     -fx-stroke-width: 1px;
 }
+
+.selectedStationTxt{
+     -fx-text-fill: $orangeColor;
+ }

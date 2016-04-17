@@ -19,7 +19,9 @@ public class ContentController {
 
     private static TrainPlan trainPlan = new TrainPlan();
     private static TrainLine activeTrainline;
-    private static TrainStation lastAdedStation;
+    private static TrainStation lastAdedStation, selectedStation;
+    private static TrainStation startStation = new TrainStation();
+    private static TrainStation endStation = new TrainStation();
     private static StationConnector activeConnector;
 
     private static boolean activeTextDrag = false;
@@ -69,9 +71,9 @@ public class ContentController {
     }
 
     public static String getIdForNextStation() {
-        int ending =  activeTrainline.getStations().size();
-        String begin = (activeTrainline.getNumber()==0) ? "000":""+activeTrainline.getNumber()*100;
-        return begin+ending;
+        int ending = activeTrainline.getStations().size();
+        String begin = (activeTrainline.getNumber() == 0) ? "000" : "" + activeTrainline.getNumber() * 100;
+        return begin + ending;
     }
 
     private static void setLastStationAndThisStationAsNeighbors(TrainStation trainStation) {
@@ -199,5 +201,24 @@ public class ContentController {
     }
 
 
+    public static void setSelectedStation(TrainStation selectedStation) {
+        ContentController.selectedStation = selectedStation;
+    }
 
+    public static TrainStation getStartStation() {
+        return startStation;
+    }
+
+    public static void setStartStation(TrainStation startStation) {
+        ContentController.startStation = startStation;
+        
+    }
+
+    public static TrainStation getEndStation() {
+        return endStation;
+    }
+
+    public static void setEndStation(TrainStation endStation) {
+        ContentController.endStation = endStation;
+    }
 }
