@@ -53,6 +53,7 @@
                                <Button fx:id="selectEndStationBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectEndStation" styleClass="myBtn" text="Zielstation wählen" />
                         <Text fx:id="ClientEndStationName" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selectedStationTxt" text="Text" />
                         <Button fx:id="calculateRouteBtn" mnemonicParsing="false" onAction="#calculateRoute" styleClass="myBtn" text="Route berechnen" />
+                        <Text fx:id="priceTxt" layoutX="10.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fi: ge;" styleClass="priceTxT" text="Text" />
                            </children>
                        </VBox>
                    </children>

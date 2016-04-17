@@ -34,10 +34,11 @@ public class TrainStation implements HasNode {
     private Pane centerPane;
     private DoubleProperty x = new SimpleDoubleProperty();
     private DoubleProperty y = new SimpleDoubleProperty();
-    private int distance_to_route_startpoint;
+    private int distance_to_route_startpoint = 0;
     private TrainStation vorgänger;
 
     public TrainStation() {
+        this.distance_to_route_startpoint = 0;
     }
 
     public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
@@ -56,6 +57,7 @@ public class TrainStation implements HasNode {
         node.setLayoutY(event.getY());
         y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
+        this.distance_to_route_startpoint = 0;
     }
 
     public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y, ArrayList<Neighbor> neighbors) {
@@ -73,6 +75,7 @@ public class TrainStation implements HasNode {
         this.y.setValue(node.layoutYProperty().getValue() + icon.getNode().layoutYProperty().getValue());
         this.x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
         this.neighbors = neighbors;
+        this.distance_to_route_startpoint = 0;
     }
 
 

@@ -36,7 +36,7 @@ public class ViewController {
     Pane centerPane;
 
     @FXML
-    Text ClientStartStationName,ClientEndStationName;
+    Text ClientStartStationName,ClientEndStationName,priceTxt;
 
     private static TrainPlan trainPlan;
 
@@ -44,7 +44,6 @@ public class ViewController {
     @FXML
     private void activateClientView() {
         ClientViewController.activateClientView(leftMenu, ClientViewMainContainer, leftMenuMainContainer);
-//        disableAllCenterPaneListeners();
     }
 
     @FXML
@@ -95,7 +94,11 @@ public class ViewController {
         ArrayList<TrainStation> allStations = ContentController.getAllStations();
         System.out.println("berechne route von "+ startStation.getName() + " bis " + endStation.getName());
         ArrayList<TrainStation> route = RouteController.getRoute(startStation, endStation, allStations);
-        System.out.println("");
+        for (TrainStation station:route){
+            System.out.println(station.getName());
+        }
+        double price = RouteController.calculate_price(route);
+        priceTxt.setText(String.valueOf(price));
     }
     private boolean addStationCreator = true;
 

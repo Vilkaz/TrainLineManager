@@ -17,7 +17,7 @@ public class RouteController {
         // der Startpunkt sind auf "unendlich" und die Distanz zum Startpunkt 0
         for (int i = 0; i < V.size(); i++) {
 
-            if (V.get(i).getId() == start.getId()) {
+            if (V.get(i).getId().equals(start.getId())) {
                 V.get(i).setDistance_to_route_startpoint(0);
             } else {
                 // Interger.Max_Value darf ich hier nicht nehmen weil später eine distanz dazuaddiert wird.
@@ -44,7 +44,7 @@ public class RouteController {
 
                     // Benachbarte Station holen
                     for (int k = 0; k < V.size(); k++) {
-                        if (V.get(k).getId() == id) {
+                        if (V.get(k).getId().equals(id)) {
                             NodeV = V.get(k);
                         }
                     }
