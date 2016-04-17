@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.TrainLine;
+import model.TrainStation;
 
 import java.util.ArrayList;
 
@@ -60,12 +61,12 @@ public class TrainLineController {
         JsonArray jsonLines = (JsonArray) data.get("lines");
         ArrayList<TrainLine> trainLines = new ArrayList<>();
         for (JsonElement jsonElement : jsonLines) {
-            JsonObject obj = (JsonObject) jsonElement;
+            JsonObject jLine = (JsonObject) jsonElement;
             TrainLine line = new TrainLine();
-            line.setId(Integer.valueOf(obj.get("id").toString()));
-            line.setNumber(Integer.valueOf(obj.get("number").toString()));
-            line.setColor(ColorController.getColorFromHex(obj.get("color").getAsString()));
-            line.setStations(StationController.getStations(obj));
+            line.setId(Integer.valueOf(jLine.get("id").toString()));
+            line.setNumber(Integer.valueOf(jLine.get("number").toString()));
+            line.setColor(ColorController.getColorFromHex(jLine.get("color").getAsString()));
+            line.setStations(StationController.getNewStations(jLine));
             trainLines.add(line);
         }
 
@@ -80,12 +81,36 @@ public class TrainLineController {
          * nie optimal, jeder darf es optimieren, nur denkt an meine vorhersage hier ...
          */
         for (JsonElement jsonElement : jsonLines) {
-            JsonObject obj = (JsonObject) jsonElement;
-            StationConnectorController.setStationConnectors(obj, trainLines);
+            JsonObject jLine = (JsonObject) jsonElement;
+            addStationsFromOtherLines(jLine, trainLines);
+            StationConnectorController.setStationConnectors(jLine, trainLines);
         }
 
         return trainLines;
     }
 
+    private static void addStationsFromOtherLines(JsonObject jLine, ArrayList<TrainLine> trainLines) {
+        JsonArray jsonStations = (JsonArray) jLine.get("stations");
+        int lineNumber = jLine.get("number").getAsInt();
+        for (JsonElement jsonElement : jsonStations){
+            JsonObject jStation = (JsonObject) jsonElement;
+            if (jStation.get("lineNr").getAsInt()!=lineNumber){
+                int stationId = jStation.get("id").getAsInt();
+                TrainLine lineWithStation = TrainLineController.getLineFromArrayByNumber(trainLines, lineNumber);
+                TrainStation neededStation = lineWithStation.getStationById(stationId);
+                TrainLine lineWhoNeedsThatStation = TrainLineController.getLineFromArrayByNumber(trainLines,lineNumber );
+                lineWhoNeedsThatStation.addStation(neededStation);
+            }
+        }
+        }
 
+
+    public static TrainLine getLineFromArrayByNumber(ArrayList<TrainLine> trainLines, int number) {
+        for (TrainLine line : trainLines) {
+            if (line.getNumber()==number){
+                return  line;
+            }
+        }
+        return null;
+    }
 }

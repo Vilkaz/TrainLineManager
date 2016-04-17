@@ -100,25 +100,32 @@ public class StationController {
         return trainStation;
     }
 
-    public static List<TrainStation> getStations(JsonObject data) {
-        JsonArray jsonStations = (JsonArray) data.get("stations");
+    public static List<TrainStation> getNewStations(JsonObject jLine) {
+        JsonArray jsonStations = (JsonArray) jLine.get("stations");
         ArrayList<TrainStation> stations = new ArrayList<>();
         for (JsonElement jsonElement : jsonStations) {
-            JsonObject jObj = (JsonObject) jsonElement;
-            int id = getId(jObj);
-            Color color = getColor(jObj);
-            String name = getName(jObj);
-            int zone = getZoneFromJson(jObj);
-            boolean endStation = isEndStation(jObj);
-            int lineNr = getLineNrFromJson(jObj);
-            double x = getXFFromJson(jObj);
-            double y = getYFromJson(jObj);
-            ArrayList<Neighbor> neighbors = getNeighborsFromJson(jObj);
+            JsonObject jStation = (JsonObject) jsonElement;
+            int lineNr = getLineNrFromJson(jStation);
+            /**
+             * hier soll verhindfer werden, dass die selbe station mehrere male instanciert wird,
+             * in verschiedenen lines.
+             */
+            if (lineNr == jLine.get("number").getAsInt()) {
+                int id = getId(jStation);
+                Color color = getColor(jStation);
+                String name = getName(jStation);
+                int zone = getZoneFromJson(jStation);
+                boolean endStation = isEndStation(jStation);
+                double x = getXFFromJson(jStation);
+                double y = getYFromJson(jStation);
+                ArrayList<Neighbor> neighbors = getNeighborsFromJson(jStation);
 
-            TrainStation station = new TrainStation(
-                    id, name, zone, endStation, color, lineNr, x, y, neighbors
-            );
-            stations.add(station);
+                TrainStation station = new TrainStation(
+                        id, name, zone, endStation, color, lineNr, x, y, neighbors
+                );
+                stations.add(station);
+            }
+
         }
         return stations;
     }

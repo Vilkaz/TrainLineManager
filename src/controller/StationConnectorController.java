@@ -7,7 +7,6 @@ import model.StationConnector;
 import model.TrainLine;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Vilkazzz on 15/04/2016.
@@ -33,14 +32,9 @@ public class StationConnectorController {
 
     }
 
-    private static void addConnectorsToLine(ArrayList<StationConnector> connectors, JsonObject obj, ArrayList<TrainLine> trainLines) {
-        TrainLine line = getLineFromArrayById(trainLines, obj.get("id").getAsInt());
+    private static void addConnectorsToLine(ArrayList<StationConnector> connectors, JsonObject jLine, ArrayList<TrainLine> trainLines) {
+        TrainLine line = TrainLineController.getLineFromArrayByNumber(trainLines, jLine.get("number").getAsInt());
+        line.setConnectors(connectors);
     }
 
-    private static TrainLine getLineFromArrayById(ArrayList<TrainLine> trainLines, int id) {
-        TrainLine result = new TrainLine();
-        for (TrainLine line : trainLines) {
-            if (line)
-        }
-    }
 }

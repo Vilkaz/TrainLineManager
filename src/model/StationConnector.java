@@ -104,7 +104,7 @@ public class StationConnector implements HasNode {
         json += JsonController.getJson("station1Id", station1.getId());
         json += JsonController.getJson("station1LineNr", station1.getLineNr());
         json += JsonController.getJson("station2Id", station2.getId());
-        json += JsonController.getJson("station2LineNr", station2.getLineNr());
+        json += JsonController.getJson("station2LineNr", station2.getLineNr(),false);
         return json + "}";
     }
 
