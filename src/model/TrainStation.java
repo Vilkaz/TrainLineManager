@@ -34,6 +34,8 @@ public class TrainStation implements HasNode {
     private Pane centerPane;
     private DoubleProperty x = new SimpleDoubleProperty();
     private DoubleProperty y = new SimpleDoubleProperty();
+    private int distance_to_route_startpoint;
+    private TrainStation vorgänger;
 
     public TrainStation() {
     }
@@ -202,10 +204,24 @@ public class TrainStation implements HasNode {
         return node;
     }
 
+
+    public int getDistance_to_route_startpoint(){
+        return this.distance_to_route_startpoint;
+    }
+
+    public void setDistance_to_route_startpoint(int d){
+        this.distance_to_route_startpoint = d;
+    }
+
+    public TrainStation getVorgänger(){
+        return this.vorgänger;
+    }
+
+
     //region getter and setter
 
 
-    public List getNeighbors() {
+    public ArrayList<Neighbor> getNeighbors() {
         return neighbors;
     }
 
@@ -313,8 +329,9 @@ public class TrainStation implements HasNode {
         this.centerPane = centerPane;
     }
 
-
-
+    public void setVorgänger(TrainStation vorgänger) {
+        this.vorgänger = vorgänger;
+    }
 
 //endregion getter and setter
 

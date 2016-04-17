@@ -46,5 +46,7 @@ public class Neighbor {
         this.id = id;
     }
 
+
+
 //region getter
 }

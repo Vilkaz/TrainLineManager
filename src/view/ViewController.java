@@ -94,6 +94,8 @@ public class ViewController {
         TrainStation endStation = ContentController.getEndStation();
         ArrayList<TrainStation> allStations = ContentController.getAllStations();
         System.out.println("berechne route von "+ startStation.getName() + " bis " + endStation.getName());
+        ArrayList<TrainStation> route = RouteController.getRoute(startStation, endStation, allStations);
+        System.out.println("");
     }
     private boolean addStationCreator = true;
 
