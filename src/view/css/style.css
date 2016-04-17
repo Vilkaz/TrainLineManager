@@ -153,5 +153,8 @@
 }
 
 .selectedStationTxt{
-  -fx-text-fill: #FFA500;
+  -fx-fill: #FFA500;
+}
+.priceTxT{
+  -fx-fill: #FFA500;
 }
