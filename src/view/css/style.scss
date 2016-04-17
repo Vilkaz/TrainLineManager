@@ -77,8 +77,10 @@ $leftMenuBackgroundColor: #191919;
 }
 
 .borderBottom{
-    -fx-background-color: $orangeColor;
+    -fx-background-color: $secondary1;
     -fx-min-height: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: $orangeColor;
 }
 
 .mainBorderPane{
@@ -99,7 +101,7 @@ $leftMenuBackgroundColor: #191919;
 
 .stationIcon:hover{
     -fx-stroke: $orangeColor;
-    -fx-stroke-width: 4px;
+    -fx-stroke-width: 3px;
 }
 
 .stationCreator{
@@ -150,7 +152,7 @@ $leftMenuBackgroundColor: #191919;
     -fx-background-color: $orangeColor;
     -fx-border-width: 1px;
     -fx-border-color: $secondary1;
-    -fx-padding: 2px;
+    -fx-padding: 4px;
     -fx-min-width: auto;
     -fx-min-height: auto;
 }
@@ -162,4 +164,24 @@ $leftMenuBackgroundColor: #191919;
 
 .connector{
     -fx-stroke-width: 1px;
+}
+
+.descriptionMap{
+    -fx-background-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-color: $orangeColor;
+    -fx-text-fill: $secondary1;
+}
+
+.information{
+    -fx-background-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-color: $secondary4;
+    border: 2px solid;
+    border-radius: 25px;
+}
+
+.displayMessage{
+    -fx-background-color: transparent;
+    -fx-text-fill: greenyellow;
 }

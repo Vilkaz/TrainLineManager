@@ -74,11 +74,13 @@
 
 /* line 79, style.scss */
 .borderBottom {
-  -fx-background-color: orange;
+  -fx-background-color: #191919;
   -fx-min-height: 10px;
+  -fx-border-width: 1px;
+  -fx-border-color: orange;
 }
 
-/* line 84, style.scss */
+/* line 86, style.scss */
 .mainBorderPane {
   -fx-min-width: 1000px;
   -fx-min-height: 1000px;
@@ -86,36 +88,36 @@
   -fx-pref-width: 100%;
 }
 
-/* line 91, style.scss */
+/* line 93, style.scss */
 .borderBottomPane {
   -fx-min-height: 1000px;
 }
 
-/* line 95, style.scss */
+/* line 97, style.scss */
 .stationIcon {
   -fx-stroke: white;
   -fx-stroke-width: 1px;
 }
 
-/* line 100, style.scss */
+/* line 102, style.scss */
 .stationIcon:hover {
   -fx-stroke: orange;
-  -fx-stroke-width: 4px;
+  -fx-stroke-width: 3px;
 }
 
-/* line 105, style.scss */
+/* line 107, style.scss */
 .stationCreator {
   -fx-background-color: orange;
   -fx-border-width: 1px;
   -fx-border-color: #191919;
 }
 
-/* line 111, style.scss */
+/* line 113, style.scss */
 .stationCreator:hover {
   -fx-border-width: 2px;
 }
 
-/* line 135, style.scss */
+/* line 137, style.scss */
 .endStationIcon {
   -fx-min-height: 30px;
   -fx-min-width: 30px;
@@ -125,29 +127,52 @@
   -fx-text-alignment: center;
 }
 
-/* line 144, style.scss */
+/* line 146, style.scss */
 .endStationIcon:hover {
   -fx-border-width: 3px;
   -fx-border-color: orange;
 }
 
-/* line 149, style.scss */
+/* line 151, style.scss */
 .neighborRequest {
   -fx-background-color: orange;
   -fx-border-width: 1px;
   -fx-border-color: #191919;
-  -fx-padding: 2px;
+  -fx-padding: 4px;
   -fx-min-width: auto;
   -fx-min-height: auto;
 }
 
-/* line 158, style.scss */
+/* line 160, style.scss */
 .neighborRequest:hover {
   -fx-border-width: 2px;
   -fx-border-color: #191919;
 }
 
-/* line 163, style.scss */
+/* line 165, style.scss */
 .connector {
   -fx-stroke-width: 1px;
+}
+
+/* line 169, style.scss */
+.descriptionMap {
+  -fx-background-color: transparent;
+  -fx-border-width: 1px;
+  -fx-border-color: orange;
+  -fx-text-fill: #191919;
+}
+
+/* line 176, style.scss */
+.information {
+  -fx-background-color: #000000;
+  -fx-border-width: 1px;
+  -fx-border-color: white;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+/* line 184, style.scss */
+.displayMessage {
+  -fx-background-color: transparent;
+  -fx-text-fill: greenyellow;
 }

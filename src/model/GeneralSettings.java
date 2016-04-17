@@ -8,7 +8,7 @@ import javafx.scene.paint.Paint;
  */
 public class GeneralSettings {
 
-    final static double START_WINDOW_HEIGHT = 800;
+    final static double START_WINDOW_HEIGHT = 1000;
     final static double START_WINDOW_WIDTH = 1000;
 
     final static int MAX_NUMBER_OF_LINES = 10;
@@ -20,7 +20,7 @@ public class GeneralSettings {
     final static  double  MOVE_ICON_HEIGTH =25;
     final static  double  MOVE_ICON_WIDTH =25;
 
-    final static double CONNECTOR_WIDTH = 3;
+    final static double CONNECTOR_WIDTH = 2;
 
     final private static int MIN_ZONE = 1;
     final private static int MAX_ZONE = 2;

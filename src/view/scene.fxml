@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<VBox id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainContainer" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
+<VBox id="mainVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="935.0" prefWidth="1009.0" styleClass="mainContainer" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
    <children>
       <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1009.0" styleClass="menu">
          <menus>
@@ -50,7 +51,14 @@
             <Pane id="rightBorder" styleClass="rightBorder" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
-            <Pane prefHeight="0.0" prefWidth="1009.0" styleClass="borderBottom" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="77.0" prefWidth="1009.0" styleClass="borderBottom" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane id="informationPane" fx:id="informationPane" layoutX="22.0" layoutY="9.0" prefHeight="39.0" prefWidth="973.0" styleClass="information">
+                     <children>
+                        <Button fx:id="displayMessageBox" layoutX="-10.0" layoutY="-17.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="993.0" styleClass="displayMessage" text="Information: Line hinzufügen..." />
+                     </children>
+                  </Pane>
+               </children></Pane>
          </bottom>
       </BorderPane>
    </children>
