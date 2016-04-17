@@ -23,8 +23,8 @@ public class StationConnector implements HasNode {
     private Color color;
 
 
-    public TrainStation getStationWithID(int id) {
-        return (station1.getId() == id) ? station1 : station2;
+    public TrainStation getStationWithID(String id) {
+        return (station1.getId().equals(id)) ? station1 : station2;
     }
 
     public StationConnector(TrainStation station1) {
@@ -37,7 +37,7 @@ public class StationConnector implements HasNode {
         setGeneralValuesIntoLine();
     }
 
-    public StationConnector(int id, ArrayList<TrainLine> trainLines, int station1ID, int station1LineNr, int station2ID, int station2LineNr, JsonObject jsonObject) {
+    public StationConnector(int id, ArrayList<TrainLine> trainLines, String station1ID, int station1LineNr, String station2ID, int station2LineNr, JsonObject jsonObject) {
         this.id = id;
         this.station1 = getStation(trainLines, station1ID, station1LineNr);
         this.station2 = getStation(trainLines, station2ID, station2LineNr);
@@ -50,7 +50,7 @@ public class StationConnector implements HasNode {
         setGeneralValuesIntoLine();
     }
 
-    private TrainStation getStation(ArrayList<TrainLine> trainLines, int stationID, int stationLineNr) {
+    private TrainStation getStation(ArrayList<TrainLine> trainLines, String stationID, int stationLineNr) {
         TrainLine line = getLine(trainLines, stationLineNr);
         return  line.getStationById(stationID);
     }

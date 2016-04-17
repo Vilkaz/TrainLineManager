@@ -82,10 +82,9 @@ public class TrainLineController {
          */
         for (JsonElement jsonElement : jsonLines) {
             JsonObject jLine = (JsonObject) jsonElement;
-            addStationsFromOtherLines(jLine, trainLines);
+//            addStationsFromOtherLines(jLine, trainLines);
             StationConnectorController.setStationConnectors(jLine, trainLines);
         }
-
         return trainLines;
     }
 
@@ -95,7 +94,7 @@ public class TrainLineController {
         for (JsonElement jsonElement : jsonStations){
             JsonObject jStation = (JsonObject) jsonElement;
             if (jStation.get("lineNr").getAsInt()!=lineNumber){
-                int stationId = jStation.get("id").getAsInt();
+                String stationId = jStation.get("id").getAsString();
                 TrainLine lineWithStation = TrainLineController.getLineFromArrayByNumber(trainLines, lineNumber);
                 TrainStation neededStation = lineWithStation.getStationById(stationId);
                 TrainLine lineWhoNeedsThatStation = TrainLineController.getLineFromArrayByNumber(trainLines,lineNumber );

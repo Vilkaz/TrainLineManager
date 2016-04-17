@@ -16,7 +16,7 @@ public class NeighborController {
         ArrayList<Neighbor> result = new ArrayList<>();
         for (JsonElement jsonElement:jsonNeighbors){
             JsonObject data = (JsonObject) jsonElement;
-            int id = data.get("id").getAsInt();
+            String id = data.get("id").getAsString();
             result.add(new Neighbor(id));
         }
         return result;

@@ -7,15 +7,15 @@ import controller.JsonController;
  */
 public class Neighbor {
     int distance;
-    int id;
+    String id;
 
 
-    public Neighbor(int id) {
+    public Neighbor(String id) {
         this.id = id;
         this.distance=1;
     }
 
-    public Neighbor(int range, int id) {
+    public Neighbor(int range, String id) {
         this.distance = range;
         this.id = id;
     }
@@ -34,7 +34,7 @@ public class Neighbor {
         return distance;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class Neighbor {
         this.distance = distance;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

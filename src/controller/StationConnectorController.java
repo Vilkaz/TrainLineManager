@@ -20,9 +20,9 @@ public class StationConnectorController {
             StationConnector connector = new StationConnector(
                     o.get("id").getAsInt(),
                     trainLines,
-                    o.get("station1Id").getAsInt(),
+                    o.get("station1Id").getAsString(),
                     o.get("station1LineNr").getAsInt(),
-                    o.get("station2Id").getAsInt(),
+                    o.get("station2Id").getAsString(),
                     o.get("station2LineNr").getAsInt(),
                     obj);
             connectors.add(connector);

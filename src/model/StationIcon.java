@@ -29,7 +29,7 @@ public class StationIcon implements HasNode {
     private int lineNr;
     private Node endstationIcon;
     private boolean endstation;
-    private int stationId;
+    private String stationId;
     private final String COMMA = ",";
 
 
@@ -192,11 +192,11 @@ public class StationIcon implements HasNode {
         this.endstation = endstation;
     }
 
-    public int getStationId() {
+    public String getStationId() {
         return stationId;
     }
 
-    public void setStationId(int stationId) {
+    public void setStationId(String stationId) {
         this.stationId = stationId;
     }
 

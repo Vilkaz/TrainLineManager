@@ -28,10 +28,10 @@ public class TrainLine {
         this.id =  id;
     }
 
-    public TrainStation getStationById(int id){
+    public TrainStation getStationById(String id){
        TrainStation searchedStation = new TrainStation();
          for (TrainStation station : stations){
-             if (station.getId()==id){
+             if (station.getId().equals(id)){
                  searchedStation=station;
              }
          }

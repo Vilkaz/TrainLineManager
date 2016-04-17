@@ -1,19 +1,13 @@
 package controller;
 
 
-import com.google.gson.Gson;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,8 +68,10 @@ public class ContentController {
         return !activeTrainline.hasStations();
     }
 
-    public static int getIdForNextStation() {
-        return activeTrainline.getStations().size();
+    public static String getIdForNextStation() {
+        int ending =  activeTrainline.getStations().size();
+        String begin = (activeTrainline.getNumber()==0) ? "000":""+activeTrainline.getNumber()*100;
+        return begin+ending;
     }
 
     private static void setLastStationAndThisStationAsNeighbors(TrainStation trainStation) {
@@ -103,11 +99,11 @@ public class ContentController {
         System.out.println();
     }
 
-    public static TrainStation getTrainStationById(int id) {
+    public static TrainStation getTrainStationById(String id) {
         TrainStation result = new TrainStation();
         for (TrainLine line : getTrainLines()) {
             for (TrainStation station : line.getStations()) {
-                if (station.getId() == id) {
+                if (station.getId().equals(id)) {
                     result = station;
                 }
             }

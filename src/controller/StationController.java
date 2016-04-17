@@ -90,7 +90,7 @@ public class StationController {
         ChoiceBox zoneSelector = (ChoiceBox) zoneHBox.getChildren().get(1);
         int zone = (int) zoneSelector.getValue();
         boolean endzone = !ContentController.trainlineHasStations();
-        int id = ContentController.getIdForNextStation();
+        String id = ContentController.getIdForNextStation();
         Color color = ContentController.getActiveColor();
 
         TrainStation trainStation = new TrainStation(id, name, zone, endzone, color, ContentController.getActualLineNr(), event, centerPane);
@@ -111,7 +111,7 @@ public class StationController {
              * in verschiedenen lines.
              */
             if (lineNr == jLine.get("number").getAsInt()) {
-                int id = getId(jStation);
+                String id = getId(jStation);
                 Color color = getColor(jStation);
                 String name = getName(jStation);
                 int zone = getZoneFromJson(jStation);
@@ -170,7 +170,7 @@ public class StationController {
         return ColorController.getColorFromHex(jObj.get("color").getAsString());
     }
 
-    private static int getId(JsonObject jObj) {
-        return jObj.get("id").getAsInt();
+    private static String getId(JsonObject jObj) {
+        return jObj.get("id").getAsString();
     }
 }

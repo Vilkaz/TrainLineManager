@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Vilkazzz on 13/03/2016.
  */
 public class TrainStation implements HasNode {
-    private int id;
+    private String id;
     private Color color;
     private StationIcon icon;
     private String name;
@@ -38,13 +38,14 @@ public class TrainStation implements HasNode {
     public TrainStation() {
     }
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
+    public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, MouseEvent event, Pane centerPane) {
         this.id = id;
         this.name = name;
         this.zone = zone;
         this.endStation = endStation;
         this.color = color;
         this.lineNr = lineNr;
+
         this.centerPane = centerPane;
         this.node = new Pane();
         this.icon = new StationIcon(this);
@@ -55,7 +56,7 @@ public class TrainStation implements HasNode {
         x.setValue(node.layoutXProperty().getValue() + icon.getNode().layoutXProperty().getValue());
     }
 
-    public TrainStation(int id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y, ArrayList<Neighbor> neighbors) {
+    public TrainStation(String id, String name, int zone, boolean endStation, Color color, int lineNr, double x, double y, ArrayList<Neighbor> neighbors) {
         this.id = id;
         this.name = name;
         this.zone = zone;
@@ -228,7 +229,7 @@ public class TrainStation implements HasNode {
         this.node = node;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -276,7 +277,7 @@ public class TrainStation implements HasNode {
         this.y.set(y);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
