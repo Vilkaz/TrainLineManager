@@ -13,7 +13,7 @@ public class Start extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/scene.fxml"));
         primaryStage.setTitle("Bahn Plan");
         primaryStage.setScene(new Scene(root, GeneralSettings.getSTART_WINDOW_WIDTH(), GeneralSettings.getSTART_WINDOW_HEIGHT()));
         primaryStage.show();

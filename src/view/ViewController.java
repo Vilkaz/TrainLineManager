@@ -66,7 +66,7 @@ public class ViewController {
     private void addNewLine() {
         Pane trainlineCreator = TrainLineController.getteTrainLineCreator(leftMenu);
         displayMessage("Information: Linennummer und farbe wählen...");
-        // 1te display messaage linummer und farbe
+        // 1te display
         /**
          * the "next" button has to manipulate viewControllers variables, which i cant make static, because
          * they would be null else...
@@ -111,20 +111,6 @@ public class ViewController {
     }
     private boolean addStationCreator = true;
 
-
-    private void createStationOnMouseclick(MouseEvent event, StationConnector connector) {
-        Pane stationCreator = StationController.getStationCreator();
-        Button okButton = getOKButtonForStation(stationCreator, event, connector);
-        stationCreator.getChildren().add(okButton);
-        /**
-         * if existing station is klicked on, then we dont want to add station creator to left side
-         */
-        if (addStationCreator) {
-            leftMenu.getChildren().add(stationCreator);
-        }
-    }
-
-
     private void addOKButtonToTrainlineCreator(Pane trainlineCreator) {
         Button button = new Button("weiter");
         button.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -144,7 +130,7 @@ public class ViewController {
         ArrayList<TrainStation> stations = ContentController.getAllStations();
         activateStationIconClickListener(stations, connector);
         displayMessage("Information: Klick für Startposition in der Map...");
-        // 2te  display message klick in map
+        // 2te  display
     }
 
 
@@ -152,7 +138,7 @@ public class ViewController {
         Pane stationCreator = StationController.getStationCreator();
         Button okButton = getOKButtonForStation(stationCreator, event, connector);
         displayMessage("Information: Stationname und Zone wählen");
-        // 3te
+        // 3te display
         stationCreator.getChildren().add(okButton);
         /**
          * if existing station is klicked on, then we dont want to add station creator to left side
@@ -210,7 +196,7 @@ public class ViewController {
     private Node getAddExistingTrainStaionAsNeighborRequest(TrainStation station, StationConnector connector) {
         VBox mainBox = TrainStationController.getAddExsistingTrainStaion(station);
         displayMessage("Information: Als Nachbarstation anlegen...");
-        // 5te
+        // 5te display
         mainBox.getChildren().add(getExsistinStatoinRequestButtons(mainBox, station, connector));
         return mainBox;
     }
@@ -312,7 +298,7 @@ public class ViewController {
         disableCenterPaneMouseClickListener();
         nextStationOrEndLine();
         displayMessage("Information: Nächste Station wählen...");
-        // 4te
+        //  display
     }
 
 
