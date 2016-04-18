@@ -1,10 +1,6 @@
 package controller;
 
-import com.sun.deploy.uitoolkit.DragContext;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 
 /**
  * Created by Vilkazzz on 19/03/2016.

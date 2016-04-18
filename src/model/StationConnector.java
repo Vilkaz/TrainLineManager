@@ -4,9 +4,6 @@ import com.google.gson.JsonObject;
 import controller.ColorController;
 import controller.ContentController;
 import controller.JsonController;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 

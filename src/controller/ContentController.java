@@ -126,10 +126,19 @@ public class ContentController {
         ContentController.activeConnector = activeConnector;
     }
 
+
+
     public static ArrayList<TrainStation> getAllStations() {
         ArrayList<TrainStation> stations = new ArrayList<>();
         for (TrainLine line : trainPlan.getLines()) {
-            stations.addAll(line.getStations().stream().collect(Collectors.toList()));
+            /**
+             * das könne man auch mit
+             *   stations.addAll(line.getStations().stream().collect(Collectors.toList()));
+             *   erreichen, ist aber weniger verständlich
+             */
+            for (TrainStation station : line.getStations()) {
+                stations.add(station);
+            }
         }
         return stations;
     }
@@ -211,7 +220,7 @@ public class ContentController {
 
     public static void setStartStation(TrainStation startStation) {
         ContentController.startStation = startStation;
-        
+
     }
 
     public static TrainStation getEndStation() {

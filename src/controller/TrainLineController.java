@@ -82,7 +82,6 @@ public class TrainLineController {
          */
         for (JsonElement jsonElement : jsonLines) {
             JsonObject jLine = (JsonObject) jsonElement;
-//            addStationsFromOtherLines(jLine, trainLines);
             StationConnectorController.setStationConnectors(jLine, trainLines);
         }
         return trainLines;
